@@ -52,35 +52,36 @@ body {
 }
 
 .brand-logo-wrapper {
-  margin-bottom: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .brand-logo-svg {
-  width: 100%;
-  max-width: 380px;
+  width: 722px;
+  max-width: 85vw;
   height: auto;
   display: block;
 }
 
 .cicada-icon {
-  margin-bottom: 5rem;
+  margin-top: 64px;
+  margin-bottom: 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .character-svg {
-  width: 28px;
-  height: 40px;
+  width: 55px;
+  height: 93px;
   display: block;
   transition: transform 0.4s ease;
 }
 
 .character-svg:hover {
-  transform: scale(1.15);
+  transform: scale(1.08);
 }
 
 .scroll-explore {
@@ -91,19 +92,24 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.3rem;
-  font-family: var(--font-en);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  color: #999999;
-  text-transform: uppercase;
   text-decoration: none;
 }
 
-.scroll-explore .arrow-down {
-  font-size: 0.85rem;
-  font-weight: 300;
+.explore-text {
+  font-family: var(--font-kr);
+  font-weight: 600;
+  font-size: 25pt;
+  color: #8D8D8D;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.direction-arrow {
+  width: 19px;
+  height: 10px;
+  margin-top: 17px;
+  display: block;
   animation: bounce-down 2.5s infinite;
 }
 
