@@ -131,8 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // 스프레이 브러시: 솔리드 원 없이 점(dot)만으로 구성
-  // 3번 클릭하면 완전히 드러나는 강도 / 누르고 있으면 점진적 노출
+  // 스프레이 브러시: 중심 밀집도 최고, 외곽 경계 없이 부드러운 감쇄
+  // 2번 클릭하면 중심부 이미지가 또렷하게 드러나는 강도
   // -------------------------------------------------------
   function sprayAt(x, y) {
     const rect = canvas.getBoundingClientRect();
@@ -141,60 +141,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctx.globalCompositeOperation = 'destination-out';
 
-    const sprayRadius = window.innerWidth < 768 ? 448 : 640;
+    const sprayRadius = window.innerWidth < 768 ? 400 : 560;
+    const totalDots = 1500; // 1회 분사 당 미세 점 1500개
 
-    // --- 중심 고밀도 점 영역 (반경 0~25%) ---
-    for (let i = 0; i < 500; i++) {
+    for (let i = 0; i < totalDots; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const dist = Math.pow(Math.random(), 0.6) * sprayRadius * 0.25;
+      // 거듭제곱(pow(u, 2.5)) 분포: 중심(0) 근처에 점이 80% 이상 빽빽하게 쏠림
+      const u = Math.random();
+      const dist = Math.pow(u, 2.5) * sprayRadius;
+
       const px = cx + Math.cos(angle) * dist;
       const py = cy + Math.sin(angle) * dist;
-      const r = Math.random() * 0.6 + 0.2;
-      ctx.globalAlpha = 0.15 + Math.random() * 0.15;
-      ctx.beginPath();
-      ctx.arc(px, py, r, 0, Math.PI * 2);
-      ctx.fill();
-    }
 
-    // --- 중간 밀도 영역 (반경 15~55%) ---
-    for (let i = 0; i < 600; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const u1 = Math.random();
-      const u2 = Math.random();
-      const g = Math.abs(Math.sqrt(-2 * Math.log(u1 || 0.001)) * Math.cos(2 * Math.PI * u2));
-      const dist = g * sprayRadius * 0.22 + sprayRadius * 0.08;
-      const px = cx + Math.cos(angle) * dist;
-      const py = cy + Math.sin(angle) * dist;
+      // 입자 크기: 아주 미세한 점 (0.2px ~ 0.7px)
       const r = Math.random() * 0.5 + 0.2;
-      const distRatio = dist / sprayRadius;
-      ctx.globalAlpha = Math.max(0.02, 0.12 * (1 - distRatio));
-      ctx.beginPath();
-      ctx.arc(px, py, r, 0, Math.PI * 2);
-      ctx.fill();
-    }
 
-    // --- 외곽 흩뿌림 (반경 35~100%) ---
-    for (let i = 0; i < 400; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const dist = sprayRadius * 0.35 + Math.random() * sprayRadius * 0.65;
-      const px = cx + Math.cos(angle) * dist;
-      const py = cy + Math.sin(angle) * dist;
-      const r = Math.random() * 0.45 + 0.15;
-      const distRatio = dist / sprayRadius;
-      ctx.globalAlpha = Math.max(0.008, 0.06 * Math.pow(1 - distRatio, 2));
-      ctx.beginPath();
-      ctx.arc(px, py, r, 0, Math.PI * 2);
-      ctx.fill();
-    }
+      // 중심부 투명도 강함(2번 클릭에 시원하게 지워짐), 바깥으로 갈수록 자연스럽게 흐려짐
+      const normDist = dist / sprayRadius; // 0 ~ 1
+      const alpha = (0.45 * Math.pow(1 - normDist, 1.8)) + 0.01;
 
-    // --- 최외곽 미세 입자 (반경 70~130%) ---
-    for (let i = 0; i < 120; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const dist = sprayRadius * 0.7 + Math.random() * sprayRadius * 0.6;
-      const px = cx + Math.cos(angle) * dist;
-      const py = cy + Math.sin(angle) * dist;
-      const r = Math.random() * 0.35 + 0.1;
-      ctx.globalAlpha = Math.random() * 0.025 + 0.003;
+      ctx.globalAlpha = alpha;
       ctx.beginPath();
       ctx.arc(px, py, r, 0, Math.PI * 2);
       ctx.fill();
