@@ -14,15 +14,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Background Particle Canvas for Mist Spray Effects -->
-    <canvas id="mist-canvas"></canvas>
 
     <!-- SECTION 1: HERO COVER -->
     <section class="section-hero" id="hero">
         <h1 class="brand-title">Goofy Foot<sup>®</sup></h1>
         
         <div class="cicada-icon" aria-label="Goofy Foot Cicada Emblem">
-            <!-- Cicada / Beetle Minimalist Emblem SVG -->
             <svg width="24" height="34" viewBox="0 0 24 34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2v4M12 6C8 6 5 9 5 14v10c0 4 3 6 7 6s7-2 7-6V14c0-5-3-8-7-8z"/>
                 <path d="M5 14c-2 2-3 5-3 8M19 14c2 2 3 5 3 8"/>
@@ -37,11 +34,17 @@
         </a>
     </section>
 
-    <!-- SECTION 2: ACTION INTERACTION -->
+    <!-- SECTION 2: SPRAY REVEAL INTERACTION -->
     <section class="section-interaction" id="interaction">
-        <div class="pine-visual-container">
-            <img src="images/pine_tree.png" alt="Goofy Foot Pine Wood Illustration">
-            <button class="btn-click-spray" id="btn-spray">CLICK TO SPRAY</button>
+        <div class="spray-reveal-container" id="spray-container">
+            <!-- 숨겨진 이미지 (클릭/터치로 스프레이하면 드러남) -->
+            <img src="images/pine_tree.png" alt="Goofy Foot Pine Wood Illustration" class="reveal-image" id="reveal-image">
+            <!-- 흰색 마스크 캔버스 (스프레이로 지워짐) -->
+            <canvas id="spray-canvas"></canvas>
+            <!-- 안내 텍스트 -->
+            <div class="spray-hint" id="spray-hint">
+                <span>CLICK TO SPRAY</span>
+            </div>
         </div>
     </section>
 
