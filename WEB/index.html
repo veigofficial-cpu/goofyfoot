@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GOOFY FOOT — Luxury Room Fragrance & Space Spray</title>
-    <meta name="description" content="방 안의 정서와 분위기를 완성하는 프리미엄 룸 프래그런스 브랜드 GOOFY FOOT (구피풋) 시그니처 룸 스프레이 컬렉션">
+    <title>Goofy Foot® — Pine Wood Room Spray</title>
+    <meta name="description" content="7년을 기다려 만나는, 여름 소나무 숲의 향. GOOFY FOOT® PINE WOOD ROOM SPRAY">
     
     <!-- Fonts: Adobe Typekit Acumin Pro + Pretendard Variable -->
     <link rel="stylesheet" href="https://use.typekit.net/mba8czj.css">
@@ -14,298 +14,82 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Interactive Background Particle Canvas -->
+    <!-- Background Particle Canvas for Mist Spray Effects -->
     <canvas id="mist-canvas"></canvas>
 
-    <!-- Header Navigation -->
-    <header class="navbar">
-        <a href="#hero" class="brand-logo" id="nav-brand-logo">
-            GOOFY FOOT <span class="dot"></span>
+    <!-- SECTION 1: HERO COVER -->
+    <section class="section-hero" id="hero">
+        <h1 class="brand-title">Goofy Foot<sup>®</sup></h1>
+        
+        <div class="cicada-icon" aria-label="Goofy Foot Cicada Emblem">
+            <!-- Cicada / Beetle Minimalist Emblem SVG -->
+            <svg width="24" height="34" viewBox="0 0 24 34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v4M12 6C8 6 5 9 5 14v10c0 4 3 6 7 6s7-2 7-6V14c0-5-3-8-7-8z"/>
+                <path d="M5 14c-2 2-3 5-3 8M19 14c2 2 3 5 3 8"/>
+                <path d="M5 18h14M5 22h14M5 26h14"/>
+                <path d="M9 2L7 0M15 2l2-2"/>
+            </svg>
+        </div>
+
+        <a href="#interaction" class="scroll-explore" id="link-explore">
+            <span>EXPLORE</span>
+            <span class="arrow-down">∨</span>
         </a>
-        <ul class="nav-menu" id="nav-menu">
-            <li><a href="#hero" class="nav-link active" id="nav-link-hero">Home</a></li>
-            <li><a href="#philosophy" class="nav-link" id="nav-link-philosophy">Philosophy</a></li>
-            <li><a href="#collection" class="nav-link" id="nav-link-collection">Room Sprays</a></li>
-            <li><a href="#atmosphere" class="nav-link" id="nav-link-atmosphere">Scent Selector</a></li>
-            <li><a href="#gallery" class="nav-link" id="nav-link-gallery">Spaces</a></li>
-        </ul>
-        <div class="nav-actions">
-            <button class="btn-audio" id="btn-audio" title="공간 앰비언트 오디오 재생">
-                <span class="audio-pulse"></span>
-                <span id="audio-label">AMBIENT SOUND</span>
-            </button>
-            <button class="mobile-toggle" id="mobile-toggle" aria-label="메뉴 열기">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-            </button>
-        </div>
-    </header>
+    </section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-grid">
-            <div class="hero-content">
-                <span class="hero-tag">ROOM FRAGRANCE ARCHITECTURE</span>
-                <h1 class="hero-title">
-                    GOOFY FOOT<br>
-                    <span class="outline">ROOM SPRAY</span>
-                </h1>
-                <p class="hero-description">
-                    공간의 분위기를 뒤바꾸는 찰나의 프래그런스. 
-                    구피풋(GOOFY FOOT)은 당신의 서재, 침실, 작업실에 깊은 정적과 세련된 감각을 불어넣는 룸 스프레이 컬렉션입니다.
-                </p>
-                <div class="hero-cta-group">
-                    <a href="#collection" class="btn-primary" id="btn-explore-collection">
-                        EXPLORE SCENTS
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                    <a href="#atmosphere" class="btn-secondary" id="btn-scent-selector">
-                        MOOD SELECTOR
-                    </a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-image-wrapper">
-                    <img src="images/hero.png" alt="GOOFY FOOT Room Spray Signature Bottle" id="hero-main-img">
-                    <div class="hero-badge">EST. 2026 / ROOM SPRAY 100ML</div>
-                </div>
-            </div>
+    <!-- SECTION 2: ACTION INTERACTION -->
+    <section class="section-interaction" id="interaction">
+        <div class="pine-visual-container">
+            <img src="images/pine_tree.png" alt="Goofy Foot Pine Wood Illustration">
+            <button class="btn-click-spray" id="btn-spray">CLICK TO SPRAY</button>
         </div>
     </section>
 
-    <!-- Brand Philosophy Section -->
-    <section class="philosophy" id="philosophy">
-        <div class="section-container">
-            <div class="philosophy-grid">
-                <div class="philosophy-quote-box">
-                    <span class="section-subtitle">THE BRAND PHILOSOPHY</span>
-                    <h2 class="philosophy-quote">
-                        TRANSFORMING SPACE THROUGH OLFACTORY ART
-                    </h2>
-                </div>
-                <div class="philosophy-body">
-                    <p>
-                        향기는 단순히 냄새를 가리는 도구가 아닌, 한 공간의 무드와 정서를 정의하는 유일한 감각입니다. 
-                        구피풋(GOOFY FOOT)은 시각적 절제미를 담은 모노크롬 디자인과 최상급 향료를 조합하여 공간에 묵직한 잔향을 선물합니다.
-                    </p>
-                    <p>
-                        한 번의 스플레이로 완성되는 당신만의 아지트, 서재, 그리고 휴식의 시간. 구피풋이 제안하는 룸 스프레이 컬렉션으로 일상의 리듬을 새롭게 정의하세요.
-                    </p>
-                    <div class="philosophy-stats">
-                        <div class="stat-item">
-                            <h4>03</h4>
-                            <p>SIGNATURE SCENTS</p>
-                        </div>
-                        <div class="stat-item">
-                            <h4>100%</h4>
-                            <p>FINE FRAGRANCE OILS</p>
-                        </div>
-                        <div class="stat-item">
-                            <h4>8-12H</h4>
-                            <p>SPATIAL DIFFUSION</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Signature Room Spray Collection Section -->
-    <section class="collection" id="collection">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-subtitle">SIGNATURE COLLECTION</span>
-                <h2 class="section-title">ROOM SPRAY LINEUP</h2>
-                <p class="section-desc">
-                    방 안의 정서를 위해 독자적으로 조향된 구피풋의 룸 프래그런스 라인업을 경험해보세요.
-                </p>
-            </div>
-            <div class="products-grid">
-                <!-- Product Card 01 -->
-                <article class="product-card" id="card-offbeat">
-                    <div class="product-image-container">
-                        <span class="product-tag">SMOKY & CEDAR</span>
-                        <img src="images/offbeat.png" alt="No. 01 OFF-BEAT Room Spray">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-number">NO. 01</span>
-                        <h3 class="product-title">OFF-BEAT</h3>
-                        <div class="product-notes">
-                            <span>FRAGRANCE NOTES</span>
-                            Smoky Cedarwood · Tobacco Leaf · Bergamot · Dark Amber
-                        </div>
-                        <div class="product-footer">
-                            <span class="product-price">₩68,000</span>
-                            <button class="btn-spray-test" data-scent="OFF-BEAT" id="btn-spray-01">SPRAY TEST</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Product Card 02 -->
-                <article class="product-card" id="card-wavedrift">
-                    <div class="product-image-container">
-                        <span class="product-tag">CRISP & LINEN</span>
-                        <img src="images/wavedrift.png" alt="No. 02 WAVE DRIFT Room Spray">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-number">NO. 02</span>
-                        <h3 class="product-title">WAVE DRIFT</h3>
-                        <div class="product-notes">
-                            <span>FRAGRANCE NOTES</span>
-                            Sea Salt · Crisp Linen · White Tea · Driftwood
-                        </div>
-                        <div class="product-footer">
-                            <span class="product-price">₩68,000</span>
-                            <button class="btn-spray-test" data-scent="WAVE DRIFT" id="btn-spray-02">SPRAY TEST</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Product Card 03 -->
-                <article class="product-card" id="card-nocturne">
-                    <div class="product-image-container">
-                        <span class="product-tag">DEEP & MUSK</span>
-                        <img src="images/nocturne.png" alt="No. 03 NOCTURNE SPACE Room Spray">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-number">NO. 03</span>
-                        <h3 class="product-title">NOCTURNE SPACE</h3>
-                        <div class="product-notes">
-                            <span>FRAGRANCE NOTES</span>
-                            Midnight Iris · Cardamom · Obsidian Musk · Sandalwood
-                        </div>
-                        <div class="product-footer">
-                            <span class="product-price">₩72,000</span>
-                            <button class="btn-spray-test" data-scent="NOCTURNE SPACE" id="btn-spray-03">SPRAY TEST</button>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Atmosphere / Mood Selector Section -->
-    <section class="selector-section" id="atmosphere">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-subtitle">INTERACTIVE FINDER</span>
-                <h2 class="section-title">ATMOSPHERE SELECTOR</h2>
-                <p class="section-desc">
-                    원하시는 공간의 분위기를 선택하시면 최적의 구피풋 룸 스프레이를 추천해 드립니다.
-                </p>
-            </div>
-
-            <div class="filter-tabs">
-                <button class="filter-btn active" data-filter="all" id="filter-all">ALL SCENTS</button>
-                <button class="filter-btn" data-filter="chill" id="filter-chill">DEEP CHILL (서재/거실)</button>
-                <button class="filter-btn" data-filter="focus" id="filter-focus">MORNING FOCUS (작업실)</button>
-                <button class="filter-btn" data-filter="night" id="filter-night">NIGHT SANCTUARY (침실)</button>
-            </div>
-
-            <div class="mood-display-box" id="mood-box">
-                <div class="mood-info">
-                    <h3 id="mood-title">ALL SPATIAL SCENTS</h3>
-                    <p id="mood-desc">
-                        구피풋의 전 라인업은 공간의 분위기를 순간적으로 전환하도록 독자 조향된 룸 프래그런스 시리즈입니다.
-                    </p>
-                    <a href="#collection" class="btn-primary" id="btn-mood-collection">VIEW COLLECTION</a>
-                </div>
-                <div class="note-pyramid">
-                    <div class="pyramid-level">
-                        <span class="pyramid-label">TOP NOTES</span>
-                        <span class="pyramid-val" id="note-top">Cedarwood, Bergamot, Ocean Air</span>
-                    </div>
-                    <div class="pyramid-level">
-                        <span class="pyramid-label">HEART NOTES</span>
-                        <span class="pyramid-val" id="note-heart">Tobacco Leaf, Crisp Linen, Black Iris</span>
-                    </div>
-                    <div class="pyramid-level">
-                        <span class="pyramid-label">BASE NOTES</span>
-                        <span class="pyramid-val" id="note-base">White Musk, Salted Amber, Obsidian Wood</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Spatial Gallery Section -->
-    <section class="gallery" id="gallery">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-subtitle">VISUAL ATMOSPHERE</span>
-                <h2 class="section-title">SPACES BY GOOFY FOOT</h2>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="images/gallery_01.png" alt="Monochrome Living Space">
-                    <div class="gallery-caption">STUDY & LIBRARY SPACE</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/gallery_02.png" alt="Clean Minimalist Room">
-                    <div class="gallery-caption">MINIMALIST BEDROOM</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/gallery_03.png" alt="Luxury Night Bedroom">
-                    <div class="gallery-caption">NIGHT SANCTUARY</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter CTA Section -->
-    <section class="cta-section">
-        <div class="section-container">
-            <span class="section-subtitle">JOIN THE MOVEMENT</span>
-            <h2 class="section-title">SUBSCRIBE TO GOOFY FOOT</h2>
-            <p class="section-desc" style="color: #444; margin: 1rem auto 0;">
-                신규 룸 프래그런스 드롭 및 한정 수량 룸 스프레이 릴리즈 소식을 먼저 받아보세요.
-            </p>
-            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('구피풋 뉴스레터 구독이 완료되었습니다.');">
-                <input type="email" class="newsletter-input" placeholder="Enter your email address..." required id="input-email">
-                <button type="submit" class="btn-subscribe" id="btn-subscribe-submit">SUBSCRIBE</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <h2>GOOFY FOOT</h2>
+    <!-- SECTION 3: BRAND STORY -->
+    <section class="section-story" id="story">
+        <div class="story-container">
+            <span class="story-tag">THE STORY</span>
+            <div class="story-content">
+                <p>국립생물자원관에 따르면, 매미는 땅속에서 최대 7년을 기다린다.</p>
+                <br>
+                <p>7년의 어둠, 그리고 지상에서 주어진 시간은 단 한 계절.<br>
+                깨어난 매미는 숲에서 가장 향이 짙은 나무를 찾아 오른다.</p>
+                <br>
+                <p class="highlight">언제나, 소나무다.</p>
+                <br>
                 <p>
-                    GOOFY FOOT ROOM FRAGRANCE ARCHITECTURE.<br>
-                    HIGH-CONTRAST MONOCHROME SPACE SPRAY.
+                    <strong>GOOFY FOOT<sup>®</sup> PINE WOOD ROOM SPRAY</strong>는<br>
+                    그 한 계절의 공기를 담았다.
                 </p>
-            </div>
-            <div class="footer-col">
-                <h5>COLLECTION</h5>
-                <ul class="footer-links">
-                    <li><a href="#card-offbeat">No. 01 OFF-BEAT</a></li>
-                    <li><a href="#card-wavedrift">No. 02 WAVE DRIFT</a></li>
-                    <li><a href="#card-nocturne">No. 03 NOCTURNE SPACE</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h5>NAVIGATION</h5>
-                <ul class="footer-links">
-                    <li><a href="#philosophy">Philosophy</a></li>
-                    <li><a href="#atmosphere">Scent Finder</a></li>
-                    <li><a href="#gallery">Spaces</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h5>CONTACT</h5>
-                <ul class="footer-links">
-                    <li><a href="#">Instagram @goofyfoot</a></li>
-                    <li><a href="#">contact@goofyfoot.com</a></li>
-                    <li><a href="#">Seoul, South Korea</a></li>
-                </ul>
+                <br>
+                <p>7년을 기다려 만나는, 여름 소나무 숲의 향.</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <span>&copy; 2026 GOOFY FOOT ROOM FRAGRANCE. ALL RIGHTS RESERVED.</span>
-            <span>PRESERVED BY GOOFY FOOT ARCHITECTURE</span>
+    </section>
+
+    <!-- SECTION 4: BRAND PRODUCT PHOTOS -->
+    <section class="section-products" id="products">
+        <div class="products-grid-2col">
+            <div class="product-box">
+                <img src="images/offbeat.png" alt="Goofy Foot Pine Wood Room Spray Bottle">
+            </div>
+            <div class="product-box">
+                <img src="images/wavedrift.png" alt="Goofy Foot Room Fragrance Detail">
+            </div>
         </div>
-    </footer>
+    </section>
+
+    <!-- SECTION 5: BRAND STORE LINK & FOOTER -->
+    <section class="section-store-footer" id="store">
+        <a href="https://smartstore.naver.com" target="_blank" rel="noopener noreferrer" class="btn-store" id="btn-smart-store">
+            Goofy Foot Smart Store
+        </a>
+
+        <footer class="site-footer">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-link" id="link-instagram">INSTAGRAM</a>
+            <a href="mailto:contact@goofyfoot.com" class="footer-link" id="link-email">EMAIL</a>
+        </footer>
+    </section>
 
     <script src="main.js"></script>
 </body>
