@@ -1,0 +1,687 @@
+/* ==========================================================================
+   The Portfolio Shift — Presentation Design System & Styles
+   ========================================================================== */
+
+:root {
+    --bg-dark: #0A0A0A;
+    --text-white: #FFFFFF;
+    --text-muted: #888888;
+    --accent-yellow: #FFD600;
+    --accent-yellow-glow: rgba(255, 214, 0, 0.3);
+    --border-dark: rgba(255, 255, 255, 0.12);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: var(--font-sans);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Background Particle Canvas */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Navbar Header */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    mix-blend-mode: difference;
+}
+
+.logo {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+}
+
+.logo-accent {
+    color: var(--accent-yellow);
+}
+
+.slide-indicator {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+}
+
+.nav-controls {
+    display: flex;
+    gap: 16px;
+}
+
+.nav-controls button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.nav-controls button:hover {
+    background: var(--accent-yellow);
+    color: #000;
+    border-color: var(--accent-yellow);
+    transform: scale(1.05);
+}
+
+/* Progress Bar */
+.progress-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    z-index: 101;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--accent-yellow);
+    box-shadow: 0 0 10px var(--accent-yellow);
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Scroll Snap Container */
+.presentation-container {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    position: relative;
+    z-index: 2;
+}
+
+/* Slide Base Style */
+.slide {
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 40px;
+    position: relative;
+    opacity: 0.2;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-content {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Typography Elements */
+.badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: rgba(255, 214, 0, 0.1);
+    border: 1px solid var(--accent-yellow);
+    color: var(--accent-yellow);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.chapter-tag {
+    font-size: 0.9rem;
+    letter-spacing: 0.25em;
+    color: var(--accent-yellow);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.display-title {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 800px;
+    line-height: 1.5;
+}
+
+.section-desc {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 40px;
+    max-width: 700px;
+}
+
+.highlight-yellow {
+    color: var(--accent-yellow);
+    position: relative;
+    display: inline-block;
+}
+
+.highlight-strike {
+    text-decoration: line-through;
+    color: #ff4d4d;
+    opacity: 0.8;
+}
+
+/* Hero Footer Scroll Hint */
+.hero-footer {
+    margin-top: 60px;
+}
+
+.scroll-hint {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.scroll-hint .arrow {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(6px); }
+    60% { transform: translateY(3px); }
+}
+
+/* Slide 02 Comparison Box */
+.comparison-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 20px;
+}
+
+.comp-item {
+    padding: 36px;
+    border-radius: 16px;
+    text-align: left;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.comp-item.legacy {
+    border-color: rgba(255, 77, 77, 0.3);
+}
+
+.comp-item.modern {
+    border-color: var(--accent-yellow-glow);
+    background: rgba(255, 214, 0, 0.02);
+}
+
+.comp-item h3 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+.comp-item.legacy h3 { color: #ff6b6b; }
+.comp-item.modern h3 { color: var(--accent-yellow); }
+
+.comp-item ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Slide 03 Gravity Cards */
+.gravity-text {
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.8));
+    letter-spacing: 0.1em;
+}
+
+.gravity-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+    max-width: 1050px;
+}
+
+.card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 32px 24px;
+    border-radius: 16px;
+    text-align: left;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-yellow);
+}
+
+.card-num {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--accent-yellow);
+    margin-bottom: 16px;
+    opacity: 0.8;
+}
+
+.card h4 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Slide 04 Feature Pills */
+.feature-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 900px;
+    margin-top: 20px;
+}
+
+.pill {
+    padding: 18px 32px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.pill:hover {
+    background: var(--accent-yellow);
+    color: #000;
+    border-color: var(--accent-yellow);
+    box-shadow: 0 0 25px var(--accent-yellow-glow);
+    transform: scale(1.05);
+}
+
+/* Slide 05 Quote Box */
+.quote-box {
+    margin-top: 40px;
+    padding: 40px 60px;
+    border-left: 4px solid var(--accent-yellow);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 0 16px 16px 0;
+    max-width: 900px;
+    text-align: left;
+}
+
+.quote-box blockquote {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    line-height: 1.6;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Slide 06 Folder Tree */
+.folder-tree {
+    background: #141414;
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 750px;
+    text-align: left;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.tree-header {
+    background: #1e1e1e;
+    padding: 16px 24px;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--accent-yellow);
+}
+
+.tree-body {
+    padding: 24px 32px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.tree-body li {
+    color: #ccc;
+}
+
+.tree-body strong {
+    color: #fff;
+}
+
+/* Slide 07 Grid Container */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.grid-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.grid-card:hover {
+    border-color: var(--accent-yellow);
+    background: rgba(255, 214, 0, 0.04);
+}
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.grid-card h3 {
+    font-size: 1.25rem;
+    color: var(--accent-yellow);
+    margin-bottom: 8px;
+}
+
+.grid-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Slide 09 Platform Grid */
+.platform-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    width: 100%;
+    max-width: 950px;
+}
+
+.platform-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.platform-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-yellow);
+}
+
+.platform-name {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.platform-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--accent-yellow);
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.platform-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Slide 10 Steps Container */
+.step-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+    max-width: 1050px;
+}
+
+.step-box {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: left;
+}
+
+.step-num {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--accent-yellow);
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+}
+
+.step-box h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.step-box p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Slide 11 Yellow Theme Inverse */
+.slide.theme-yellow {
+    background-color: var(--accent-yellow);
+    color: #0A0A0A;
+}
+
+.chapter-tag-black {
+    font-size: 0.9rem;
+    letter-spacing: 0.25em;
+    color: #0A0A0A;
+    font-weight: 800;
+    margin-bottom: 16px;
+    opacity: 0.8;
+}
+
+.display-title-black {
+    font-family: var(--font-serif);
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    line-height: 1;
+    color: #0A0A0A;
+    font-weight: 900;
+    margin-bottom: 24px;
+}
+
+.black-highlight {
+    background: #0A0A0A;
+    color: var(--accent-yellow);
+    padding: 0 16px;
+    display: inline-block;
+}
+
+.subtitle-black {
+    font-size: 1.5rem;
+    color: rgba(10, 10, 10, 0.8);
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.btn-start {
+    background: #0A0A0A;
+    color: #FFFFFF;
+    border: none;
+    padding: 20px 48px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.btn-start:hover {
+    transform: scale(1.08);
+    background: #1a1a1a;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* Right Dot Navigation */
+.dot-nav {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 100;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: var(--accent-yellow);
+    transform: scale(1.4);
+    box-shadow: 0 0 10px var(--accent-yellow);
+}
+
+/* Toast Guide */
+.toast-guide {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    pointer-events: none;
+    animation: fadeOut 8s forwards;
+}
+
+.toast-guide kbd {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+@keyframes fadeOut {
+    0%, 70% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 900px) {
+    .comparison-box,
+    .gravity-cards,
+    .grid-container,
+    .platform-grid,
+    .step-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .navbar {
+        padding: 16px 20px;
+    }
+    
+    .dot-nav {
+        right: 15px;
+    }
+
+    .slide {
+        padding: 60px 24px;
+    }
+}

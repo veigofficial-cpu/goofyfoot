@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Portfolio Shift — 문서에서 웹으로, 중력을 거슬러라</title>
+    <meta name="description" content="패스트캠퍼스 수강생을 위한 웹 포트폴리오 전환 가이드 스크롤 슬라이드 프레젠테이션">
+    <!-- Google Fonts & Pretendard -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Canvas for Interactive Particles -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Header Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-accent">ANTIGRAVITY</span> SHIFT
+        </div>
+        <div class="slide-indicator">
+            <span id="current-slide">01</span> / <span id="total-slides">11</span>
+        </div>
+        <div class="nav-controls">
+            <button id="btn-fullscreen" title="전체화면 (F)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+            <button id="btn-sound" title="효과음 토글 (M)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Floating Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- Main Scroll Snap Presentation Slides Container -->
+    <main class="presentation-container" id="presentation">
+        
+        <!-- Slide 01: INTRO - THE PORTFOLIO SHIFT -->
+        <section class="slide" id="slide-01" data-slide="1">
+            <div class="slide-content">
+                <span class="badge">FASTCAMPUS LECTURE PRESENTATION</span>
+                <h1 class="display-title">
+                    THE PORTFOLIO<br>
+                    <span class="highlight-yellow">SHIFT</span>
+                </h1>
+                <p class="subtitle">문서에서 웹으로, 중력을 거슬러라</p>
+                <div class="hero-footer">
+                    <span class="scroll-hint">스크롤을 내려 프레젠테이션을 시작하세요 <span class="arrow">↓</span></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 02: INTRO - 50MB PDF? -->
+        <section class="slide" id="slide-02" data-slide="2">
+            <div class="slide-content">
+                <span class="chapter-tag">INTRO</span>
+                <h2 class="display-title">
+                    50MB <span class="highlight-strike">PDF</span>?
+                </h2>
+                <div class="comparison-box">
+                    <div class="comp-item legacy">
+                        <h3>과거의 방식 (PDF)</h3>
+                        <ul>
+                            <li>❌ 메일 용량 제한으로 첨부 불가</li>
+                            <li>❌ 모바일에서 글씨가 작아 읽기 힘듦</li>
+                            <li>❌ 인터랙션 및 동영상 재생 불가</li>
+                            <li>❌ 수정할 때마다 파일 재배포 필요</li>
+                        </ul>
+                    </div>
+                    <div class="comp-item modern">
+                        <h3>웹 포트폴리오 (Web)</h3>
+                        <ul>
+                            <li>⚡ URL 링크 하나로 즉시 공유</li>
+                            <li>📱 모든 디바이스에 완벽한 반응형</li>
+                            <li>✨ 인터랙션과 실시간 데모 지원</li>
+                            <li>🔄 실시간 업데이트 및 유지보수 용이</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 03: INTRO - GRAVITY -->
+        <section class="slide" id="slide-03" data-slide="3">
+            <div class="slide-content">
+                <span class="chapter-tag">INTRO</span>
+                <h2 class="display-title">
+                    <span class="gravity-text">GRAVITY</span>
+                </h2>
+                <p class="section-desc">당신의 포트폴리오를 끌어내리는 구시대의 중력</p>
+                <div class="gravity-cards">
+                    <div class="card">
+                        <div class="card-num">01</div>
+                        <h4>정적인 캡처 화면</h4>
+                        <p>동작하는 서비스의 경험을 정지 이미지 몇 장으로 담아낼 수 없습니다.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-num">02</div>
+                        <h4>닫힌 파일 포맷</h4>
+                        <p>열어보기 전까지 내용을 전혀 알 수 없는 피로감을 줍니다.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-num">03</div>
+                        <h4>평범한 경험</h4>
+                        <p>수백 개의 PDF 지원서 속에서 시각적 인상을 남기기 어렵습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 04: INTRO - ANTIGRAVITY -->
+        <section class="slide" id="slide-04" data-slide="4">
+            <div class="slide-content">
+                <span class="chapter-tag">INTRO</span>
+                <h2 class="display-title">
+                    ANTI<span class="highlight-yellow">GRAVITY</span>
+                </h2>
+                <p class="section-desc">무거운 규격을 벗어던지고, 웹의 무한한 가능성으로 뛰어올라라</p>
+                <div class="feature-pills">
+                    <div class="pill">🚀 번개처럼 빠른 로딩</div>
+                    <div class="pill">🎨 강렬한 브랜드 경험</div>
+                    <div class="pill">💻 실시간 인터랙티브 솔루션</div>
+                    <div class="pill">📊 구글 애널리틱스 트래킹</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 05: CHAPTER 01 - DATA FIRST -->
+        <section class="slide" id="slide-05" data-slide="5">
+            <div class="slide-content">
+                <span class="chapter-tag">CHAPTER 01</span>
+                <h2 class="display-title">
+                    DATA <span class="highlight-yellow">FIRST</span>
+                </h2>
+                <p class="subtitle">화려한 코딩 전, 데이터 구축이 먼저다</p>
+                <div class="quote-box">
+                    <blockquote>"디자인과 코딩은 가공 과정일 뿐이다.<br>본질은 당신이 수집하고 정리한 프로젝트 구조화 데이터에 있다."</blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 06: CHAPTER 01 - OPEN YOUR FOLDER -->
+        <section class="slide" id="slide-06" data-slide="6">
+            <div class="slide-content">
+                <span class="chapter-tag">CHAPTER 01</span>
+                <h2 class="display-title">OPEN YOUR <span class="highlight-yellow">FOLDER</span></h2>
+                <p class="section-desc">무질서한 작업 폴더를 체계적인 포트폴리오 에셋으로 정돈하세요</p>
+                <div class="folder-tree">
+                    <div class="tree-header">📁 Project Assets Architecture</div>
+                    <ul class="tree-body">
+                        <li>📁 <strong>Assets/</strong> — img/, mov/, fonts/, sound/</li>
+                        <li>📁 <strong>01_Showcase/</strong> — 핵심 데모 및 대표 결과물</li>
+                        <li>📁 <strong>02_App/</strong> — 스탠드얼론 프로젝트 애플리케이션</li>
+                        <li>📁 <strong>03_Playground/</strong> — 실험실 코드 및 아이디어 시놉시스</li>
+                        <li>📄 <strong>index.html</strong> — 메인 포트폴리오 진입점</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 07: CHAPTER 01 - 수집 항목 (그리드) -->
+        <section class="slide" id="slide-07" data-slide="7">
+            <div class="slide-content">
+                <span class="chapter-tag">CHAPTER 01</span>
+                <h2 class="display-title">수집 항목 <span class="highlight-yellow">GRID</span></h2>
+                <p class="section-desc">웹 포트폴리오 제작을 위한 핵심 준비 에셋 4가지</p>
+                <div class="grid-container">
+                    <div class="grid-card">
+                        <div class="card-icon">🎯</div>
+                        <h3>01. Overview & Problem</h3>
+                        <p>프로젝트의 목표, 해결하려 한 문제, 그리고 나의 역할과 기여도</p>
+                    </div>
+                    <div class="grid-card">
+                        <div class="card-icon">🎨</div>
+                        <h3>02. Visual Assets</h3>
+                        <p>고화질 캡처, 데모 영상(mp4/webm), UI 가이드, 컬러/타이포 매뉴얼</p>
+                    </div>
+                    <div class="grid-card">
+                        <div class="card-icon">⚡</div>
+                        <h3>03. Technical Proof</h3>
+                        <p>사용한 기술 스택, 핵심 소스 코드 링크, 라이브 데모 URL</p>
+                    </div>
+                    <div class="grid-card">
+                        <div class="card-icon">📈</div>
+                        <h3>04. Impact & Result</h3>
+                        <p>사용자 반응, 정량적 성과 지표(Lighthouse 점수, 사용률 등)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 08: CHAPTER 02 - VISUAL REFERENCE -->
+        <section class="slide" id="slide-08" data-slide="8">
+            <div class="slide-content">
+                <span class="chapter-tag">CHAPTER 02</span>
+                <h2 class="display-title">
+                    VISUAL <span class="highlight-yellow">REFERENCE</span>
+                </h2>
+                <p class="subtitle">눈의 높이가 곧 작업물의 높이다</p>
+                <p class="section-desc">좋은 레퍼런스는 모방이 아닌, 내 디자인의 기준점을 세우는 과정입니다.</p>
+            </div>
+        </section>
+
+        <!-- Slide 09: CHAPTER 02 - Pinterest / Dribbble / Behance / Awwwards -->
+        <section class="slide" id="slide-09" data-slide="9">
+            <div class="slide-content">
+                <span class="chapter-tag">CHAPTER 02</span>
+                <h2 class="display-title">PLATFORMS</h2>
+                <p class="section-desc">영감을 얻을 수 있는 대표적인 4대 웹 디자인 채널</p>
+                <div class="platform-grid">
+                    <div class="platform-card">
+                        <div class="platform-name">Awwwards</div>
+                        <div class="platform-tag">WEB INNOVATION</div>
+                        <p>최첨단 인터랙티브 웹, Three.js, GSAP 기반 세계 최고 수준의 레퍼런스</p>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-name">Behance</div>
+                        <div class="platform-tag">BRAND & SYSTEM</div>
+                        <p>프로젝트의 스토리텔링과 디테일한 비주얼 시스템 아이덴티티 수집</p>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-name">Dribbble</div>
+                        <div class="platform-tag">UI / MICRO-MOTION</div>
+                        <p>트렌디한 UI 컴포넌트, 모션 그래픽, 색상 조합의 영감</p>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-name">Pinterest</div>
+                        <div class="platform-tag">MOODBOARD</div>
+                        <p>무드보드 구상, 레이아웃 아이디어 및 톤앤매너 핀보드 구축</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: CHAPTER 02 - 레퍼런스 활용법 -->
+        <section class="slide" id="slide-10" data-slide="10">
+            <div class="slide-content">
+                <span class="chapter-tag">CHAPTER 02</span>
+                <h2 class="display-title">REFERENCE <span class="highlight-yellow">HOW-TO</span></h2>
+                <p class="section-desc">레퍼런스를 200% 활용하는 3단계 법칙</p>
+                <div class="step-container">
+                    <div class="step-box">
+                        <div class="step-num">STEP 1</div>
+                        <h3>Deconstruction (해체)</h3>
+                        <p>마음에 드는 웹사이트의 레이아웃, 그리드, 폰트 크기, 여백을 요소별로 해체 분석하세요.</p>
+                    </div>
+                    <div class="step-box">
+                        <div class="step-num">STEP 2</div>
+                        <h3>Re-combination (재조합)</h3>
+                        <p>서로 다른 레퍼런스의 강점(A의 타이포 + B의 컬러 + C의 스크롤)을 내 맥락에 맞게 재조합하세요.</p>
+                    </div>
+                    <div class="step-box">
+                        <div class="step-num">STEP 3</div>
+                        <h3>Implementation (구현)</h3>
+                        <p>기초 HTML/CSS부터 시작하여 차근차근 내 에셋과 스토리를 결합해 독창적인 포트폴리오로 전환하세요.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: ENDING - START (Yellow Inverse Theme) -->
+        <section class="slide theme-yellow" id="slide-11" data-slide="11">
+            <div class="slide-content">
+                <span class="chapter-tag-black">ENDING</span>
+                <h2 class="display-title-black">
+                    START<br>
+                    <span class="black-highlight">NOW</span>
+                </h2>
+                <p class="subtitle-black">중력을 거슬러 당신만의 웹 포트폴리오를 만드세요</p>
+                <div class="action-box">
+                    <button class="btn-start" id="btn-restart">
+                        🚀 프레젠테이션 처음으로
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Slide Navigation Dots (Right side) -->
+    <nav class="dot-nav" id="dot-nav">
+        <button data-goto="1" class="dot active" title="Slide 01"></button>
+        <button data-goto="2" class="dot" title="Slide 02"></button>
+        <button data-goto="3" class="dot" title="Slide 03"></button>
+        <button data-goto="4" class="dot" title="Slide 04"></button>
+        <button data-goto="5" class="dot" title="Slide 05"></button>
+        <button data-goto="6" class="dot" title="Slide 06"></button>
+        <button data-goto="7" class="dot" title="Slide 07"></button>
+        <button data-goto="8" class="dot" title="Slide 08"></button>
+        <button data-goto="9" class="dot" title="Slide 09"></button>
+        <button data-goto="10" class="dot" title="Slide 10"></button>
+        <button data-goto="11" class="dot" title="Slide 11"></button>
+    </nav>
+
+    <!-- Keyboard Navigation Guidance Toast -->
+    <div class="toast-guide">
+        키보드 방향키 <kbd>↑</kbd> <kbd>↓</kbd> 또는 스크롤로 이동하세요
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
