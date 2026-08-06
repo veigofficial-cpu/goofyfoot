@@ -131,8 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // 스프레이 브러시: 참고 이미지처럼 중심이 매우 밀도 높고
-  // 바깥으로 갈수록 점이 흩어지는 에어로졸 스티플 패턴
+  // 스프레이 브러시: 솔리드 원 없이 점(dot)만으로 구성
+  // 3번 클릭하면 완전히 드러나는 강도 / 누르고 있으면 점진적 노출
   // -------------------------------------------------------
   function sprayAt(x, y) {
     const rect = canvas.getBoundingClientRect();
@@ -141,71 +141,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctx.globalCompositeOperation = 'destination-out';
 
-    const sprayRadius = window.innerWidth < 768 ? 112 : 160;
+    const sprayRadius = window.innerWidth < 768 ? 448 : 640;
 
-    // --- Layer 1: 중심부 솔리드 코어 (완전 불투명하게 지움) ---
-    ctx.globalAlpha = 0.8;
-    ctx.beginPath();
-    ctx.arc(cx, cy, sprayRadius * 0.15, 0, Math.PI * 2);
-    ctx.fill();
-
-    // --- Layer 2: 중심 근처 고밀도 영역 (반경 0~30%) ---
-    const innerDensity = 300;
-    for (let i = 0; i < innerDensity; i++) {
+    // --- 중심 고밀도 점 영역 (반경 0~25%) ---
+    for (let i = 0; i < 500; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const dist = Math.random() * sprayRadius * 0.3;
+      const dist = Math.pow(Math.random(), 0.6) * sprayRadius * 0.25;
       const px = cx + Math.cos(angle) * dist;
       const py = cy + Math.sin(angle) * dist;
-      const r = Math.random() * 0.5 + 0.2;
-      ctx.globalAlpha = 0.6 + Math.random() * 0.3;
+      const r = Math.random() * 0.6 + 0.2;
+      ctx.globalAlpha = 0.15 + Math.random() * 0.15;
       ctx.beginPath();
       ctx.arc(px, py, r, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // --- Layer 3: 중간 영역 (반경 20~60%) ---
-    const midDensity = 400;
-    for (let i = 0; i < midDensity; i++) {
+    // --- 중간 밀도 영역 (반경 15~55%) ---
+    for (let i = 0; i < 600; i++) {
       const angle = Math.random() * Math.PI * 2;
-      // 가우시안으로 중간 영역에 분포
       const u1 = Math.random();
       const u2 = Math.random();
       const g = Math.abs(Math.sqrt(-2 * Math.log(u1 || 0.001)) * Math.cos(2 * Math.PI * u2));
-      const dist = g * sprayRadius * 0.28 + sprayRadius * 0.05;
+      const dist = g * sprayRadius * 0.22 + sprayRadius * 0.08;
       const px = cx + Math.cos(angle) * dist;
       const py = cy + Math.sin(angle) * dist;
       const r = Math.random() * 0.5 + 0.2;
       const distRatio = dist / sprayRadius;
-      ctx.globalAlpha = Math.max(0.08, 0.55 * (1 - distRatio));
+      ctx.globalAlpha = Math.max(0.02, 0.12 * (1 - distRatio));
       ctx.beginPath();
       ctx.arc(px, py, r, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // --- Layer 4: 외곽 흩뿌림 영역 (반경 40~100%) ---
-    const outerDensity = 250;
-    for (let i = 0; i < outerDensity; i++) {
+    // --- 외곽 흩뿌림 (반경 35~100%) ---
+    for (let i = 0; i < 400; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const dist = sprayRadius * 0.4 + Math.random() * sprayRadius * 0.6;
+      const dist = sprayRadius * 0.35 + Math.random() * sprayRadius * 0.65;
       const px = cx + Math.cos(angle) * dist;
       const py = cy + Math.sin(angle) * dist;
-      const r = Math.random() * 0.4 + 0.2;
+      const r = Math.random() * 0.45 + 0.15;
       const distRatio = dist / sprayRadius;
-      ctx.globalAlpha = Math.max(0.02, 0.25 * Math.pow(1 - distRatio, 2));
+      ctx.globalAlpha = Math.max(0.008, 0.06 * Math.pow(1 - distRatio, 2));
       ctx.beginPath();
       ctx.arc(px, py, r, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // --- Layer 5: 최외곽 미세 먼지 (반경 70~120%) ---
-    const dustDensity = 80;
-    for (let i = 0; i < dustDensity; i++) {
+    // --- 최외곽 미세 입자 (반경 70~130%) ---
+    for (let i = 0; i < 120; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const dist = sprayRadius * 0.7 + Math.random() * sprayRadius * 0.5;
+      const dist = sprayRadius * 0.7 + Math.random() * sprayRadius * 0.6;
       const px = cx + Math.cos(angle) * dist;
       const py = cy + Math.sin(angle) * dist;
-      const r = Math.random() * 0.3 + 0.15;
-      ctx.globalAlpha = Math.random() * 0.08 + 0.01;
+      const r = Math.random() * 0.35 + 0.1;
+      ctx.globalAlpha = Math.random() * 0.025 + 0.003;
       ctx.beginPath();
       ctx.arc(px, py, r, 0, Math.PI * 2);
       ctx.fill();
@@ -216,10 +205,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // 이벤트 핸들러
+  // 이벤트 핸들러 및 누르고 있을 때 계속 분사되는 홀드 루프
   // -------------------------------------------------------
+  let currentX = 0;
+  let currentY = 0;
+  let animFrameId = null;
+
+  function sprayLoop() {
+    if (!isDrawing) return;
+    sprayAt(currentX, currentY);
+    resetInactivityTimer();
+    animFrameId = requestAnimationFrame(sprayLoop);
+  }
+
   function onSprayStart(x, y) {
     isDrawing = true;
+    currentX = x;
+    currentY = y;
 
     if (!hasStarted) {
       hasStarted = true;
@@ -227,18 +229,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (hint) hint.classList.add('hidden');
     }
 
-    sprayAt(x, y);
-    resetInactivityTimer();
+    if (animFrameId) cancelAnimationFrame(animFrameId);
+    sprayLoop();
   }
 
   function onSprayMove(x, y) {
+    currentX = x;
+    currentY = y;
     if (!isDrawing) return;
-    sprayAt(x, y);
     resetInactivityTimer();
   }
 
   function onSprayEnd() {
     isDrawing = false;
+    if (animFrameId) {
+      cancelAnimationFrame(animFrameId);
+      animFrameId = null;
+    }
   }
 
   // 마우스 이벤트
