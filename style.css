@@ -105,16 +105,17 @@ body {
    SECTION 2: SPRAY REVEAL INTERACTION
    ======================================== */
 .section-interaction {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  width: 100vw;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .spray-reveal-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/10;
+  aspect-ratio: 16/9;
+  min-height: 500px;
   overflow: hidden;
   cursor: crosshair;
   user-select: none;
@@ -141,12 +142,31 @@ body {
   z-index: 2;
 }
 
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  background: linear-gradient(
+    to bottom,
+    #FFFFFF 0%,
+    rgba(255, 255, 255, 0.85) 5%,
+    rgba(255, 255, 255, 0) 22%,
+    rgba(255, 255, 255, 0) 78%,
+    rgba(255, 255, 255, 0.85) 95%,
+    #FFFFFF 100%
+  );
+}
+
 .spray-hint {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 3;
+  z-index: 4;
   font-family: var(--font-en);
   font-size: 0.7rem;
   font-weight: 700;
