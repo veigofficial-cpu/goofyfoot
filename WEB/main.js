@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cx = x - rect.left;
     const cy = y - rect.top;
 
-    const maxRadius = window.innerWidth < 768 ? 1800 : 2600;
+    const maxRadius = window.innerWidth < 768 ? 900 : 1300; // 50% 축소된 분사 범위
     const startTime = performance.now();
     const DURATION = 1000;
 
