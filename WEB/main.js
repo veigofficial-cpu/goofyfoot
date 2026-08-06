@@ -145,15 +145,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // 향수 에어로졸 스티플 미스트: 참고 이미지와 동일하게 중심이 매우 빽빽하고
-  // 외곽으로 갈수록 점들이 흩어지는 1초 확산 애니메이션
+  // 향수 에어로졸 스티플 미스트: 범위 2배 확대 (2600px) & 중심 핵심 밀집 영역 5배 확대
+  // 1초 동안 은은하게 퍼져나가는 에어로졸 향수 미스트 확산 애니메이션
   // -------------------------------------------------------
   function triggerPerfumeBurst(x, y) {
     const rect = canvas.getBoundingClientRect();
     const cx = x - rect.left;
     const cy = y - rect.top;
 
-    const maxRadius = window.innerWidth < 768 ? 900 : 1300;
+    const maxRadius = window.innerWidth < 768 ? 1800 : 2600; // 2배 확장된 전체 범위
     const startTime = performance.now();
     const DURATION = 1000; // 1초 확산
 
@@ -165,14 +165,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ctx.globalCompositeOperation = 'destination-out';
 
-      // 프레임 당 350개 점 분사 (참고 이미지 스티플 밀집도 매칭)
-      const frameDots = 350;
+      // 프레임 당 800개 점 분사 (중심 5배 확대된 영역에 빽빽하게 채움)
+      const frameDots = 800;
       for (let i = 0; i < frameDots; i++) {
         const angle = Math.random() * Math.PI * 2;
 
-        // 거듭제곱(pow(u, 2.2)): 중심부 25% 영역에 80% 이상의 입자가 집중됨
+        // 거듭제곱(pow(u, 1.25)): 중심 고밀도 영역을 5배 넓힘
         const u = Math.random();
-        const dist = Math.pow(u, 2.2) * currentRadius;
+        const dist = Math.pow(u, 1.25) * currentRadius;
 
         const px = cx + Math.cos(angle) * dist;
         const py = cy + Math.sin(angle) * dist;
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 중심일수록 높은 불투명도, 외곽으로 갈수록 부드러운 감쇄
         const normDist = dist / currentRadius;
-        const alpha = Math.max(0.015, 0.85 * Math.pow(1 - normDist, 1.6));
+        const alpha = Math.max(0.015, 0.9 * Math.pow(1 - normDist, 1.3));
 
         ctx.globalAlpha = alpha;
         ctx.beginPath();
