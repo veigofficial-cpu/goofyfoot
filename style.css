@@ -51,24 +51,36 @@ body {
   position: relative;
 }
 
-.brand-title {
-  font-family: var(--font-en);
-  font-size: 4.5rem;
-  font-weight: 300;
-  letter-spacing: -0.01em;
-  color: #333333;
+.brand-logo-wrapper {
   margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.brand-title sup {
-  font-size: 1.2rem;
-  font-weight: 300;
-  vertical-align: super;
+.brand-logo-svg {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  display: block;
 }
 
 .cicada-icon {
-  color: #222222;
   margin-bottom: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.character-svg {
+  width: 28px;
+  height: 40px;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.character-svg:hover {
+  transform: scale(1.15);
 }
 
 .scroll-explore {
