@@ -131,54 +131,78 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // 스프레이 브러시: 중심 밀집 범위 2배 확대 & 1번 클릭으로 시원하게 노출
+  // 향수 스프레이 미스트: 3배 분사 범위 & 3배 넓은 밀집도
+  // 1초 동안 은은하게 퍼져나가는 에어로졸 향수 미스트 확산 애니메이션
   // -------------------------------------------------------
-  function sprayAt(x, y) {
+  let activeMistAnimations = [];
+
+  function triggerPerfumeBurst(x, y) {
     const rect = canvas.getBoundingClientRect();
     const cx = x - rect.left;
     const cy = y - rect.top;
 
-    ctx.globalCompositeOperation = 'destination-out';
+    const maxRadius = window.innerWidth < 768 ? 950 : 1400; // 3배 확장된 범위
+    const startTime = performance.now();
+    const DURATION = 1000; // 1초 퍼짐 효과
 
-    const sprayRadius = window.innerWidth < 768 ? 480 : 680;
-    const totalDots = 3200; // 1회 분사 당 미세 점 3200개 (1번 클릭에 완전 노출)
+    function animateMist(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / DURATION);
+      // easeOutCubic: 처음에 빠르게 뿜어져 나와 1초에 걸쳐 부드럽게 퍼짐
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      const currentRadius = maxRadius * (0.25 + 0.75 * easeProgress);
 
-    for (let i = 0; i < totalDots; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      // 거듭제곱(pow(u, 1.35)) 분포: 중심 밀집 범위 2배 확대
-      const u = Math.random();
-      const dist = Math.pow(u, 1.35) * sprayRadius;
+      ctx.globalCompositeOperation = 'destination-out';
 
-      const px = cx + Math.cos(angle) * dist;
-      const py = cy + Math.sin(angle) * dist;
+      // 각 프레임 당 퍼져나가는 미세 향수 방울 250개
+      const frameDots = 250;
+      for (let i = 0; i < frameDots; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        // 거듭제곱(pow(u, 1.1)): 밀집도 영역 3배 넓힘
+        const u = Math.random();
+        const dist = Math.pow(u, 1.1) * currentRadius;
 
-      // 입자 크기: 아주 미세한 점 (0.2px ~ 0.7px)
-      const r = Math.random() * 0.5 + 0.2;
+        const px = cx + Math.cos(angle) * dist;
+        const py = cy + Math.sin(angle) * dist;
 
-      // 1번 클릭으로 시원하게 드러나도록 알몸 강도 상향 (0.92 ~ 0.02)
-      const normDist = dist / sprayRadius; // 0 ~ 1
-      const alpha = (0.92 * Math.pow(1 - normDist, 1.4)) + 0.02;
+        // 아주 고운 초미세 향수 방울 (0.15px ~ 0.5px)
+        const r = Math.random() * 0.35 + 0.15;
 
-      ctx.globalAlpha = alpha;
-      ctx.beginPath();
-      ctx.arc(px, py, r, 0, Math.PI * 2);
-      ctx.fill();
+        const normDist = dist / currentRadius;
+        const alpha = (0.75 * Math.pow(1 - normDist, 1.2)) + 0.01;
+
+        ctx.globalAlpha = alpha;
+        ctx.beginPath();
+        ctx.arc(px, py, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.globalAlpha = 1;
+
+      if (progress < 1) {
+        requestAnimationFrame(animateMist);
+      }
     }
 
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.globalAlpha = 1;
+    requestAnimationFrame(animateMist);
   }
 
   // -------------------------------------------------------
-  // 이벤트 핸들러 및 누르고 있을 때 계속 분사되는 홀드 루프
+  // 이벤트 핸들러 및 연속 분사 홀드 루프
   // -------------------------------------------------------
   let currentX = 0;
   let currentY = 0;
   let animFrameId = null;
+  let lastBurstTime = 0;
 
   function sprayLoop() {
     if (!isDrawing) return;
-    sprayAt(currentX, currentY);
+    const now = performance.now();
+    if (now - lastBurstTime > 150) { // 150ms마다 연속 향수 분사
+      triggerPerfumeBurst(currentX, currentY);
+      lastBurstTime = now;
+    }
     resetInactivityTimer();
     animFrameId = requestAnimationFrame(sprayLoop);
   }
@@ -193,6 +217,10 @@ document.addEventListener('DOMContentLoaded', () => {
       playSpraySound();
       if (hint) hint.classList.add('hidden');
     }
+
+    triggerPerfumeBurst(currentX, currentY);
+    lastBurstTime = performance.now();
+    resetInactivityTimer();
 
     if (animFrameId) cancelAnimationFrame(animFrameId);
     sprayLoop();
