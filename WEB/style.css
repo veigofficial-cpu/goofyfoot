@@ -193,12 +193,15 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 4;
-  font-family: var(--font-en);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.25em;
+  font-family: var(--font-kr);
+  font-size: clamp(0.75rem, 1.2vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #AAAAAA;
+  color: #FFFFFF;
+  background-color: rgba(204, 204, 204, 0.85);
+  padding: 0.75rem 2rem;
+  border-radius: 2px;
   pointer-events: none;
   transition: opacity 0.6s ease;
 }
@@ -211,61 +214,63 @@ body {
    SECTION 3: BRAND STORY
    ======================================== */
 .section-story {
-  padding: 8rem 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 1.5rem;
   text-align: center;
+  background-color: var(--bg-color);
 }
 
 .story-container {
-  max-width: 640px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
 .story-tag {
-  font-family: var(--font-en);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.25em;
+  font-family: var(--font-kr);
+  font-size: clamp(1rem, 1.8vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #999999;
-  margin-bottom: 2.5rem;
+  color: #8D8D8D;
+  margin-bottom: 3.5rem;
   display: block;
 }
 
 .story-content {
   font-family: var(--font-kr);
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 2;
-  color: #333333;
+  font-size: clamp(1rem, 1.8vw, 1.8rem);
+  font-weight: 600;
+  line-height: 1.8;
+  color: #000000;
   word-break: keep-all;
+}
+
+.story-content .blank-space {
+  height: 1.5rem;
 }
 
 .story-content p.highlight {
   font-weight: 700;
-  font-size: 1.1rem;
-  color: #111111;
-}
-
-.story-content strong {
-  font-family: var(--font-en);
-  font-weight: 700;
-  letter-spacing: 0.03em;
 }
 
 /* ========================================
    SECTION 4: BRAND PRODUCT PHOTOS
    ======================================== */
 .section-products {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem 6rem;
+  width: 100vw;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 10px 4rem;
 }
 
 .products-grid-2col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 15px;
 }
 
 .product-box {
@@ -284,24 +289,35 @@ body {
    SECTION 5: STORE LINK & FOOTER
    ======================================== */
 .section-store-footer {
-  padding: 4rem 2rem 3rem;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem 2rem 2.5rem;
   text-align: center;
+  position: relative;
+}
+
+.store-button-wrapper {
+  margin: auto 0;
 }
 
 .btn-store {
-  display: inline-block;
-  background-color: #D6D6D6;
-  color: #111111;
-  font-family: var(--font-en);
-  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #CCCCCC;
+  color: #000000;
+  font-family: var(--font-kr);
+  font-size: clamp(1rem, 1.8vw, 1.8rem);
   font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 1rem 2.5rem;
+  letter-spacing: 0.02em;
+  padding: 1.2rem 3.5rem;
   text-decoration: none;
   border: none;
   transition: var(--transition-smooth);
   cursor: pointer;
-  margin-bottom: 8rem;
 }
 
 .btn-store:hover {
@@ -312,19 +328,19 @@ body {
 .site-footer {
   display: flex;
   justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.5rem 0;
-  border-top: 1px solid #EEEEEE;
-  font-family: var(--font-en);
-  font-size: 0.75rem;
+  width: 100%;
+  max-width: 100%;
+  padding: 1.5rem 2rem;
+  border-top: none;
+  font-family: var(--font-kr);
+  font-size: clamp(0.9rem, 1.6vw, 1.6rem);
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .footer-link {
-  color: #999999;
+  color: #8D8D8D;
   text-decoration: none;
   transition: 0.2s ease;
 }
