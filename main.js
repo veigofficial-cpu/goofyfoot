@@ -140,8 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctx.globalCompositeOperation = 'destination-out';
 
-    const sprayRadius = window.innerWidth < 768 ? 28 : 40;
-    const density = 80;
+    const sprayRadius = window.innerWidth < 768 ? 112 : 160;
+    const density = 240;
 
     for (let i = 0; i < density; i++) {
       // 가우시안 분포: 가운데에 더 많은 입자가 집중됨
@@ -155,12 +155,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const px = cx + Math.cos(angle) * dist;
       const py = cy + Math.sin(angle) * dist;
 
-      // 입자 크기: 작고 미세하게 (0.5 ~ 2px)
-      const r = Math.random() * 1.5 + 0.5;
+      // 입자 크기: 매우 미세하게 (0.3 ~ 1.2px)
+      const r = Math.random() * 0.9 + 0.3;
 
       // 투명도: 중심에서 강하고 바깥으로 갈수록 약함
       const distRatio = dist / sprayRadius;
-      const alpha = Math.max(0.05, 0.7 * (1 - distRatio * distRatio));
+      const alpha = Math.max(0.03, 0.7 * (1 - distRatio * distRatio));
 
       ctx.globalAlpha = alpha;
       ctx.beginPath();
@@ -169,9 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 중심부를 좀 더 확실하게 지우기 (핵심 영역)
-    ctx.globalAlpha = 0.5;
+    ctx.globalAlpha = 0.45;
     ctx.beginPath();
-    ctx.arc(cx, cy, sprayRadius * 0.18, 0, Math.PI * 2);
+    ctx.arc(cx, cy, sprayRadius * 0.12, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.globalCompositeOperation = 'source-over';
