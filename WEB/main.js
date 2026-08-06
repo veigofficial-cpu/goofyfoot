@@ -131,7 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // 스프레이 브러시: 가운데가 강하고 바깥으로 갈수록 약한 가우시안 패턴
+  // 스프레이 브러시: 참고 이미지처럼 중심이 매우 밀도 높고
+  // 바깥으로 갈수록 점이 흩어지는 에어로졸 스티플 패턴
   // -------------------------------------------------------
   function sprayAt(x, y) {
     const rect = canvas.getBoundingClientRect();
@@ -141,38 +142,74 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.globalCompositeOperation = 'destination-out';
 
     const sprayRadius = window.innerWidth < 768 ? 112 : 160;
-    const density = 240;
 
-    for (let i = 0; i < density; i++) {
-      // 가우시안 분포: 가운데에 더 많은 입자가 집중됨
+    // --- Layer 1: 중심부 솔리드 코어 (완전 불투명하게 지움) ---
+    ctx.globalAlpha = 0.8;
+    ctx.beginPath();
+    ctx.arc(cx, cy, sprayRadius * 0.15, 0, Math.PI * 2);
+    ctx.fill();
+
+    // --- Layer 2: 중심 근처 고밀도 영역 (반경 0~30%) ---
+    const innerDensity = 300;
+    for (let i = 0; i < innerDensity; i++) {
       const angle = Math.random() * Math.PI * 2;
-      // Box-Muller 변환으로 가우시안 분포 거리 생성
-      const u1 = Math.random();
-      const u2 = Math.random();
-      const gaussian = Math.sqrt(-2 * Math.log(u1 || 0.001)) * Math.cos(2 * Math.PI * u2);
-      const dist = Math.abs(gaussian) * sprayRadius * 0.4; // 중심에 집중
-
+      const dist = Math.random() * sprayRadius * 0.3;
       const px = cx + Math.cos(angle) * dist;
       const py = cy + Math.sin(angle) * dist;
-
-      // 입자 크기: 매우 미세하게 (0.3 ~ 1.2px)
-      const r = Math.random() * 0.9 + 0.3;
-
-      // 투명도: 중심에서 강하고 바깥으로 갈수록 약함
-      const distRatio = dist / sprayRadius;
-      const alpha = Math.max(0.03, 0.7 * (1 - distRatio * distRatio));
-
-      ctx.globalAlpha = alpha;
+      const r = Math.random() * 0.5 + 0.2;
+      ctx.globalAlpha = 0.6 + Math.random() * 0.3;
       ctx.beginPath();
       ctx.arc(px, py, r, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // 중심부를 좀 더 확실하게 지우기 (핵심 영역)
-    ctx.globalAlpha = 0.45;
-    ctx.beginPath();
-    ctx.arc(cx, cy, sprayRadius * 0.12, 0, Math.PI * 2);
-    ctx.fill();
+    // --- Layer 3: 중간 영역 (반경 20~60%) ---
+    const midDensity = 400;
+    for (let i = 0; i < midDensity; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      // 가우시안으로 중간 영역에 분포
+      const u1 = Math.random();
+      const u2 = Math.random();
+      const g = Math.abs(Math.sqrt(-2 * Math.log(u1 || 0.001)) * Math.cos(2 * Math.PI * u2));
+      const dist = g * sprayRadius * 0.28 + sprayRadius * 0.05;
+      const px = cx + Math.cos(angle) * dist;
+      const py = cy + Math.sin(angle) * dist;
+      const r = Math.random() * 0.5 + 0.2;
+      const distRatio = dist / sprayRadius;
+      ctx.globalAlpha = Math.max(0.08, 0.55 * (1 - distRatio));
+      ctx.beginPath();
+      ctx.arc(px, py, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // --- Layer 4: 외곽 흩뿌림 영역 (반경 40~100%) ---
+    const outerDensity = 250;
+    for (let i = 0; i < outerDensity; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const dist = sprayRadius * 0.4 + Math.random() * sprayRadius * 0.6;
+      const px = cx + Math.cos(angle) * dist;
+      const py = cy + Math.sin(angle) * dist;
+      const r = Math.random() * 0.4 + 0.2;
+      const distRatio = dist / sprayRadius;
+      ctx.globalAlpha = Math.max(0.02, 0.25 * Math.pow(1 - distRatio, 2));
+      ctx.beginPath();
+      ctx.arc(px, py, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // --- Layer 5: 최외곽 미세 먼지 (반경 70~120%) ---
+    const dustDensity = 80;
+    for (let i = 0; i < dustDensity; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const dist = sprayRadius * 0.7 + Math.random() * sprayRadius * 0.5;
+      const px = cx + Math.cos(angle) * dist;
+      const py = cy + Math.sin(angle) * dist;
+      const r = Math.random() * 0.3 + 0.15;
+      ctx.globalAlpha = Math.random() * 0.08 + 0.01;
+      ctx.beginPath();
+      ctx.arc(px, py, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
 
     ctx.globalCompositeOperation = 'source-over';
     ctx.globalAlpha = 1;
