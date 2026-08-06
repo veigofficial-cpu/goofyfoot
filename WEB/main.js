@@ -131,8 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // 스프레이 브러시: 중심 밀집도 최고, 외곽 경계 없이 부드러운 감쇄
-  // 2번 클릭하면 중심부 이미지가 또렷하게 드러나는 강도
+  // 스프레이 브러시: 중심 밀집 범위 2배 확대 & 1번 클릭으로 시원하게 노출
   // -------------------------------------------------------
   function sprayAt(x, y) {
     const rect = canvas.getBoundingClientRect();
@@ -141,14 +140,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctx.globalCompositeOperation = 'destination-out';
 
-    const sprayRadius = window.innerWidth < 768 ? 400 : 560;
-    const totalDots = 1500; // 1회 분사 당 미세 점 1500개
+    const sprayRadius = window.innerWidth < 768 ? 480 : 680;
+    const totalDots = 3200; // 1회 분사 당 미세 점 3200개 (1번 클릭에 완전 노출)
 
     for (let i = 0; i < totalDots; i++) {
       const angle = Math.random() * Math.PI * 2;
-      // 거듭제곱(pow(u, 2.5)) 분포: 중심(0) 근처에 점이 80% 이상 빽빽하게 쏠림
+      // 거듭제곱(pow(u, 1.35)) 분포: 중심 밀집 범위 2배 확대
       const u = Math.random();
-      const dist = Math.pow(u, 2.5) * sprayRadius;
+      const dist = Math.pow(u, 1.35) * sprayRadius;
 
       const px = cx + Math.cos(angle) * dist;
       const py = cy + Math.sin(angle) * dist;
@@ -156,9 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // 입자 크기: 아주 미세한 점 (0.2px ~ 0.7px)
       const r = Math.random() * 0.5 + 0.2;
 
-      // 중심부 투명도 강함(2번 클릭에 시원하게 지워짐), 바깥으로 갈수록 자연스럽게 흐려짐
+      // 1번 클릭으로 시원하게 드러나도록 알몸 강도 상향 (0.92 ~ 0.02)
       const normDist = dist / sprayRadius; // 0 ~ 1
-      const alpha = (0.45 * Math.pow(1 - normDist, 1.8)) + 0.01;
+      const alpha = (0.92 * Math.pow(1 - normDist, 1.4)) + 0.02;
 
       ctx.globalAlpha = alpha;
       ctx.beginPath();
