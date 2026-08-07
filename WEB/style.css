@@ -394,25 +394,26 @@ body {
 }
 
 /* ========================================
-   SECTION 5: PRODUCTS (1920×1080)
+   SECTION 5: PRODUCTS (1920×1080 FIGMA EXACT DIMENSIONS)
    ======================================== */
 .section-products {
+  position: relative;
   width: 100vw;
   height: 100vh;
   min-height: 720px;
   background: #FFFFFF;
-  padding: 10px;
+  padding: 10px 208px 10px 10px;
   overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .products-layout-wrapper {
   display: flex;
   gap: 10px;
-  width: 100%;
-  height: 100%;
+  width: 1710px;
+  height: 1060px;
 }
 
 .product-box {
@@ -426,7 +427,7 @@ body {
 .product-box img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.5s ease;
 }
 
@@ -436,20 +437,21 @@ body {
 
 .main-box {
   width: 940px;
+  height: 1060px;
   flex-shrink: 0;
-  height: 100%;
 }
 
 .products-right-column {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  width: 750px;
+  height: 1060px;
 }
 
 .products-top-row {
   display: flex;
   gap: 10px;
+  width: 750px;
   height: 427px;
 }
 
