@@ -211,34 +211,35 @@ body {
   background: #FFFFFF;
 }
 
-.spray-reveal-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  cursor: url('svg/character.svg') 14 23, crosshair;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.reveal-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
+.section-spray,
+.spray-reveal-container,
 #spray-canvas {
-  position: absolute;
+  cursor: none !important;
+}
+
+.spray-custom-cursor {
+  position: fixed;
   top: 0;
   left: 0;
+  width: 34px;
+  height: 58px;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0);
+  transition: opacity 0.2s ease;
+  will-change: transform;
+}
+
+.spray-custom-cursor.is-active {
+  opacity: 1;
+}
+
+.spray-custom-cursor img {
   width: 100%;
   height: 100%;
-  z-index: 2;
-  cursor: url('svg/character.svg') 14 23, crosshair;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,0.25));
 }
 
 .gradient-overlay {
