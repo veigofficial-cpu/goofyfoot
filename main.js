@@ -145,14 +145,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // 향수 에어로졸 스티플 미스트: 반경 50% 축소 (325px) & 외곽 입자 수 80% 축소
+  // 향수 에어로졸 스티플 미스트: 중심부터 외곽으로 갈수록 입자 수와 불투명도가
+  // 단계 없이 연속적으로 서서히 줄어드는 고밀도 8단계 렌더링
   // -------------------------------------------------------
   function triggerPerfumeBurst(x, y) {
     const rect = canvas.getBoundingClientRect();
     const cx = x - rect.left;
     const cy = y - rect.top;
 
-    const maxRadius = window.innerWidth < 768 ? 225 : 325; // 반경 50% 추가 축소 (325px)
+    const maxRadius = window.innerWidth < 768 ? 225 : 325;
     const startTime = performance.now();
     const DURATION = 1000;
 
@@ -164,31 +165,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ctx.globalCompositeOperation = 'destination-out';
 
-      // 중심은 빽빽하게, 외곽 영역 입자 수는 80% 축소
-      const alphaBuckets = [
-        { alpha: 0.88, count: 24000, scale: 0.35 }, // 중심 핵심 코어 (밀집도 최고)
-        { alpha: 0.55, count: 12000, scale: 0.65 }, // 중간 내부 영역
-        { alpha: 0.25, count: 2500,  scale: 0.88 }, // 외곽 영역 (입자 수 80% 축소)
-        { alpha: 0.08, count: 800,   scale: 1.00 }  // 최외곽 잔여 미스트 (입자 수 85% 축소)
-      ];
+      // 40,000개 입자를 중심부터 외곽까지 연속적인 그라데이션으로 배치
+      const frameDots = 40000;
+      const opacitySlices = 8;
+      const dotsPerSlice = Math.floor(frameDots / opacitySlices);
 
-      for (let b = 0; b < alphaBuckets.length; b++) {
-        const bucket = alphaBuckets[b];
-        ctx.globalAlpha = bucket.alpha;
+      for (let s = 0; s < opacitySlices; s++) {
+        // s = 0 (중심부, 알몸 0.95) ~ s = 7 (외곽, 알몸 0.03)
+        const t = s / (opacitySlices - 1);
+        const alpha = 0.95 * Math.pow(1 - t, 1.8) + 0.03;
+        const sliceMaxRadius = currentRadius * Math.pow(1 - (s / opacitySlices) * 0.65, 1.1);
+
+        ctx.globalAlpha = alpha;
         ctx.beginPath();
 
-        const dots = bucket.count;
-        const bucketRadius = currentRadius * bucket.scale;
-
-        for (let i = 0; i < dots; i++) {
+        for (let i = 0; i < dotsPerSlice; i++) {
           const angle = Math.random() * Math.PI * 2;
           const u = Math.random();
-          const dist = Math.pow(u, 1.3) * bucketRadius;
+          // 중심(0) 근처에 입자가 가장 빽빽하고 외곽으로 갈수록 서서히 줄어드는 연속 수식
+          const dist = Math.pow(u, 2.0) * sliceMaxRadius;
 
           const px = cx + Math.cos(angle) * dist;
           const py = cy + Math.sin(angle) * dist;
 
-          const size = Math.random() * 0.65 + 0.25;
+          const size = Math.random() * 0.6 + 0.2;
           ctx.rect(px, py, size, size);
         }
         ctx.fill();
