@@ -161,15 +161,23 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
 
-  // 캔버스 크기 설정
+  // 캔버스 크기 설정 (유효한 너비/높이 보장)
   function resizeCanvas() {
     const rect = container.getBoundingClientRect();
-    canvas.width = rect.width;
-    canvas.height = rect.height;
-    fillWhite();
+    const w = Math.floor(rect.width || container.offsetWidth || window.innerWidth);
+    const h = Math.floor(rect.height || container.offsetHeight || window.innerHeight);
+
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w;
+      canvas.height = h;
+      fillWhite();
+    }
   }
 
   resizeCanvas();
+  window.addEventListener('load', resizeCanvas);
+  setTimeout(resizeCanvas, 150);
+  setTimeout(resizeCanvas, 500);
 
   // -------------------------------------------------------
   // 소나무 이미지 랜덤 선택 (tree_2, tree_3, tree_4, tree_5)
@@ -341,28 +349,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const interactEl = container || canvas;
+
   // 마우스 이벤트
-  canvas.addEventListener('mousedown', (e) => {
+  interactEl.addEventListener('mousedown', (e) => {
     onSprayStart(e.clientX, e.clientY);
   });
-  canvas.addEventListener('mousemove', (e) => {
+  window.addEventListener('mousemove', (e) => {
     onSprayMove(e.clientX, e.clientY);
   });
-  canvas.addEventListener('mouseup', onSprayEnd);
-  canvas.addEventListener('mouseleave', onSprayEnd);
+  window.addEventListener('mouseup', onSprayEnd);
 
   // 터치 이벤트 (모바일 대응)
-  canvas.addEventListener('touchstart', (e) => {
+  interactEl.addEventListener('touchstart', (e) => {
     if (e.touches.length) {
       onSprayStart(e.touches[0].clientX, e.touches[0].clientY);
     }
   }, { passive: true });
-  canvas.addEventListener('touchmove', (e) => {
+  window.addEventListener('touchmove', (e) => {
     if (e.touches.length) {
       onSprayMove(e.touches[0].clientX, e.touches[0].clientY);
     }
   }, { passive: true });
-  canvas.addEventListener('touchend', onSprayEnd, { passive: true });
+  window.addEventListener('touchend', onSprayEnd, { passive: true });
 
   // -------------------------------------------------------
   // Gallery Smooth Bounded Drag-to-Scroll Interaction (Exact Start/End Alignment, No White Space)
