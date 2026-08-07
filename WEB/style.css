@@ -338,7 +338,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background: #FFFFFF;
   overflow: hidden;
   cursor: grab;
@@ -355,10 +355,10 @@ body {
   height: 70vh;
   max-height: 800px;
   min-height: 400px;
+  width: max-content;
   user-select: none;
   -webkit-user-select: none;
   will-change: transform;
-  transition: transform 0.08s ease-out;
 }
 
 .gallery-card {
@@ -383,6 +383,8 @@ body {
 }
 
 .gallery-drag-hint {
+  width: 100%;
+  text-align: center;
   margin-top: 2rem;
   font-family: var(--font-kr);
   font-size: 14px;

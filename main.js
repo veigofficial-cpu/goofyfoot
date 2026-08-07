@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
   canvas.addEventListener('touchend', onSprayEnd, { passive: true });
 
   // -------------------------------------------------------
-  // Gallery Smooth Bounded Drag-to-Scroll Interaction (No Loop, Ultra-Smooth Physics)
+  // Gallery Smooth Bounded Drag-to-Scroll Interaction (Exact Start/End Alignment, No White Space)
   // -------------------------------------------------------
   const gallerySection = document.getElementById('gallery');
   const galleryTrack = document.getElementById('gallery-track');
@@ -346,12 +346,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let velocity = 0;
     let lastMoveX = 0;
     let lastMoveTime = 0;
-    let animId = null;
 
     function getBounds() {
-      const trackWidth = galleryTrack.scrollWidth;
+      const trackWidth = galleryTrack.getBoundingClientRect().width;
       const viewWidth = gallerySection.clientWidth;
-      const minX = Math.min(0, viewWidth - trackWidth - 20); // 20px padding
+      const minX = Math.min(0, viewWidth - trackWidth);
       return { minX, maxX: 0 };
     }
 
@@ -370,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
           velocity = 0;
         }
 
-        // 경계 복원 (바운드 오버 되었을 시 복귀)
+        // 정확한 시작(Pine_1)과 끝(Pine_12) 지점 경계선 탄성 복원
         if (targetX > maxX) {
           targetX += (maxX - targetX) * 0.25;
         } else if (targetX < minX) {
@@ -381,11 +380,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       galleryTrack.style.transform = `translate3d(${currentX}px, 0, 0)`;
-      animId = requestAnimationFrame(updatePhysics);
+      requestAnimationFrame(updatePhysics);
     }
 
-    // 물리 루프 실행
-    animId = requestAnimationFrame(updatePhysics);
+    requestAnimationFrame(updatePhysics);
 
     function startDrag(x) {
       isDragging = true;
@@ -404,9 +402,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 경계 밖으로 나갈 때 고무줄 저항 효과
       if (nextX > maxX) {
-        nextX = maxX + (nextX - maxX) * 0.25;
+        nextX = maxX + (nextX - maxX) * 0.2;
       } else if (nextX < minX) {
-        nextX = minX + (nextX - minX) * 0.25;
+        nextX = minX + (nextX - minX) * 0.2;
       }
 
       targetX = nextX;
@@ -425,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isDragging = false;
       const { minX, maxX } = getBounds();
       // 관성을 통한 최종 이동 타겟 계산
-      targetX += velocity * 6;
+      targetX += velocity * 5;
       targetX = Math.max(minX, Math.min(maxX, targetX));
     }
 
