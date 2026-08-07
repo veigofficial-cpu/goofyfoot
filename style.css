@@ -1,5 +1,5 @@
 /*
-  Goofy Foot® — yoyoyo.ai (Nano Banana Pro x PORTO ROCHA) Inspired Design System
+  Goofy Foot® — 1920*1080 6-Page Design System
 */
 
 @import url('pretendardvariable.css');
@@ -115,7 +115,7 @@ body {
 }
 
 /* ========================================
-   1920*1080 PROPORTION SECTION PAGES
+   1920*1080 6-PAGE CONTAINER & SECTIONS
    ======================================== */
 .web-flow-container {
   width: 100vw;
@@ -134,7 +134,7 @@ body {
 }
 
 /* ========================================
-   SECTION 1: HERO COVER
+   PAGE 1: HERO COVER (CLEAN & CENTERED)
    ======================================== */
 .section-hero {
   display: flex;
@@ -150,7 +150,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: auto 0;
 }
 
 .brand-logo-container {
@@ -161,13 +160,13 @@ body {
 }
 
 .brand-logo-img {
-  width: clamp(320px, 38vw, 722px);
+  width: clamp(340px, 42vw, 750px);
   height: auto;
   object-fit: contain;
 }
 
 .cicada-character-container {
-  margin-top: 2.5rem;
+  margin-top: 2.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,48 +183,8 @@ body {
   transform: scale(1.1);
 }
 
-.btn-click-to-spray {
-  position: absolute;
-  bottom: 4rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 250px;
-  height: 55px;
-  background: #CCCCCC;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: #FFFFFF;
-  font-family: var(--font-kr);
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  border-radius: 4px;
-  transition: var(--transition-smooth);
-}
-
-.btn-pulse-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #FFFFFF;
-  animation: pulse-glow 1.8s infinite;
-}
-
-@keyframes pulse-glow {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.6); opacity: 0.4; }
-}
-
-.btn-click-to-spray:hover {
-  background: #111111;
-  color: #FFFFFF;
-}
-
 /* ========================================
-   SECTION 2: SPRAY REVEAL INTERACTION
+   PAGE 2: SPRAY REVEAL INTERACTION
    ======================================== */
 .section-interaction {
   width: 100vw;
@@ -233,8 +192,6 @@ body {
   min-height: 720px;
   position: relative;
   background: #FFFFFF;
-  margin: 0;
-  padding: 0;
 }
 
 .spray-reveal-container {
@@ -315,7 +272,6 @@ body {
   opacity: 0;
 }
 
-/* yoyoyo.ai Floating Prompt Bar */
 .floating-prompt-bar {
   position: absolute;
   bottom: 24px;
@@ -350,24 +306,24 @@ body {
 }
 
 /* ========================================
-   SECTION 3: BRAND STORY & REAL TREE PHOTO
+   PAGE 3: STORY PART 1 (1920*1080 FULL PAGE - WHITE BG)
    ======================================== */
-.section-story {
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  min-height: 100vh;
-}
-
-.story-upper-container {
-  min-height: 50vh;
+.section-story-1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5rem 1.5rem;
   text-align: center;
   background: #FFFFFF;
+  padding: 2rem 1.5rem;
+}
+
+.story-center-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
 }
 
 .story-header-pill {
@@ -375,9 +331,9 @@ body {
   align-items: center;
   gap: 8px;
   background: #F2F2F2;
-  padding: 6px 14px;
+  padding: 8px 18px;
   border-radius: 20px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3.5rem;
 }
 
 .pill-dot {
@@ -389,27 +345,34 @@ body {
 
 .story-tag {
   font-family: var(--font-kr);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   color: #8D8D8D;
   letter-spacing: 0.08em;
 }
 
-.story-upper-text {
-  font-family: var(--font-kr);
-  font-size: clamp(1.2rem, 2vw, 2.2rem);
-  font-weight: 600;
-  line-height: 1.8;
-  color: #000000;
-  word-break: keep-all;
-  max-width: 1100px;
+.story-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
 }
 
-.story-real-tree-section {
+.story-line {
+  font-family: var(--font-kr);
+  font-size: clamp(1.4rem, 2.3vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.6;
+  color: #000000;
+  word-break: keep-all;
+}
+
+/* ========================================
+   PAGE 4: STORY PART 2 (1920*1080 FULL PAGE - REAL TREE PHOTO BG)
+   ======================================== */
+.section-story-2 {
   position: relative;
-  width: 100vw;
-  min-height: 50vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -417,7 +380,6 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  overflow: hidden;
 }
 
 .real-tree-bg-overlay {
@@ -427,26 +389,37 @@ body {
   z-index: 1;
 }
 
-.story-part-2 {
+.story-center-wrapper-white {
   position: relative;
   z-index: 2;
-  color: #FFFFFF;
-  padding: 3rem 1.5rem;
-  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  padding: 2rem 1.5rem;
+}
+
+.blank-space-large {
+  height: 2.2rem;
 }
 
 .story-line-white {
   font-family: var(--font-kr);
-  font-size: clamp(1.2rem, 2vw, 2.2rem);
+  font-size: clamp(1.4rem, 2.3vw, 2.5rem);
   font-weight: 600;
-  line-height: 1.8;
+  line-height: 1.6;
   color: #FFFFFF;
-  margin-bottom: 1.5rem;
   word-break: keep-all;
 }
 
+.story-line-white.highlight {
+  font-size: clamp(1.6rem, 2.6vw, 2.8rem);
+  font-weight: 700;
+}
+
 /* ========================================
-   SECTION 4: PRODUCT GRID (yoyoyo.ai Interactive Style)
+   PAGE 5: PRODUCT GRID (1920*1080 FULL PAGE)
    ======================================== */
 .section-products {
   width: 100vw;
@@ -534,7 +507,8 @@ body {
 }
 
 /* ========================================
-   SECTION 5: STORE & FOOTER (yoyoyo.ai Centered Store Button)
+   PAGE 6: STORE & FOOTER (1920*1080 FULL PAGE)
+   SMART STORE BUTTON PERFECTLY GEOMETRICALLY CENTERED
    ======================================== */
 .section-store-footer {
   position: relative;
@@ -549,15 +523,17 @@ body {
   padding: 45px;
 }
 
+/* 가로 세로 완벽 1:1 중앙 정렬 */
 .smart-store-center-box {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin: 0 !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 10;
 }
 
 .btn-smart-store {
@@ -599,7 +575,7 @@ body {
   color: #8D8D8D;
   text-decoration: none;
   transition: 0.2s ease;
-  z-index: 3;
+  z-index: 5;
 }
 
 .footer-link:hover {
@@ -627,7 +603,7 @@ body {
   line-height: 28px;
   color: #8D8D8D;
   margin-top: auto;
-  z-index: 3;
+  z-index: 5;
 }
 
 .info-left {
