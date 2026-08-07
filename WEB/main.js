@@ -145,233 +145,230 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('spray-container');
   const hint = document.getElementById('spray-hint');
 
-  if (!canvas || !container) return;
+  if (canvas && container) {
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let hasStarted = false;
+    let inactivityTimer = null;
+    const INACTIVITY_TIMEOUT = 60000; // 1분 (60초)
 
-  const ctx = canvas.getContext('2d');
-  let isDrawing = false;
-  let hasStarted = false;
-  let inactivityTimer = null;
-  const INACTIVITY_TIMEOUT = 60000; // 1분 (60초)
-
-  // 캔버스를 흰색으로 완전히 채움
-  function fillWhite() {
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.globalAlpha = 1;
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  }
-
-  // 캔버스 크기 설정 (유효한 너비/높이 보장)
-  function resizeCanvas() {
-    const rect = container.getBoundingClientRect();
-    const w = Math.floor(rect.width || container.offsetWidth || window.innerWidth);
-    const h = Math.floor(rect.height || container.offsetHeight || window.innerHeight);
-
-    if (canvas.width !== w || canvas.height !== h) {
-      canvas.width = w;
-      canvas.height = h;
-      fillWhite();
-    }
-  }
-
-  resizeCanvas();
-  window.addEventListener('load', resizeCanvas);
-  setTimeout(resizeCanvas, 150);
-  setTimeout(resizeCanvas, 500);
-
-  // -------------------------------------------------------
-  // 소나무 이미지 랜덤 선택 (tree_2, tree_3, tree_4, tree_5)
-  // -------------------------------------------------------
-  const revealImage = document.getElementById('reveal-image');
-  const treeImages = [
-    'images/tree_2.png',
-    'images/tree_3.png',
-    'images/tree_4.png',
-    'images/tree_5.png'
-  ];
-
-  function setRandomTreeImage() {
-    if (!revealImage) return;
-    const randomIndex = Math.floor(Math.random() * treeImages.length);
-    revealImage.src = treeImages[randomIndex];
-  }
-
-  setRandomTreeImage();
-
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      resizeCanvas();
-      hasStarted = false;
-      if (hint) hint.classList.remove('hidden');
-    }, 200);
-  });
-
-  // 1분 비활성 후 흰색으로 부드럽게 복원하며 이미지 랜덤 재설정
-  function resetToWhite() {
-    let opacity = 0;
-    const fadeStep = 0.02;
-
-    function fade() {
-      opacity += fadeStep;
-      if (opacity >= 1) {
-        opacity = 1;
-        fillWhite();
-        hasStarted = false;
-        setRandomTreeImage();
-        if (hint) hint.classList.remove('hidden');
-        return;
-      }
+    // 캔버스를 흰색으로 채움 (확실한 복원)
+    function fillWhite() {
+      if (!canvas.width || !canvas.height) return;
+      ctx.save();
       ctx.globalCompositeOperation = 'source-over';
-      ctx.globalAlpha = opacity;
+      ctx.globalAlpha = 1;
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.globalAlpha = 1;
-      requestAnimationFrame(fade);
+      ctx.restore();
     }
-    fade();
-  }
 
-  // 비활성 타이머 리셋
-  function resetInactivityTimer() {
-    if (inactivityTimer) clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(resetToWhite, INACTIVITY_TIMEOUT);
-  }
+    // 캔버스 크기 설정 (항상 유효 크기 측정 및 흰색 채우기)
+    function resizeCanvas(forceFill = true) {
+      const rect = container.getBoundingClientRect();
+      const w = Math.floor(rect.width || container.offsetWidth || window.innerWidth || 1920);
+      const h = Math.floor(rect.height || container.offsetHeight || window.innerHeight || 1080);
 
-  // -------------------------------------------------------
-  // 향수 에어로졸 스티플 미스트
-  // -------------------------------------------------------
-  function triggerPerfumeBurst(x, y) {
-    const rect = canvas.getBoundingClientRect();
-    const cx = x - rect.left;
-    const cy = y - rect.top;
+      const changed = (canvas.width !== w || canvas.height !== h);
+      canvas.width = w;
+      canvas.height = h;
 
-    const maxRadius = window.innerWidth < 768 ? 225 : 325;
-    const startTime = performance.now();
-    const DURATION = 1000;
+      if (forceFill || changed || !hasStarted) {
+        fillWhite();
+      }
+    }
 
-    function animateMist(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min(1, elapsed / DURATION);
-      const easeProgress = 1 - Math.pow(1 - progress, 3);
-      const currentRadius = maxRadius * (0.2 + 0.8 * easeProgress);
+    // 초기화 및 다중 프레임 백색 채우기 보장
+    resizeCanvas(true);
+    window.addEventListener('load', () => resizeCanvas(true));
+    requestAnimationFrame(() => resizeCanvas(true));
+    setTimeout(() => resizeCanvas(true), 100);
+    setTimeout(() => resizeCanvas(true), 400);
 
-      ctx.globalCompositeOperation = 'destination-out';
+    // 소나무 이미지 랜덤 선택 (tree_2, tree_3, tree_4, tree_5)
+    const revealImage = document.getElementById('reveal-image');
+    const treeImages = [
+      'images/tree_2.png',
+      'images/tree_3.png',
+      'images/tree_4.png',
+      'images/tree_5.png'
+    ];
 
-      const frameDots = 40000;
-      const opacitySlices = 8;
-      const dotsPerSlice = Math.floor(frameDots / opacitySlices);
+    function setRandomTreeImage() {
+      if (!revealImage) return;
+      const randomIndex = Math.floor(Math.random() * treeImages.length);
+      revealImage.src = treeImages[randomIndex];
+    }
 
-      for (let s = 0; s < opacitySlices; s++) {
-        const t = s / (opacitySlices - 1);
-        const alpha = 0.95 * Math.pow(1 - t, 1.8) + 0.03;
-        const sliceMaxRadius = currentRadius * Math.pow(1 - (s / opacitySlices) * 0.65, 1.1);
+    setRandomTreeImage();
 
-        ctx.globalAlpha = alpha;
-        ctx.beginPath();
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        resizeCanvas(true);
+        hasStarted = false;
+        if (hint) hint.classList.remove('hidden');
+      }, 200);
+    });
 
-        for (let i = 0; i < dotsPerSlice; i++) {
-          const angle = Math.random() * Math.PI * 2;
-          const u = Math.random();
-          const dist = Math.pow(u, 2.0) * sliceMaxRadius;
+    // 1분 비활성 후 흰색으로 부드럽게 복원하며 이미지 랜덤 재설정
+    function resetToWhite() {
+      let opacity = 0;
+      const fadeStep = 0.02;
 
-          const px = cx + Math.cos(angle) * dist;
-          const py = cy + Math.sin(angle) * dist;
-
-          const size = Math.random() * 0.6 + 0.2;
-          ctx.rect(px, py, size, size);
+      function fade() {
+        opacity += fadeStep;
+        if (opacity >= 1) {
+          fillWhite();
+          hasStarted = false;
+          setRandomTreeImage();
+          if (hint) hint.classList.remove('hidden');
+          return;
         }
-        ctx.fill();
+        ctx.save();
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalAlpha = opacity;
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.restore();
+        requestAnimationFrame(fade);
       }
-
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.globalAlpha = 1;
-
-      if (progress < 1) {
-        requestAnimationFrame(animateMist);
-      }
+      fade();
     }
 
-    requestAnimationFrame(animateMist);
-  }
+    function resetInactivityTimer() {
+      if (inactivityTimer) clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(resetToWhite, INACTIVITY_TIMEOUT);
+    }
 
-  // -------------------------------------------------------
-  // 스프레이 이벤트 핸들러 및 연속 분사 홀드 루프
-  // -------------------------------------------------------
-  let currentX = 0;
-  let currentY = 0;
-  let animFrameId = null;
-  let lastBurstTime = 0;
+    // 향수 에어로졸 스티플 미스트
+    function triggerPerfumeBurst(x, y) {
+      const rect = canvas.getBoundingClientRect();
+      const cx = x - rect.left;
+      const cy = y - rect.top;
 
-  function sprayLoop() {
-    if (!isDrawing) return;
-    const now = performance.now();
-    if (now - lastBurstTime > 150) {
+      const maxRadius = window.innerWidth < 768 ? 225 : 325;
+      const startTime = performance.now();
+      const DURATION = 800;
+
+      function animateMist(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(1, elapsed / DURATION);
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const currentRadius = maxRadius * (0.2 + 0.8 * easeProgress);
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-out';
+
+        const frameDots = 30000;
+        const opacitySlices = 8;
+        const dotsPerSlice = Math.floor(frameDots / opacitySlices);
+
+        for (let s = 0; s < opacitySlices; s++) {
+          const t = s / (opacitySlices - 1);
+          const alpha = 0.95 * Math.pow(1 - t, 1.8) + 0.03;
+          const sliceMaxRadius = currentRadius * Math.pow(1 - (s / opacitySlices) * 0.65, 1.1);
+
+          ctx.globalAlpha = alpha;
+          ctx.beginPath();
+
+          for (let i = 0; i < dotsPerSlice; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const u = Math.random();
+            const dist = Math.pow(u, 2.0) * sliceMaxRadius;
+
+            const px = cx + Math.cos(angle) * dist;
+            const py = cy + Math.sin(angle) * dist;
+
+            const size = Math.random() * 0.8 + 0.2;
+            ctx.rect(px, py, size, size);
+          }
+          ctx.fill();
+        }
+        ctx.restore();
+
+        if (progress < 1) {
+          requestAnimationFrame(animateMist);
+        }
+      }
+
+      requestAnimationFrame(animateMist);
+    }
+
+    let currentX = 0;
+    let currentY = 0;
+    let animFrameId = null;
+    let lastBurstTime = 0;
+
+    function sprayLoop() {
+      if (!isDrawing) return;
+      const now = performance.now();
+      if (now - lastBurstTime > 120) {
+        triggerPerfumeBurst(currentX, currentY);
+        lastBurstTime = now;
+      }
+      resetInactivityTimer();
+      animFrameId = requestAnimationFrame(sprayLoop);
+    }
+
+    function onSprayStart(x, y) {
+      isDrawing = true;
+      currentX = x;
+      currentY = y;
+
+      if (!hasStarted) {
+        hasStarted = true;
+        playSpraySound();
+        if (hint) hint.classList.add('hidden');
+      }
+
       triggerPerfumeBurst(currentX, currentY);
-      lastBurstTime = now;
+      lastBurstTime = performance.now();
+      resetInactivityTimer();
+
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+      sprayLoop();
     }
-    resetInactivityTimer();
-    animFrameId = requestAnimationFrame(sprayLoop);
+
+    function onSprayMove(x, y) {
+      currentX = x;
+      currentY = y;
+      if (!isDrawing) return;
+      resetInactivityTimer();
+    }
+
+    function onSprayEnd() {
+      isDrawing = false;
+      if (animFrameId) {
+        cancelAnimationFrame(animFrameId);
+        animFrameId = null;
+      }
+    }
+
+    const interactEl = container || canvas;
+
+    // 마우스 및 터치 이벤트 핸들러
+    interactEl.addEventListener('mousedown', (e) => {
+      onSprayStart(e.clientX, e.clientY);
+    });
+    window.addEventListener('mousemove', (e) => {
+      onSprayMove(e.clientX, e.clientY);
+    });
+    window.addEventListener('mouseup', onSprayEnd);
+
+    interactEl.addEventListener('touchstart', (e) => {
+      if (e.touches.length) {
+        onSprayStart(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length) {
+        onSprayMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+    window.addEventListener('touchend', onSprayEnd, { passive: true });
   }
-
-  function onSprayStart(x, y) {
-    isDrawing = true;
-    currentX = x;
-    currentY = y;
-
-    if (!hasStarted) {
-      hasStarted = true;
-      playSpraySound();
-      if (hint) hint.classList.add('hidden');
-    }
-
-    triggerPerfumeBurst(currentX, currentY);
-    lastBurstTime = performance.now();
-    resetInactivityTimer();
-
-    if (animFrameId) cancelAnimationFrame(animFrameId);
-    sprayLoop();
-  }
-
-  function onSprayMove(x, y) {
-    currentX = x;
-    currentY = y;
-    if (!isDrawing) return;
-    resetInactivityTimer();
-  }
-
-  function onSprayEnd() {
-    isDrawing = false;
-    if (animFrameId) {
-      cancelAnimationFrame(animFrameId);
-      animFrameId = null;
-    }
-  }
-
-  const interactEl = container || canvas;
-
-  // 마우스 이벤트
-  interactEl.addEventListener('mousedown', (e) => {
-    onSprayStart(e.clientX, e.clientY);
-  });
-  window.addEventListener('mousemove', (e) => {
-    onSprayMove(e.clientX, e.clientY);
-  });
-  window.addEventListener('mouseup', onSprayEnd);
-
-  // 터치 이벤트 (모바일 대응)
-  interactEl.addEventListener('touchstart', (e) => {
-    if (e.touches.length) {
-      onSprayStart(e.touches[0].clientX, e.touches[0].clientY);
-    }
-  }, { passive: true });
-  window.addEventListener('touchmove', (e) => {
-    if (e.touches.length) {
-      onSprayMove(e.touches[0].clientX, e.touches[0].clientY);
-    }
-  }, { passive: true });
-  window.addEventListener('touchend', onSprayEnd, { passive: true });
 
   // -------------------------------------------------------
   // Gallery Smooth Bounded Drag-to-Scroll Interaction (Exact Start/End Alignment, No White Space)
