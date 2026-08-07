@@ -216,7 +216,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  cursor: crosshair;
+  cursor: url('svg/character.svg') 14 23, crosshair;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -238,6 +238,7 @@ body {
   width: 100%;
   height: 100%;
   z-index: 2;
+  cursor: url('svg/character.svg') 14 23, crosshair;
 }
 
 .gradient-overlay {
