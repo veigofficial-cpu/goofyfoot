@@ -60,7 +60,7 @@ body {
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
   padding: 6px 10px;
-  border-radius: 30px;
+  border-radius: 0;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.6);
 }
@@ -70,7 +70,7 @@ body {
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  border-radius: 20px;
+  border-radius: 0;
   font-family: var(--font-kr);
   font-size: 12px;
   font-weight: 700;
@@ -264,25 +264,18 @@ body {
   z-index: 4;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  width: 160px;
+  height: 38px;
   font-family: var(--font-kr);
-  font-size: 20px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: #FFFFFF;
   background-color: rgba(204, 204, 204, 0.85);
-  padding: 0.85rem 2.5rem;
-  border-radius: 4px;
+  border-radius: 0;
   pointer-events: none;
   transition: opacity 0.6s ease;
-}
-
-.spray-hint-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #FFFFFF;
 }
 
 .spray-hint.hidden {
@@ -312,18 +305,18 @@ body {
 
 .story-tag {
   font-family: var(--font-en);
-  font-size: 22px;
+  font-size: 11px;
   font-weight: 600;
   color: #959595;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   letter-spacing: 0.04em;
 }
 
 .story-body-text {
   font-family: var(--font-kr);
-  font-size: 22px;
+  font-size: 11px;
   font-weight: 500;
-  line-height: 34px;
+  line-height: 20px;
   color: #000000;
   max-width: 1100px;
   margin: 0 auto;
@@ -372,7 +365,7 @@ body {
   flex-shrink: 0;
   width: clamp(280px, 30vw, 500px);
   height: 100%;
-  border-radius: 6px;
+  border-radius: 0;
   overflow: hidden;
   background: #E8E8E8;
 }
@@ -431,19 +424,19 @@ body {
 
 .btn-smart-store {
   pointer-events: auto;
-  width: 319px;
-  height: 76px;
+  width: 160px;
+  height: 38px;
   background: #CCCCCC;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   text-decoration: none;
   font-family: var(--font-kr);
-  font-size: 21px;
+  font-size: 11px;
   font-weight: 600;
   color: #000000;
-  border-radius: 4px;
+  border-radius: 0;
   transition: var(--transition-smooth);
 }
 
