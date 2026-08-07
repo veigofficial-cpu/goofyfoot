@@ -137,10 +137,15 @@ document.addEventListener('DOMContentLoaded', () => {
   resizeCanvas();
 
   // -------------------------------------------------------
-  // 소나무 이미지 랜덤 선택 (tree_1.png / tree_2.png)
+  // 소나무 이미지 랜덤 선택 (tree_2, tree_3, tree_4, tree_5)
   // -------------------------------------------------------
   const revealImage = document.getElementById('reveal-image');
-  const treeImages = ['images/tree_1.png', 'images/tree_2.png'];
+  const treeImages = [
+    'images/tree_2.png',
+    'images/tree_3.png',
+    'images/tree_4.png',
+    'images/tree_5.png'
+  ];
 
   function setRandomTreeImage() {
     if (!revealImage) return;
