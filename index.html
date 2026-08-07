@@ -11,25 +11,25 @@
     <link rel="stylesheet" href="pretendardvariable.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
     
-    <link rel="stylesheet" href="style.css?v=11">
+    <link rel="stylesheet" href="style.css?v=12">
 </head>
 <body>
 
-    <!-- YOYOYO.AI STYLE FLOATING GLASSMOPHIC NAVIGATION BAR -->
+    <!-- FLOATING GLASSMORPHIC NAVIGATION BAR -->
     <nav class="yoyo-nav" id="yoyo-nav">
         <div class="nav-bar-inner">
             <a href="#hero" class="nav-pill logo-pill">
                 <span class="nav-dot"></span>
                 <span class="nav-text">GOOFY FOOT®</span>
             </a>
-            <a href="#interaction" class="nav-pill" id="nav-link-spray">
+            <a href="#spray" class="nav-pill" id="nav-link-spray">
                 <span>01. SPRAY</span>
             </a>
             <a href="#story" class="nav-pill" id="nav-link-story">
                 <span>02. STORY</span>
             </a>
-            <a href="#products" class="nav-pill" id="nav-link-products">
-                <span>03. PRODUCTS</span>
+            <a href="#gallery" class="nav-pill" id="nav-link-gallery">
+                <span>03. GALLERY</span>
             </a>
             <a href="#store" class="nav-pill" id="nav-link-store">
                 <span>04. STORE</span>
@@ -39,7 +39,7 @@
 
     <div class="web-flow-container">
         
-        <!-- SECTION 1: HERO COVER (Figma Node 15:470 Layout) -->
+        <!-- SECTION 1: HERO COVER (1920×1080) -->
         <section class="section-page section-hero" id="hero">
             <div class="hero-center-content scroll-reveal">
                 <div class="brand-logo-container">
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <a href="#interaction" class="btn-click-to-spray-link scroll-reveal" id="btn-spray-link">
+            <a href="#spray" class="btn-click-to-spray-link scroll-reveal" id="btn-spray-link">
                 <span>Click To Spray</span>
             </a>
 
@@ -56,9 +56,8 @@
             </div>
         </section>
 
-        <!-- SECTION 2: SPRAY REVEAL & STORY & 5-PHOTO GALLERY (Figma Node 15:470 Layout) -->
-        <section class="section-page section-interaction-story" id="interaction">
-            <!-- SPRAY REVEAL INTERACTION CANVAS -->
+        <!-- SECTION 2: SPRAY REVEAL INTERACTION (1920×1080) -->
+        <section class="section-page section-spray" id="spray">
             <div class="spray-reveal-container" id="spray-container">
                 <img src="images/tree_2.png" alt="Goofy Foot Pine Wood Illustration" class="reveal-image" id="reveal-image">
                 <canvas id="spray-canvas"></canvas>
@@ -68,9 +67,11 @@
                     <span>CLICK OR DRAG TO SPRAY</span>
                 </div>
             </div>
+        </section>
 
-            <!-- STORY TEXT CONTENT (Figma Node 15:470 Specs) -->
-            <div class="story-section-wrapper" id="story">
+        <!-- SECTION 3: BRAND STORY (1920×1080) -->
+        <section class="section-page section-story" id="story">
+            <div class="story-center-wrapper">
                 <div class="story-tag scroll-reveal">THE STORY</div>
                 <div class="story-body-text">
                     <p class="scroll-reveal">매미는 땅속에서 최대 7년을 기다린다. 7년의 어둠.</p>
@@ -82,64 +83,36 @@
                     <p class="scroll-reveal">7년을 기다려 만나는, 여름 소나무 숲의 향.</p>
                 </div>
             </div>
+        </section>
 
-            <!-- 5-PHOTO GALLERY STRIP (Figma Node 15:470 Specs) -->
-            <div class="gallery-strip-container scroll-reveal">
-                <div class="gallery-item">
-                    <img src="images/gallery_01.png" alt="Cicada on branch">
+        <!-- SECTION 4: PHOTO GALLERY — HORIZONTAL DRAG SCROLL (1920×1080) -->
+        <section class="section-page section-gallery" id="gallery">
+            <div class="gallery-drag-track" id="gallery-track">
+                <div class="gallery-card">
+                    <img src="images/Pine_1.jpg" alt="Pine 1" draggable="false">
                 </div>
-                <div class="gallery-item">
-                    <img src="images/gallery_02.png" alt="Cicada on trunk">
+                <div class="gallery-card">
+                    <img src="images/Pine_2.jpg" alt="Pine 2" draggable="false">
                 </div>
-                <div class="gallery-item">
-                    <img src="images/gallery_03.png" alt="Cicada shell on tree">
+                <div class="gallery-card">
+                    <img src="images/Pine_3.jpg" alt="Pine 3" draggable="false">
                 </div>
-                <div class="gallery-item">
-                    <img src="images/pine_tree.png" alt="Pine tree in sky">
+                <div class="gallery-card">
+                    <img src="images/Pine_4.jpg" alt="Pine 4" draggable="false">
                 </div>
-                <div class="gallery-item">
-                    <img src="images/real tree.jpg" alt="Pine forest landscape">
+                <div class="gallery-card">
+                    <img src="images/Pine_5.jpg" alt="Pine 5" draggable="false">
                 </div>
+                <div class="gallery-card">
+                    <img src="images/Pine_6.jpg" alt="Pine 6" draggable="false">
+                </div>
+            </div>
+            <div class="gallery-drag-hint scroll-reveal">
+                <span>← DRAG TO EXPLORE →</span>
             </div>
         </section>
 
-        <!-- SECTION 3: PRODUCT GRID (Figma Node 15:470 Specs) -->
-        <section class="section-page section-products" id="products">
-            <div class="section-title-pill scroll-reveal">
-                <span class="pill-dot"></span>
-                <span>COLLECTION — PINE WOOD ROOM SPRAY</span>
-            </div>
-            <div class="products-grid-wrapper">
-                <div class="product-card card-1 scroll-reveal">
-                    <div class="card-image-wrap">
-                        <img src="images/product 1.png" alt="Product 1">
-                    </div>
-                    <div class="card-glass-tag">
-                        <span>PINE WOOD ROOM SPRAY BOTTLE</span>
-                    </div>
-                </div>
-                <div class="product-side-stack">
-                    <div class="product-card card-2 scroll-reveal">
-                        <div class="card-image-wrap">
-                            <img src="images/package 1.png" alt="Package 1">
-                        </div>
-                        <div class="card-glass-tag">
-                            <span>PACKAGE EDITION 01</span>
-                        </div>
-                    </div>
-                    <div class="product-card card-3 scroll-reveal">
-                        <div class="card-image-wrap">
-                            <img src="images/package 2.png" alt="Package 2">
-                        </div>
-                        <div class="card-glass-tag">
-                            <span>PACKAGE EDITION 02</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4: STORE & FOOTER (Figma Node 15:470 Specs - Centered Button) -->
+        <!-- SECTION 5: STORE & FOOTER (1920×1080) -->
         <section class="section-page section-store-footer" id="store">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-link instagram-link">INSTAGRAM</a>
             <a href="mailto:contact@goofyfoot.com" class="footer-link email-link">EMAIL</a>

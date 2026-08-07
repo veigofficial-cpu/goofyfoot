@@ -1,10 +1,12 @@
 /**
- * Goofy Foot® — Spray Reveal Interaction
+ * Goofy Foot® — Spray Reveal Interaction + Gallery Drag Scroll
  *
  * Section 2: 흰색 캔버스 위를 클릭/드래그하면
  * 가운데가 강하고 바깥으로 갈수록 약한 스프레이 패턴으로
  * 흰색이 지워지며 아래 소나무 이미지가 드러남.
  * 1분 간 액션이 없으면 다시 흰색으로 복원됨.
+ *
+ * Section 4: Pine_1~6 이미지를 옆으로 드래그하여 넘기는 갤러리 인터랙션.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -57,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('touchstart', initAudio, { passive: true, once: true });
 
   // -------------------------------------------------------
-  // Scroll Reveal Observer (텍스트 & real tree.jpg 스크롤 시 서서히 나타남)
+  // Scroll Reveal Observer
   // -------------------------------------------------------
   const revealElements = document.querySelectorAll('.scroll-reveal');
   
@@ -79,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // Yoyoyo.ai Style Navigation Pill Active Tracker
+  // Navigation Pill Active Tracker
   // -------------------------------------------------------
   const sections = document.querySelectorAll('.section-page');
   const navPills = document.querySelectorAll('.nav-pill');
@@ -176,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         opacity = 1;
         fillWhite();
         hasStarted = false;
-        setRandomTreeImage(); // 리셋 후 새 나무 이미지 랜덤 지정
+        setRandomTreeImage();
         if (hint) hint.classList.remove('hidden');
         return;
       }
@@ -197,8 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // 향수 에어로졸 스티플 미스트: 중심부터 외곽으로 갈수록 입자 수와 불투명도가
-  // 단계 없이 연속적으로 서서히 줄어드는 고밀도 8단계 렌더링
+  // 향수 에어로졸 스티플 미스트
   // -------------------------------------------------------
   function triggerPerfumeBurst(x, y) {
     const rect = canvas.getBoundingClientRect();
@@ -217,13 +218,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ctx.globalCompositeOperation = 'destination-out';
 
-      // 40,000개 입자를 중심부터 외곽까지 연속적인 그라데이션으로 배치
       const frameDots = 40000;
       const opacitySlices = 8;
       const dotsPerSlice = Math.floor(frameDots / opacitySlices);
 
       for (let s = 0; s < opacitySlices; s++) {
-        // s = 0 (중심부, 알몸 0.95) ~ s = 7 (외곽, 알몸 0.03)
         const t = s / (opacitySlices - 1);
         const alpha = 0.95 * Math.pow(1 - t, 1.8) + 0.03;
         const sliceMaxRadius = currentRadius * Math.pow(1 - (s / opacitySlices) * 0.65, 1.1);
@@ -234,7 +233,6 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < dotsPerSlice; i++) {
           const angle = Math.random() * Math.PI * 2;
           const u = Math.random();
-          // 중심(0) 근처에 입자가 가장 빽빽하고 외곽으로 갈수록 서서히 줄어드는 연속 수식
           const dist = Math.pow(u, 2.0) * sliceMaxRadius;
 
           const px = cx + Math.cos(angle) * dist;
@@ -258,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // 이벤트 핸들러 및 연속 분사 홀드 루프
+  // 스프레이 이벤트 핸들러 및 연속 분사 홀드 루프
   // -------------------------------------------------------
   let currentX = 0;
   let currentY = 0;
@@ -268,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function sprayLoop() {
     if (!isDrawing) return;
     const now = performance.now();
-    if (now - lastBurstTime > 150) { // 150ms마다 연속 향수 분사
+    if (now - lastBurstTime > 150) {
       triggerPerfumeBurst(currentX, currentY);
       lastBurstTime = now;
     }
@@ -332,4 +330,130 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
   canvas.addEventListener('touchend', onSprayEnd, { passive: true });
+
+  // -------------------------------------------------------
+  // Gallery Horizontal Drag-to-Scroll Interaction
+  // -------------------------------------------------------
+  const gallerySection = document.getElementById('gallery');
+  const galleryTrack = document.getElementById('gallery-track');
+
+  if (gallerySection && galleryTrack) {
+    let isDragging = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let trackX = 0;
+    let velocity = 0;
+    let lastMoveX = 0;
+    let lastMoveTime = 0;
+    let momentumId = null;
+
+    // 트랙의 최대 드래그 거리 계산
+    function getMaxScroll() {
+      const trackWidth = galleryTrack.scrollWidth;
+      const viewWidth = gallerySection.clientWidth;
+      return Math.max(0, trackWidth - viewWidth);
+    }
+
+    function setTrackPosition(x) {
+      const max = getMaxScroll();
+      trackX = Math.max(-max, Math.min(0, x));
+      galleryTrack.style.transform = `translateX(${trackX}px)`;
+    }
+
+    // 관성 스크롤 (momentum)
+    function momentumScroll() {
+      if (Math.abs(velocity) < 0.5) {
+        velocity = 0;
+        return;
+      }
+      velocity *= 0.95; // 마찰 감속
+      setTrackPosition(trackX + velocity);
+      momentumId = requestAnimationFrame(momentumScroll);
+    }
+
+    function stopMomentum() {
+      if (momentumId) {
+        cancelAnimationFrame(momentumId);
+        momentumId = null;
+      }
+    }
+
+    // 마우스 드래그
+    gallerySection.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      scrollLeft = trackX;
+      velocity = 0;
+      lastMoveX = e.clientX;
+      lastMoveTime = performance.now();
+      stopMomentum();
+      galleryTrack.style.transition = 'none';
+      e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - startX;
+      setTrackPosition(scrollLeft + dx);
+
+      // 속도 계산 (관성용)
+      const now = performance.now();
+      const dt = now - lastMoveTime;
+      if (dt > 0) {
+        velocity = (e.clientX - lastMoveX) / dt * 16; // 프레임당 속도
+      }
+      lastMoveX = e.clientX;
+      lastMoveTime = now;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      galleryTrack.style.transition = 'transform 0.08s ease-out';
+      // 관성 스크롤 시작
+      momentumScroll();
+    });
+
+    // 터치 드래그
+    gallerySection.addEventListener('touchstart', (e) => {
+      if (!e.touches.length) return;
+      isDragging = true;
+      startX = e.touches[0].clientX;
+      scrollLeft = trackX;
+      velocity = 0;
+      lastMoveX = e.touches[0].clientX;
+      lastMoveTime = performance.now();
+      stopMomentum();
+      galleryTrack.style.transition = 'none';
+    }, { passive: true });
+
+    gallerySection.addEventListener('touchmove', (e) => {
+      if (!isDragging || !e.touches.length) return;
+      const dx = e.touches[0].clientX - startX;
+      setTrackPosition(scrollLeft + dx);
+
+      const now = performance.now();
+      const dt = now - lastMoveTime;
+      if (dt > 0) {
+        velocity = (e.touches[0].clientX - lastMoveX) / dt * 16;
+      }
+      lastMoveX = e.touches[0].clientX;
+      lastMoveTime = now;
+    }, { passive: true });
+
+    gallerySection.addEventListener('touchend', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      galleryTrack.style.transition = 'transform 0.08s ease-out';
+      momentumScroll();
+    }, { passive: true });
+
+    // 갤러리 카드 클릭 방지 (드래그 중)
+    gallerySection.addEventListener('click', (e) => {
+      if (Math.abs(velocity) > 2) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+  }
 });
