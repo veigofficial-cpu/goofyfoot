@@ -1,5 +1,5 @@
 /*
-  Goofy Foot® — 1920*1080 Proportion Web Flow Design System
+  Goofy Foot® — yoyoyo.ai (Nano Banana Pro x PORTO ROCHA) Inspired Design System
 */
 
 @import url('pretendardvariable.css');
@@ -10,11 +10,13 @@
   --bg-color: #FFFFFF;
   --text-main: #111111;
   --text-muted: #8D8D8D;
+  --glass-bg: rgba(230, 230, 230, 0.7);
+  --glass-blur: blur(20px);
 
   --font-en: 'acumin-pro', 'acumin-pro-wide', -apple-system, sans-serif;
   --font-kr: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
 
-  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.2, 0, 0.05, 1);
 }
 
 * {
@@ -38,12 +40,72 @@ body {
 }
 
 /* ========================================
+   YOYOYO.AI FLOATING GLASSMOPHIC NAV BAR
+   ======================================== */
+.yoyo-nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.nav-bar-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  padding: 6px 10px;
+  border-radius: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: var(--font-kr);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #111111;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.nav-pill:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.logo-pill {
+  background: #000000;
+  color: #FFFFFF;
+}
+
+.logo-pill:hover {
+  background: #222222;
+}
+
+.nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FFFFFF;
+}
+
+/* ========================================
    SCROLL REVEAL ANIMATION SYSTEM
    ======================================== */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(32px);
+  transition: opacity 0.85s cubic-bezier(0.2, 0, 0.05, 1), transform 0.85s cubic-bezier(0.2, 0, 0.05, 1);
   will-change: opacity, transform;
 }
 
@@ -53,7 +115,7 @@ body {
 }
 
 /* ========================================
-   1920*1080 SECTION PAGES
+   1920*1080 PROPORTION SECTION PAGES
    ======================================== */
 .web-flow-container {
   width: 100vw;
@@ -72,7 +134,7 @@ body {
 }
 
 /* ========================================
-   SECTION 1: HERO COVER (1920*1080)
+   SECTION 1: HERO COVER
    ======================================== */
 .section-hero {
   display: flex;
@@ -119,7 +181,7 @@ body {
 }
 
 .character-img:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
 
 .btn-click-to-spray {
@@ -133,13 +195,28 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  gap: 8px;
   text-decoration: none;
   color: #FFFFFF;
   font-family: var(--font-kr);
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  border-radius: 4px;
   transition: var(--transition-smooth);
+}
+
+.btn-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  animation: pulse-glow 1.8s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.4; }
 }
 
 .btn-click-to-spray:hover {
@@ -148,8 +225,7 @@ body {
 }
 
 /* ========================================
-   SECTION 2: SPRAY REVEAL INTERACTION (1920*1080)
-   RIGHT BELOW HERO PAGE
+   SECTION 2: SPRAY REVEAL INTERACTION
    ======================================== */
 .section-interaction {
   width: 100vw;
@@ -212,25 +288,69 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-kr);
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #FFFFFF;
   background-color: rgba(204, 204, 204, 0.85);
   padding: 0.85rem 2.5rem;
-  border-radius: 2px;
+  border-radius: 4px;
   pointer-events: none;
   transition: opacity 0.6s ease;
+}
+
+.spray-hint-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FFFFFF;
 }
 
 .spray-hint.hidden {
   opacity: 0;
 }
 
+/* yoyoyo.ai Floating Prompt Bar */
+.floating-prompt-bar {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.prompt-bar-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  padding: 8px 18px;
+  border-radius: 20px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  font-family: var(--font-kr);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #111111;
+}
+
+.status-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #000000;
+}
+
 /* ========================================
-   SECTION 3: BRAND STORY & REAL TREE PHOTO (1920*1080)
+   SECTION 3: BRAND STORY & REAL TREE PHOTO
    ======================================== */
 .section-story {
   display: flex;
@@ -250,12 +370,28 @@ body {
   background: #FFFFFF;
 }
 
+.story-header-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #F2F2F2;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 2.5rem;
+}
+
+.pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #000000;
+}
+
 .story-tag {
   font-family: var(--font-kr);
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   color: #8D8D8D;
-  margin-bottom: 2.5rem;
   letter-spacing: 0.08em;
 }
 
@@ -310,44 +446,95 @@ body {
 }
 
 /* ========================================
-   SECTION 4: PRODUCT GRID (1920*1080)
+   SECTION 4: PRODUCT GRID (yoyoyo.ai Interactive Style)
    ======================================== */
 .section-products {
   width: 100vw;
   height: 100vh;
   min-height: 720px;
   background: #FFFFFF;
-  padding: 15px;
+  padding: 80px 24px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-kr);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #111111;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.products-grid-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 16px;
+  flex: 1;
+  height: 100%;
 }
 
 .product-card {
+  position: relative;
   background: #E8E8E8;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0.05, 1), box-shadow 0.4s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card-image-wrap {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
-.product-card img {
+.card-image-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0, 0.05, 1);
 }
 
-.product-card.card-1 {
-  height: 100%;
+.product-card:hover .card-image-wrap img {
+  transform: scale(1.05);
+}
+
+.card-glass-tag {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-family: var(--font-kr);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #111111;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .product-side-stack {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  gap: 15px;
+  gap: 16px;
   height: 100%;
 }
 
 /* ========================================
-   SECTION 5: STORE & FOOTER (1920*1080)
-   SMART STORE BUTTON PERFECTLY CENTERED
+   SECTION 5: STORE & FOOTER (yoyoyo.ai Centered Store Button)
    ======================================== */
 .section-store-footer {
   position: relative;
@@ -362,7 +549,6 @@ body {
   padding: 45px;
 }
 
-/* 가로 세로 완벽 중앙 정렬 */
 .smart-store-center-box {
   position: absolute;
   top: 50%;
@@ -381,12 +567,18 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 12px;
   text-decoration: none;
   font-family: var(--font-kr);
-  font-size: 35px;
+  font-size: 32px;
   font-weight: 600;
   color: #000000;
+  border-radius: 6px;
   transition: var(--transition-smooth);
+}
+
+.btn-arrow {
+  transition: transform 0.3s ease;
 }
 
 .btn-smart-store:hover {
@@ -394,11 +586,15 @@ body {
   color: #FFFFFF;
 }
 
+.btn-smart-store:hover .btn-arrow {
+  transform: translateX(6px);
+}
+
 .footer-link {
   position: absolute;
   top: 45px;
   font-family: var(--font-kr);
-  font-size: 35px;
+  font-size: 32px;
   font-weight: 600;
   color: #8D8D8D;
   text-decoration: none;
@@ -426,9 +622,9 @@ body {
   border-top: 1px solid #EEEEEE;
   padding-top: 1.5rem;
   font-family: var(--font-kr);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 28px;
   color: #8D8D8D;
   margin-top: auto;
   z-index: 3;
@@ -456,6 +652,20 @@ body {
    RESPONSIVE SCALING
    ======================================== */
 @media (max-width: 1024px) {
+  .yoyo-nav {
+    top: 12px;
+  }
+
+  .nav-bar-inner {
+    padding: 4px 8px;
+    gap: 4px;
+  }
+
+  .nav-pill {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
   .section-page {
     height: auto;
     min-height: 100vh;
@@ -467,7 +677,7 @@ body {
     font-size: 24px;
   }
 
-  .section-products {
+  .products-grid-wrapper {
     grid-template-columns: 1fr;
     height: auto;
   }

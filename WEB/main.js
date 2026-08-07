@@ -79,6 +79,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
+  // Yoyoyo.ai Style Navigation Pill Active Tracker
+  // -------------------------------------------------------
+  const sections = document.querySelectorAll('.section-page');
+  const navPills = document.querySelectorAll('.nav-pill');
+
+  window.addEventListener('scroll', () => {
+    let currentSectionId = '';
+    sections.forEach((sec) => {
+      const top = sec.offsetTop;
+      const height = sec.offsetHeight;
+      if (window.scrollY >= top - height / 3) {
+        currentSectionId = sec.getAttribute('id');
+      }
+    });
+
+    navPills.forEach((pill) => {
+      if (pill.getAttribute('href') === `#${currentSectionId}`) {
+        pill.style.background = 'rgba(0, 0, 0, 0.08)';
+      } else if (!pill.classList.contains('logo-pill')) {
+        pill.style.background = 'transparent';
+      }
+    });
+  });
+
+  // -------------------------------------------------------
   // Spray Reveal Canvas
   // -------------------------------------------------------
   const canvas = document.getElementById('spray-canvas');

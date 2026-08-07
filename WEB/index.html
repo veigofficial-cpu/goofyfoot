@@ -11,45 +11,80 @@
     <link rel="stylesheet" href="pretendardvariable.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
     
-    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 
+    <!-- YOYOYO.AI STYLE FLOATING GLASSMOPHIC NAVIGATION BAR -->
+    <nav class="yoyo-nav" id="yoyo-nav">
+        <div class="nav-bar-inner">
+            <a href="#hero" class="nav-pill logo-pill">
+                <span class="nav-dot"></span>
+                <span class="nav-text">GOOFY FOOT®</span>
+            </a>
+            <a href="#interaction" class="nav-pill" id="nav-link-spray">
+                <span>01. SPRAY</span>
+            </a>
+            <a href="#story" class="nav-pill" id="nav-link-story">
+                <span>02. STORY</span>
+            </a>
+            <a href="#products" class="nav-pill" id="nav-link-products">
+                <span>03. PRODUCTS</span>
+            </a>
+            <a href="#store" class="nav-pill" id="nav-link-store">
+                <span>04. STORE</span>
+            </a>
+        </div>
+    </nav>
+
     <div class="web-flow-container">
         
-        <!-- SECTION 1: HERO COVER (1920*1080) -->
+        <!-- SECTION 1: HERO COVER (yoyoyo.ai Full Viewport Typography) -->
         <section class="section-page section-hero" id="hero">
             <div class="hero-center-content">
-                <div class="brand-logo-container">
+                <div class="brand-logo-container scroll-reveal">
                     <img src="svg/logo.svg" alt="Goofy Foot® Logo" class="brand-logo-img">
                 </div>
                 
-                <div class="cicada-character-container">
+                <div class="cicada-character-container scroll-reveal">
                     <img src="svg/character.svg" alt="Goofy Foot Character" class="character-img">
                 </div>
             </div>
 
-            <a href="#interaction" class="btn-click-to-spray" id="btn-spray-link">
+            <a href="#interaction" class="btn-click-to-spray scroll-reveal" id="btn-spray-link">
+                <span class="btn-pulse-dot"></span>
                 <span>CLICK TO SPRAY</span>
             </a>
         </section>
 
-        <!-- SECTION 2: SPRAY REVEAL INTERACTION (1920*1080 - RIGHT BELOW HERO) -->
+        <!-- SECTION 2: SPRAY REVEAL INTERACTION (yoyoyo.ai Canvas Viewport) -->
         <section class="section-page section-interaction" id="interaction">
             <div class="spray-reveal-container" id="spray-container">
                 <img src="images/tree_1.png" alt="Goofy Foot Pine Wood Illustration" class="reveal-image" id="reveal-image">
                 <canvas id="spray-canvas"></canvas>
                 <div class="gradient-overlay"></div>
                 <div class="spray-hint" id="spray-hint">
-                    <span>CLICK TO SPRAY</span>
+                    <span class="spray-hint-dot"></span>
+                    <span>CLICK OR DRAG TO SPRAY</span>
+                </div>
+            </div>
+            
+            <!-- yoyoyo.ai Style Bottom Floating Status Bar -->
+            <div class="floating-prompt-bar">
+                <div class="prompt-bar-pill">
+                    <span class="status-indicator"></span>
+                    <p>PINE WOOD ROOM SPRAY — VOL.01 · AEROSOL MIST INTERACTION</p>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: BRAND STORY & REAL TREE PHOTO (1920*1080) -->
+        <!-- SECTION 3: BRAND STORY & REAL TREE PHOTO (yoyoyo.ai Editorial Layout) -->
         <section class="section-page section-story" id="story">
             <div class="story-upper-container">
-                <span class="story-tag scroll-reveal">THE STORY</span>
+                <div class="story-header-pill scroll-reveal">
+                    <span class="pill-dot"></span>
+                    <span class="story-tag">THE STORY</span>
+                </div>
                 <div class="story-upper-text">
                     <p class="scroll-reveal">매미는 땅속에서 최대 7년을 기다린다.</p>
                     <p class="scroll-reveal">7년의 어둠.</p>
@@ -68,29 +103,51 @@
             </div>
         </section>
 
-        <!-- SECTION 4: PRODUCT GRID (1920*1080) -->
+        <!-- SECTION 4: PRODUCT GRID (yoyoyo.ai Interactive Card Grid) -->
         <section class="section-page section-products" id="products">
-            <div class="product-card card-1 scroll-reveal">
-                <img src="images/product 1.png" alt="Product 1">
+            <div class="section-title-pill scroll-reveal">
+                <span class="pill-dot"></span>
+                <span>COLLECTION — PINE WOOD ROOM SPRAY</span>
             </div>
-            <div class="product-side-stack">
-                <div class="product-card card-2 scroll-reveal">
-                    <img src="images/package 1.png" alt="Package 1">
+            <div class="products-grid-wrapper">
+                <div class="product-card card-1 scroll-reveal">
+                    <div class="card-image-wrap">
+                        <img src="images/product 1.png" alt="Product 1">
+                    </div>
+                    <div class="card-glass-tag">
+                        <span>PINE WOOD ROOM SPRAY BOTTLE</span>
+                    </div>
                 </div>
-                <div class="product-card card-3 scroll-reveal">
-                    <img src="images/package 2.png" alt="Package 2">
+                <div class="product-side-stack">
+                    <div class="product-card card-2 scroll-reveal">
+                        <div class="card-image-wrap">
+                            <img src="images/package 1.png" alt="Package 1">
+                        </div>
+                        <div class="card-glass-tag">
+                            <span>PACKAGE EDITION 01</span>
+                        </div>
+                    </div>
+                    <div class="product-card card-3 scroll-reveal">
+                        <div class="card-image-wrap">
+                            <img src="images/package 2.png" alt="Package 2">
+                        </div>
+                        <div class="card-glass-tag">
+                            <span>PACKAGE EDITION 02</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 5: STORE & FOOTER (1920*1080 - PERFECT CENTERED SMART STORE BUTTON) -->
+        <!-- SECTION 5: STORE & FOOTER (yoyoyo.ai Perfectly Centered Glass Store Button) -->
         <section class="section-page section-store-footer" id="store">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-link instagram-link">INSTAGRAM</a>
             <a href="mailto:contact@goofyfoot.com" class="footer-link email-link">EMAIL</a>
 
             <div class="smart-store-center-box scroll-reveal">
                 <a href="https://smartstore.naver.com" target="_blank" rel="noopener noreferrer" class="btn-smart-store">
-                    Goofy Foot Smart Store
+                    <span class="btn-text">Goofy Foot Smart Store</span>
+                    <span class="btn-arrow">→</span>
                 </a>
             </div>
 
