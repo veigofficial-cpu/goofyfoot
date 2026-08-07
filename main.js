@@ -145,15 +145,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // 향수 에어로졸 스티플 미스트: 입자 수 100배 대폭 증량 (80,000개 초미세 입자)
-  // 초당 80,000개의 미세 방울이 부드럽게 뿜어져 나와 풍성한 소나무 향 미스트 구현
+  // 향수 에어로졸 스티플 미스트: 반경 50% 축소 (325px) & 외곽 입자 수 80% 축소
   // -------------------------------------------------------
   function triggerPerfumeBurst(x, y) {
     const rect = canvas.getBoundingClientRect();
     const cx = x - rect.left;
     const cy = y - rect.top;
 
-    const maxRadius = window.innerWidth < 768 ? 450 : 650; // 추가 50% 축소된 분사 범위
+    const maxRadius = window.innerWidth < 768 ? 225 : 325; // 반경 50% 추가 축소 (325px)
     const startTime = performance.now();
     const DURATION = 1000;
 
@@ -165,26 +164,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ctx.globalCompositeOperation = 'destination-out';
 
-      // 기존 800개 ➔ 100배 대폭 증량: 프레임당 80,000개 초미세 방울 분사
-      const frameDots = 80000;
-
-      // 성능 최적화를 위한 4단계 알파 배치 렌더링
-      const alphaBuckets = [0.85, 0.55, 0.25, 0.08];
-      const dotsPerBucket = Math.floor(frameDots / alphaBuckets.length);
+      // 중심은 빽빽하게, 외곽 영역 입자 수는 80% 축소
+      const alphaBuckets = [
+        { alpha: 0.88, count: 24000, scale: 0.35 }, // 중심 핵심 코어 (밀집도 최고)
+        { alpha: 0.55, count: 12000, scale: 0.65 }, // 중간 내부 영역
+        { alpha: 0.25, count: 2500,  scale: 0.88 }, // 외곽 영역 (입자 수 80% 축소)
+        { alpha: 0.08, count: 800,   scale: 1.00 }  // 최외곽 잔여 미스트 (입자 수 85% 축소)
+      ];
 
       for (let b = 0; b < alphaBuckets.length; b++) {
-        ctx.globalAlpha = alphaBuckets[b];
+        const bucket = alphaBuckets[b];
+        ctx.globalAlpha = bucket.alpha;
         ctx.beginPath();
 
-        for (let i = 0; i < dotsPerBucket; i++) {
+        const dots = bucket.count;
+        const bucketRadius = currentRadius * bucket.scale;
+
+        for (let i = 0; i < dots; i++) {
           const angle = Math.random() * Math.PI * 2;
           const u = Math.random();
-          const dist = Math.pow(u, 1.25) * currentRadius * (1 - (b * 0.18));
+          const dist = Math.pow(u, 1.3) * bucketRadius;
 
           const px = cx + Math.cos(angle) * dist;
           const py = cy + Math.sin(angle) * dist;
 
-          const size = Math.random() * 0.7 + 0.25;
+          const size = Math.random() * 0.65 + 0.25;
           ctx.rect(px, py, size, size);
         }
         ctx.fill();
