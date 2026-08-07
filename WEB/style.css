@@ -1,5 +1,5 @@
 /*
-  Goofy Foot® — 1920x5400 Figma Design Specs
+  Goofy Foot® — 1920*1080 Proportion Web Flow Design System
 */
 
 @import url('pretendardvariable.css');
@@ -53,56 +53,62 @@ body {
 }
 
 /* ========================================
-   MAIN 1920 CONTAINER
+   1920*1080 SECTION PAGES
    ======================================== */
 .web-flow-container {
-  position: relative;
   width: 100vw;
   max-width: 100%;
   margin: 0 auto;
+  background: #FFFFFF;
+}
+
+.section-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 720px;
   background: #FFFFFF;
   overflow: hidden;
 }
 
 /* ========================================
-   SECTION 1: HERO (1080px)
+   SECTION 1: HERO COVER (1920*1080)
    ======================================== */
-.section-1 {
-  position: relative;
-  width: 100%;
-  height: 1080px;
-  background: #FFFFFF;
+.section-hero {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  background: #FFFFFF;
+}
+
+.hero-center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto 0;
 }
 
 .brand-logo-container {
-  position: absolute;
-  left: 50%;
-  top: 469px;
-  transform: translateX(-50%);
-  width: 722px;
-  height: 142px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .brand-logo-img {
-  width: 722px;
-  height: 142px;
+  width: clamp(320px, 38vw, 722px);
+  height: auto;
   object-fit: contain;
 }
 
 .cicada-character-container {
-  position: absolute;
-  left: 50%;
-  top: 675px;
-  transform: translateX(-50%);
-  width: 55px;
-  height: 93px;
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .character-img {
@@ -118,8 +124,8 @@ body {
 
 .btn-click-to-spray {
   position: absolute;
+  bottom: 4rem;
   left: 50%;
-  top: 946px;
   transform: translateX(-50%);
   width: 250px;
   height: 55px;
@@ -142,19 +148,23 @@ body {
 }
 
 /* ========================================
-   SECTION 2: SPRAY REVEAL & STORY 1 (1080px)
+   SECTION 2: SPRAY REVEAL INTERACTION (1920*1080)
+   RIGHT BELOW HERO PAGE
    ======================================== */
-.section-2 {
+.section-interaction {
+  width: 100vw;
+  height: 100vh;
+  min-height: 720px;
   position: relative;
-  width: 100%;
-  min-height: 1080px;
   background: #FFFFFF;
+  margin: 0;
+  padding: 0;
 }
 
 .spray-reveal-container {
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 100%;
   overflow: hidden;
   cursor: crosshair;
   user-select: none;
@@ -203,13 +213,13 @@ body {
   transform: translate(-50%, -50%);
   z-index: 4;
   font-family: var(--font-kr);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #FFFFFF;
   background-color: rgba(204, 204, 204, 0.85);
-  padding: 0.75rem 2rem;
+  padding: 0.85rem 2.5rem;
   border-radius: 2px;
   pointer-events: none;
   transition: opacity 0.6s ease;
@@ -219,8 +229,23 @@ body {
   opacity: 0;
 }
 
-.story-part-1 {
-  padding: 4rem 1.5rem 6rem;
+/* ========================================
+   SECTION 3: BRAND STORY & REAL TREE PHOTO (1920*1080)
+   ======================================== */
+.section-story {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 100vh;
+}
+
+.story-upper-container {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 1.5rem;
   text-align: center;
   background: #FFFFFF;
 }
@@ -230,39 +255,33 @@ body {
   font-size: 20px;
   font-weight: 600;
   color: #8D8D8D;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2.5rem;
   letter-spacing: 0.08em;
 }
 
-.story-line {
+.story-upper-text {
   font-family: var(--font-kr);
-  font-size: 35px;
+  font-size: clamp(1.2rem, 2vw, 2.2rem);
   font-weight: 600;
-  line-height: 52px;
+  line-height: 1.8;
   color: #000000;
-  margin-bottom: 0.8rem;
   word-break: keep-all;
+  max-width: 1100px;
 }
 
-.story-line.line-1 {
-  line-height: 40px;
-}
-
-/* ========================================
-   SECTION 3: REAL TREE PHOTO BG & STORY 2 (1080px)
-   ======================================== */
-.section-3 {
+.story-real-tree-section {
   position: relative;
-  width: 100%;
-  height: 1080px;
-  background-image: url('images/real tree.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 100vw;
+  min-height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-image: url('images/real tree.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .real-tree-bg-overlay {
@@ -276,41 +295,36 @@ body {
   position: relative;
   z-index: 2;
   color: #FFFFFF;
-  padding: 2rem 1.5rem;
-  max-width: 1200px;
+  padding: 3rem 1.5rem;
+  max-width: 1100px;
 }
 
 .story-line-white {
   font-family: var(--font-kr);
-  font-size: 35px;
+  font-size: clamp(1.2rem, 2vw, 2.2rem);
   font-weight: 600;
-  line-height: 52px;
+  line-height: 1.8;
   color: #FFFFFF;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   word-break: keep-all;
 }
 
-.story-line-white.line-5 {
-  font-size: 35px;
-  font-weight: 600;
-}
-
 /* ========================================
-   SECTION 4: PRODUCT GRID (1080px)
+   SECTION 4: PRODUCT GRID (1920*1080)
    ======================================== */
-.section-4 {
-  position: relative;
-  width: 100%;
-  height: 1080px;
+.section-products {
+  width: 100vw;
+  height: 100vh;
+  min-height: 720px;
   background: #FFFFFF;
-  padding: 10px;
+  padding: 15px;
   display: grid;
-  grid-template-columns: 940px 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
 
 .product-card {
-  background: #CCCCCC;
+  background: #E8E8E8;
   overflow: hidden;
 }
 
@@ -321,31 +335,43 @@ body {
 }
 
 .product-card.card-1 {
-  height: 1060px;
+  height: 100%;
 }
 
-.product-card.card-2,
-.product-card.card-3 {
-  height: 427px;
+.product-side-stack {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 15px;
+  height: 100%;
 }
 
 /* ========================================
-   SECTION 5: STORE & FOOTER (1080px)
+   SECTION 5: STORE & FOOTER (1920*1080)
+   SMART STORE BUTTON PERFECTLY CENTERED
    ======================================== */
-.section-5 {
+.section-store-footer {
   position: relative;
-  width: 100%;
-  height: 1080px;
+  width: 100vw;
+  height: 100vh;
+  min-height: 720px;
   background: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 4rem 45px 3rem;
+  padding: 45px;
 }
 
-.smart-store-btn-wrapper {
-  margin: auto 0 4rem;
+/* 가로 세로 완벽 중앙 정렬 */
+.smart-store-center-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
 }
 
 .btn-smart-store {
@@ -377,6 +403,7 @@ body {
   color: #8D8D8D;
   text-decoration: none;
   transition: 0.2s ease;
+  z-index: 3;
 }
 
 .footer-link:hover {
@@ -392,17 +419,19 @@ body {
 }
 
 .footer-bottom-info {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  width: 100%;
-  padding-top: 2rem;
   border-top: 1px solid #EEEEEE;
+  padding-top: 1.5rem;
   font-family: var(--font-kr);
   font-size: 20px;
   font-weight: 400;
   line-height: 30px;
   color: #8D8D8D;
+  margin-top: auto;
+  z-index: 3;
 }
 
 .info-left {
@@ -427,22 +456,20 @@ body {
    RESPONSIVE SCALING
    ======================================== */
 @media (max-width: 1024px) {
-  .section-1, .section-2, .section-3, .section-4, .section-5 {
+  .section-page {
     height: auto;
     min-height: 100vh;
   }
 
-  .brand-logo-img {
-    width: clamp(280px, 60vw, 600px);
-    height: auto;
+  .btn-smart-store {
+    width: clamp(280px, 80vw, 456px);
+    height: 80px;
+    font-size: 24px;
   }
 
-  .section-4 {
+  .section-products {
     grid-template-columns: 1fr;
-  }
-
-  .footer-link {
-    position: static;
+    height: auto;
   }
 
   .footer-bottom-info {

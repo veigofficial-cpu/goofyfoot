@@ -11,20 +11,22 @@
     <link rel="stylesheet" href="pretendardvariable.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
     
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 
     <div class="web-flow-container">
         
-        <!-- SECTION 1: HERO COVER (0px ~ 1080px) -->
-        <section class="section-1" id="hero">
-            <div class="brand-logo-container">
-                <img src="svg/logo.svg" alt="Goofy Foot® Logo" class="brand-logo-img">
-            </div>
-            
-            <div class="cicada-character-container">
-                <img src="svg/character.svg" alt="Goofy Foot Character" class="character-img">
+        <!-- SECTION 1: HERO COVER (1920*1080) -->
+        <section class="section-page section-hero" id="hero">
+            <div class="hero-center-content">
+                <div class="brand-logo-container">
+                    <img src="svg/logo.svg" alt="Goofy Foot® Logo" class="brand-logo-img">
+                </div>
+                
+                <div class="cicada-character-container">
+                    <img src="svg/character.svg" alt="Goofy Foot Character" class="character-img">
+                </div>
             </div>
 
             <a href="#interaction" class="btn-click-to-spray" id="btn-spray-link">
@@ -32,8 +34,8 @@
             </a>
         </section>
 
-        <!-- SECTION 2: SPRAY REVEAL & STORY 1 (1080px ~ 2160px) -->
-        <section class="section-2" id="interaction">
+        <!-- SECTION 2: SPRAY REVEAL INTERACTION (1920*1080 - RIGHT BELOW HERO) -->
+        <section class="section-page section-interaction" id="interaction">
             <div class="spray-reveal-container" id="spray-container">
                 <img src="images/tree_1.png" alt="Goofy Foot Pine Wood Illustration" class="reveal-image" id="reveal-image">
                 <canvas id="spray-canvas"></canvas>
@@ -42,49 +44,55 @@
                     <span>CLICK TO SPRAY</span>
                 </div>
             </div>
+        </section>
 
-            <div class="story-part-1">
-                <div class="story-tag scroll-reveal">THE STORY</div>
-                <div class="story-line line-1 scroll-reveal">매미는 땅속에서 최대 7년을 기다린다.</div>
-                <div class="story-line line-2 scroll-reveal">7년의 어둠.</div>
-                <div class="story-line line-3 scroll-reveal">그리고 지상에서 주어진 시간은 단 한 계절.</div>
-                <div class="story-line line-4 scroll-reveal">깨어난 매미는 숲에서 가장 향이 짙은 나무를 찾아 오른다.</div>
+        <!-- SECTION 3: BRAND STORY & REAL TREE PHOTO (1920*1080) -->
+        <section class="section-page section-story" id="story">
+            <div class="story-upper-container">
+                <span class="story-tag scroll-reveal">THE STORY</span>
+                <div class="story-upper-text">
+                    <p class="scroll-reveal">매미는 땅속에서 최대 7년을 기다린다.</p>
+                    <p class="scroll-reveal">7년의 어둠.</p>
+                    <p class="scroll-reveal">그리고 지상에서 주어진 시간은 단 한 계절.</p>
+                    <p class="scroll-reveal">깨어난 매미는 숲에서 가장 향이 짙은 나무를 찾아 오른다.</p>
+                </div>
+            </div>
+
+            <div class="story-real-tree-section scroll-reveal" id="story-real-tree">
+                <div class="real-tree-bg-overlay"></div>
+                <div class="story-part-2">
+                    <div class="story-line-white line-5 scroll-reveal">언제나, 소나무다.</div>
+                    <div class="story-line-white line-6 scroll-reveal">GOOFY FOOT® PINE WOOD ROOM SPRAY는<br>그 한 계절의 공기를 담았다.</div>
+                    <div class="story-line-white line-7 scroll-reveal">7년을 기다려 만나는, 여름 소나무 숲의 향.</div>
+                </div>
             </div>
         </section>
 
-        <!-- SECTION 3: REAL TREE PHOTO BG & STORY 2 (2160px ~ 3240px) -->
-        <section class="section-3 scroll-reveal" id="story-real-tree">
-            <div class="real-tree-bg-overlay"></div>
-            <div class="story-part-2">
-                <div class="story-line-white line-5 scroll-reveal">언제나, 소나무다.</div>
-                <div class="story-line-white line-6 scroll-reveal">GOOFY FOOT® PINE WOOD ROOM SPRAY는<br>그 한 계절의 공기를 담았다.</div>
-                <div class="story-line-white line-7 scroll-reveal">7년을 기다려 만나는, 여름 소나무 숲의 향.</div>
-            </div>
-        </section>
-
-        <!-- SECTION 4: PRODUCT GRID (3240px ~ 4320px) -->
-        <section class="section-4" id="products">
+        <!-- SECTION 4: PRODUCT GRID (1920*1080) -->
+        <section class="section-page section-products" id="products">
             <div class="product-card card-1 scroll-reveal">
                 <img src="images/product 1.png" alt="Product 1">
             </div>
-            <div class="product-card card-2 scroll-reveal">
-                <img src="images/package 1.png" alt="Package 1">
-            </div>
-            <div class="product-card card-3 scroll-reveal">
-                <img src="images/package 2.png" alt="Package 2">
+            <div class="product-side-stack">
+                <div class="product-card card-2 scroll-reveal">
+                    <img src="images/package 1.png" alt="Package 1">
+                </div>
+                <div class="product-card card-3 scroll-reveal">
+                    <img src="images/package 2.png" alt="Package 2">
+                </div>
             </div>
         </section>
 
-        <!-- SECTION 5: STORE & FOOTER (4320px ~ 5400px) -->
-        <section class="section-5" id="store">
-            <div class="smart-store-btn-wrapper scroll-reveal">
+        <!-- SECTION 5: STORE & FOOTER (1920*1080 - PERFECT CENTERED SMART STORE BUTTON) -->
+        <section class="section-page section-store-footer" id="store">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-link instagram-link">INSTAGRAM</a>
+            <a href="mailto:contact@goofyfoot.com" class="footer-link email-link">EMAIL</a>
+
+            <div class="smart-store-center-box scroll-reveal">
                 <a href="https://smartstore.naver.com" target="_blank" rel="noopener noreferrer" class="btn-smart-store">
                     Goofy Foot Smart Store
                 </a>
             </div>
-
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-link instagram-link">INSTAGRAM</a>
-            <a href="mailto:contact@goofyfoot.com" class="footer-link email-link">EMAIL</a>
 
             <div class="footer-bottom-info">
                 <div class="info-left">
