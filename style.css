@@ -394,7 +394,7 @@ body {
 }
 
 /* ========================================
-   SECTION 5: PRODUCTS (1920×1080 — 3-COLUMN EQUAL GRID)
+   SECTION 5: PRODUCTS (1920×1080 — 3-COLUMN SEAMLESS FULL-BLEED)
    ======================================== */
 .section-products {
   position: relative;
@@ -402,7 +402,8 @@ body {
   height: 100vh;
   min-height: 720px;
   background: #FFFFFF;
-  padding: 60px 40px;
+  padding: 0;
+  margin: 0;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -412,30 +413,30 @@ body {
 .products-grid-3col {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  width: 100%;
-  max-width: 1600px;
-  height: 75vh;
-  max-height: 800px;
+  gap: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 .product-box {
-  background: #CCCCCC;
+  background: transparent;
   border-radius: 0;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .product-box img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 24px;
-  transition: transform 0.5s ease;
+  object-fit: cover;
+  padding: 0;
+  margin: 0;
+  transition: transform 0.6s cubic-bezier(0.2, 0, 0.05, 1);
 }
 
 .product-box:hover img {
