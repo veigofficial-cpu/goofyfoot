@@ -305,18 +305,18 @@ body {
 
 .story-tag {
   font-family: var(--font-en);
-  font-size: 11px;
+  font-size: 17px;
   font-weight: 600;
   color: #959595;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   letter-spacing: 0.04em;
 }
 
 .story-body-text {
   font-family: var(--font-kr);
-  font-size: 11px;
+  font-size: 17px;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 30px;
   color: #000000;
   max-width: 1100px;
   margin: 0 auto;
