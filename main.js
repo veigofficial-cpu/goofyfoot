@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.restore();
     }
 
-    // 캔버스 크기 설정 (항상 유효 크기 측정 및 흰색 채우기)
+    // 캔버스 크기 설정 (유효한 너비/높이 보장)
     function resizeCanvas(forceFill = true) {
       const rect = container.getBoundingClientRect();
       const w = Math.floor(rect.width || container.offsetWidth || window.innerWidth || 1920);
@@ -145,14 +145,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 초기화 및 다중 프레임 백색 채우기 보장
+    // 초기화 및 로드 시 캔버스 백색 채우기 보장
     resizeCanvas(true);
     window.addEventListener('load', () => resizeCanvas(true));
     requestAnimationFrame(() => resizeCanvas(true));
     setTimeout(() => resizeCanvas(true), 100);
     setTimeout(() => resizeCanvas(true), 400);
 
-    // 소나무 이미지 랜덤 선택 (tree_2, tree_3, tree_4, tree_5)
+    // 소나무 이미지 설정 (최초 로드 시 1회 고정으로 이미지 깜빡임 방지)
     const revealImage = document.getElementById('reveal-image');
     const treeImages = [
       'images/tree_2.png',
@@ -169,17 +169,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setRandomTreeImage();
 
+    const heroLogo = document.getElementById('spray-hero-logo');
+
+    function hideHeroLogo() {
+      if (heroLogo) heroLogo.classList.add('hidden');
+      if (hint) hint.classList.add('hidden');
+    }
+
+    function showHeroLogo() {
+      if (heroLogo) heroLogo.classList.remove('hidden');
+      if (hint) hint.classList.remove('hidden');
+    }
+
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
         resizeCanvas(true);
         hasStarted = false;
-        if (hint) hint.classList.remove('hidden');
+        showHeroLogo();
       }, 200);
     });
 
-    // 1분 비활성 후 흰색으로 부드럽게 복원하며 이미지 랜덤 재설정
+    // 1분 비활성 후 흰색으로 부드럽게 복원
     function resetToWhite() {
       let opacity = 0;
       const fadeStep = 0.02;
@@ -189,7 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (opacity >= 1) {
           fillWhite();
           hasStarted = false;
-          setRandomTreeImage();
           showHeroLogo();
           return;
         }
@@ -209,15 +220,16 @@ document.addEventListener('DOMContentLoaded', () => {
       inactivityTimer = setTimeout(resetToWhite, INACTIVITY_TIMEOUT);
     }
 
-    // 향수 에어로졸 스티플 미스트
+    // 향수 에어로졸 스티플 미스트 (모바일 GPU 최적화)
     function triggerPerfumeBurst(x, y) {
       const rect = canvas.getBoundingClientRect();
       const cx = x - rect.left;
       const cy = y - rect.top;
 
-      const maxRadius = window.innerWidth < 768 ? 225 : 325;
+      const isMobile = window.innerWidth < 768 || ('ontouchstart' in window);
+      const maxRadius = isMobile ? 220 : 325;
       const startTime = performance.now();
-      const DURATION = 800;
+      const DURATION = isMobile ? 600 : 800;
 
       function animateMist(now) {
         const elapsed = now - startTime;
@@ -228,8 +240,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.save();
         ctx.globalCompositeOperation = 'destination-out';
 
-        const frameDots = 30000;
-        const opacitySlices = 8;
+        const frameDots = isMobile ? 4000 : 28000;
+        const opacitySlices = isMobile ? 5 : 8;
         const dotsPerSlice = Math.floor(frameDots / opacitySlices);
 
         for (let s = 0; s < opacitySlices; s++) {
@@ -248,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const px = cx + Math.cos(angle) * dist;
             const py = cy + Math.sin(angle) * dist;
 
-            const size = Math.random() * 0.8 + 0.2;
+            const size = isMobile ? (Math.random() * 1.4 + 0.6) : (Math.random() * 0.8 + 0.2);
             ctx.rect(px, py, size, size);
           }
           ctx.fill();
@@ -271,7 +283,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function sprayLoop() {
       if (!isDrawing) return;
       const now = performance.now();
-      if (now - lastBurstTime > 120) {
+      const isMobile = window.innerWidth < 768 || ('ontouchstart' in window);
+      const interval = isMobile ? 180 : 120;
+
+      if (now - lastBurstTime > interval) {
         triggerPerfumeBurst(currentX, currentY);
         lastBurstTime = now;
       }
@@ -287,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!hasStarted) {
         hasStarted = true;
         playSpraySound();
-        if (hint) hint.classList.add('hidden');
+        hideHeroLogo();
       }
 
       triggerPerfumeBurst(currentX, currentY);
@@ -335,129 +350,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { passive: true });
     window.addEventListener('touchend', onSprayEnd, { passive: true });
-  }
-
-  // -------------------------------------------------------
-  // Gallery Smooth Bounded Drag-to-Scroll Interaction (Exact Start/End Alignment, No White Space)
-  // -------------------------------------------------------
-  const gallerySection = document.getElementById('gallery');
-  const galleryTrack = document.getElementById('gallery-track');
-
-  if (gallerySection && galleryTrack) {
-    let isDragging = false;
-    let startX = 0;
-    let startTrackX = 0;
-    let currentX = 0;
-    let targetX = 0;
-    let velocity = 0;
-    let lastMoveX = 0;
-    let lastMoveTime = 0;
-
-    function getBounds() {
-      const trackWidth = galleryTrack.getBoundingClientRect().width;
-      const viewWidth = gallerySection.clientWidth;
-      const minX = Math.min(0, viewWidth - trackWidth);
-      return { minX, maxX: 0 };
-    }
-
-    function updatePhysics() {
-      const { minX, maxX } = getBounds();
-
-      if (isDragging) {
-        // 드래그 중: 목표 위치로 부드럽게 이송 (lerp)
-        currentX += (targetX - currentX) * 0.35;
-      } else {
-        // 드래그 해제 후: 관성 이동 및 경계선 튕김 보정
-        if (Math.abs(velocity) > 0.1) {
-          targetX += velocity;
-          velocity *= 0.92; // 마찰 감속
-        } else {
-          velocity = 0;
-        }
-
-        // 정확한 시작(Pine_1)과 끝(Pine_12) 지점 경계선 탄성 복원
-        if (targetX > maxX) {
-          targetX += (maxX - targetX) * 0.25;
-        } else if (targetX < minX) {
-          targetX += (minX - targetX) * 0.25;
-        }
-
-        currentX += (targetX - currentX) * 0.25;
-      }
-
-      galleryTrack.style.transform = `translate3d(${currentX}px, 0, 0)`;
-      requestAnimationFrame(updatePhysics);
-    }
-
-    requestAnimationFrame(updatePhysics);
-
-    function startDrag(x) {
-      isDragging = true;
-      startX = x;
-      startTrackX = targetX;
-      velocity = 0;
-      lastMoveX = x;
-      lastMoveTime = performance.now();
-    }
-
-    function moveDrag(x) {
-      if (!isDragging) return;
-      const dx = x - startX;
-      const { minX, maxX } = getBounds();
-      let nextX = startTrackX + dx;
-
-      // 경계 밖으로 나갈 때 고무줄 저항 효과
-      if (nextX > maxX) {
-        nextX = maxX + (nextX - maxX) * 0.2;
-      } else if (nextX < minX) {
-        nextX = minX + (nextX - minX) * 0.2;
-      }
-
-      targetX = nextX;
-
-      const now = performance.now();
-      const dt = now - lastMoveTime;
-      if (dt > 0) {
-        velocity = ((x - lastMoveX) / dt) * 14;
-      }
-      lastMoveX = x;
-      lastMoveTime = now;
-    }
-
-    function endDrag() {
-      if (!isDragging) return;
-      isDragging = false;
-      const { minX, maxX } = getBounds();
-      // 관성을 통한 최종 이동 타겟 계산
-      targetX += velocity * 5;
-      targetX = Math.max(minX, Math.min(maxX, targetX));
-    }
-
-    // 마우스 이벤트
-    gallerySection.addEventListener('mousedown', (e) => {
-      startDrag(e.clientX);
-      e.preventDefault();
-    });
-    window.addEventListener('mousemove', (e) => {
-      moveDrag(e.clientX);
-    });
-    window.addEventListener('mouseup', endDrag);
-
-    // 터치 이벤트
-    gallerySection.addEventListener('touchstart', (e) => {
-      if (e.touches.length) startDrag(e.touches[0].clientX);
-    }, { passive: true });
-    gallerySection.addEventListener('touchmove', (e) => {
-      if (e.touches.length) moveDrag(e.touches[0].clientX);
-    }, { passive: true });
-    gallerySection.addEventListener('touchend', endDrag, { passive: true });
-
-    // 카드 클릭 이벤트 (드래그 중 클릭 방지)
-    gallerySection.addEventListener('click', (e) => {
-      if (Math.abs(velocity) > 2) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    });
   }
 });
