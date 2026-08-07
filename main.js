@@ -332,184 +332,128 @@ document.addEventListener('DOMContentLoaded', () => {
   canvas.addEventListener('touchend', onSprayEnd, { passive: true });
 
   // -------------------------------------------------------
-  // Gallery Infinite Loop Drag-to-Scroll Interaction
+  // Gallery Smooth Bounded Drag-to-Scroll Interaction (No Loop, Ultra-Smooth Physics)
   // -------------------------------------------------------
   const gallerySection = document.getElementById('gallery');
   const galleryTrack = document.getElementById('gallery-track');
 
   if (gallerySection && galleryTrack) {
-    // 무한 루프를 위해 카드들을 양쪽에 복제
-    const originalCards = Array.from(galleryTrack.children);
-    const clonesBefore = originalCards.map(card => {
-      const clone = card.cloneNode(true);
-      clone.classList.add('gallery-clone');
-      return clone;
-    });
-    const clonesAfter = originalCards.map(card => {
-      const clone = card.cloneNode(true);
-      clone.classList.add('gallery-clone');
-      return clone;
-    });
-
-    // 앞쪽과 뒤쪽에 복제 카드 삽입
-    clonesBefore.reverse().forEach(clone => {
-      galleryTrack.insertBefore(clone, galleryTrack.firstChild);
-    });
-    clonesAfter.forEach(clone => {
-      galleryTrack.appendChild(clone);
-    });
-
     let isDragging = false;
     let startX = 0;
-    let scrollLeft = 0;
-    let trackX = 0;
+    let startTrackX = 0;
+    let currentX = 0;
+    let targetX = 0;
     let velocity = 0;
     let lastMoveX = 0;
     let lastMoveTime = 0;
-    let momentumId = null;
+    let animId = null;
 
-    // 원본 카드 세트의 전체 너비 계산 (gap 포함)
-    function getOriginalSetWidth() {
-      const gap = 10;
-      let totalWidth = 0;
-      originalCards.forEach(card => {
-        totalWidth += card.getBoundingClientRect().width + gap;
-      });
-      return totalWidth;
+    function getBounds() {
+      const trackWidth = galleryTrack.scrollWidth;
+      const viewWidth = gallerySection.clientWidth;
+      const minX = Math.min(0, viewWidth - trackWidth - 20); // 20px padding
+      return { minX, maxX: 0 };
     }
 
-    // 초기 위치: 복제 카드 세트 건너뛰고 원본 시작점으로
-    function initPosition() {
-      const setWidth = getOriginalSetWidth();
-      trackX = -setWidth;
-      galleryTrack.style.transition = 'none';
-      galleryTrack.style.transform = `translateX(${trackX}px)`;
-    }
+    function updatePhysics() {
+      const { minX, maxX } = getBounds();
 
-    initPosition();
+      if (isDragging) {
+        // 드래그 중: 목표 위치로 부드럽게 이송 (lerp)
+        currentX += (targetX - currentX) * 0.35;
+      } else {
+        // 드래그 해제 후: 관성 이동 및 경계선 튕김 보정
+        if (Math.abs(velocity) > 0.1) {
+          targetX += velocity;
+          velocity *= 0.92; // 마찰 감속
+        } else {
+          velocity = 0;
+        }
 
-    function setTrackPosition(x) {
-      trackX = x;
-      galleryTrack.style.transform = `translateX(${trackX}px)`;
-    }
+        // 경계 복원 (바운드 오버 되었을 시 복귀)
+        if (targetX > maxX) {
+          targetX += (maxX - targetX) * 0.25;
+        } else if (targetX < minX) {
+          targetX += (minX - targetX) * 0.25;
+        }
 
-    // 무한 루프 위치 보정
-    function wrapPosition() {
-      const setWidth = getOriginalSetWidth();
-      // 왼쪽 끝 도달 → 원본 위치로 점프
-      if (trackX > 0) {
-        trackX -= setWidth;
-        galleryTrack.style.transition = 'none';
-        galleryTrack.style.transform = `translateX(${trackX}px)`;
+        currentX += (targetX - currentX) * 0.25;
       }
-      // 오른쪽 끝 도달 → 원본 위치로 점프
-      if (trackX < -setWidth * 2) {
-        trackX += setWidth;
-        galleryTrack.style.transition = 'none';
-        galleryTrack.style.transform = `translateX(${trackX}px)`;
-      }
+
+      galleryTrack.style.transform = `translate3d(${currentX}px, 0, 0)`;
+      animId = requestAnimationFrame(updatePhysics);
     }
 
-    // 관성 스크롤 (momentum) + 무한 루프
-    function momentumScroll() {
-      if (Math.abs(velocity) < 0.5) {
-        velocity = 0;
-        return;
-      }
-      velocity *= 0.95;
-      setTrackPosition(trackX + velocity);
-      wrapPosition();
-      momentumId = requestAnimationFrame(momentumScroll);
-    }
+    // 물리 루프 실행
+    animId = requestAnimationFrame(updatePhysics);
 
-    function stopMomentum() {
-      if (momentumId) {
-        cancelAnimationFrame(momentumId);
-        momentumId = null;
-      }
-    }
-
-    // 마우스 드래그
-    gallerySection.addEventListener('mousedown', (e) => {
+    function startDrag(x) {
       isDragging = true;
-      startX = e.clientX;
-      scrollLeft = trackX;
+      startX = x;
+      startTrackX = targetX;
       velocity = 0;
-      lastMoveX = e.clientX;
+      lastMoveX = x;
       lastMoveTime = performance.now();
-      stopMomentum();
-      galleryTrack.style.transition = 'none';
+    }
+
+    function moveDrag(x) {
+      if (!isDragging) return;
+      const dx = x - startX;
+      const { minX, maxX } = getBounds();
+      let nextX = startTrackX + dx;
+
+      // 경계 밖으로 나갈 때 고무줄 저항 효과
+      if (nextX > maxX) {
+        nextX = maxX + (nextX - maxX) * 0.25;
+      } else if (nextX < minX) {
+        nextX = minX + (nextX - minX) * 0.25;
+      }
+
+      targetX = nextX;
+
+      const now = performance.now();
+      const dt = now - lastMoveTime;
+      if (dt > 0) {
+        velocity = ((x - lastMoveX) / dt) * 14;
+      }
+      lastMoveX = x;
+      lastMoveTime = now;
+    }
+
+    function endDrag() {
+      if (!isDragging) return;
+      isDragging = false;
+      const { minX, maxX } = getBounds();
+      // 관성을 통한 최종 이동 타겟 계산
+      targetX += velocity * 6;
+      targetX = Math.max(minX, Math.min(maxX, targetX));
+    }
+
+    // 마우스 이벤트
+    gallerySection.addEventListener('mousedown', (e) => {
+      startDrag(e.clientX);
       e.preventDefault();
     });
-
     window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      const dx = e.clientX - startX;
-      setTrackPosition(scrollLeft + dx);
-      wrapPosition();
-
-      const now = performance.now();
-      const dt = now - lastMoveTime;
-      if (dt > 0) {
-        velocity = (e.clientX - lastMoveX) / dt * 16;
-      }
-      lastMoveX = e.clientX;
-      lastMoveTime = now;
+      moveDrag(e.clientX);
     });
+    window.addEventListener('mouseup', endDrag);
 
-    window.addEventListener('mouseup', () => {
-      if (!isDragging) return;
-      isDragging = false;
-      galleryTrack.style.transition = 'transform 0.08s ease-out';
-      momentumScroll();
-    });
-
-    // 터치 드래그
+    // 터치 이벤트
     gallerySection.addEventListener('touchstart', (e) => {
-      if (!e.touches.length) return;
-      isDragging = true;
-      startX = e.touches[0].clientX;
-      scrollLeft = trackX;
-      velocity = 0;
-      lastMoveX = e.touches[0].clientX;
-      lastMoveTime = performance.now();
-      stopMomentum();
-      galleryTrack.style.transition = 'none';
+      if (e.touches.length) startDrag(e.touches[0].clientX);
     }, { passive: true });
-
     gallerySection.addEventListener('touchmove', (e) => {
-      if (!isDragging || !e.touches.length) return;
-      const dx = e.touches[0].clientX - startX;
-      setTrackPosition(scrollLeft + dx);
-      wrapPosition();
-
-      const now = performance.now();
-      const dt = now - lastMoveTime;
-      if (dt > 0) {
-        velocity = (e.touches[0].clientX - lastMoveX) / dt * 16;
-      }
-      lastMoveX = e.touches[0].clientX;
-      lastMoveTime = now;
+      if (e.touches.length) moveDrag(e.touches[0].clientX);
     }, { passive: true });
+    gallerySection.addEventListener('touchend', endDrag, { passive: true });
 
-    gallerySection.addEventListener('touchend', () => {
-      if (!isDragging) return;
-      isDragging = false;
-      galleryTrack.style.transition = 'transform 0.08s ease-out';
-      momentumScroll();
-    }, { passive: true });
-
-    // 갤러리 카드 클릭 방지 (드래그 중)
+    // 카드 클릭 이벤트 (드래그 중 클릭 방지)
     gallerySection.addEventListener('click', (e) => {
       if (Math.abs(velocity) > 2) {
         e.preventDefault();
         e.stopPropagation();
       }
-    });
-
-    // 리사이즈 시 위치 재보정
-    window.addEventListener('resize', () => {
-      initPosition();
     });
   }
 });

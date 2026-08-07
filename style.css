@@ -265,10 +265,10 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 160px;
-  height: 38px;
+  width: 208px;
+  height: 50px;
   font-family: var(--font-kr);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.06em;
   color: #FFFFFF;
@@ -424,16 +424,16 @@ body {
 
 .btn-smart-store {
   pointer-events: auto;
-  width: 160px;
-  height: 38px;
+  width: 208px;
+  height: 50px;
   background: #CCCCCC;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   text-decoration: none;
   font-family: var(--font-kr);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   color: #000000;
   border-radius: 0;
@@ -494,15 +494,24 @@ body {
 }
 
 .info-left {
+  flex: 1;
   text-align: left;
 }
 
 .info-center {
+  flex: 1;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .info-right {
+  flex: 1;
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .footer-logo-img {
