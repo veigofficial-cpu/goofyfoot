@@ -143,6 +143,11 @@ body {
   align-items: center;
   width: 100%;
   padding: 0 20px;
+  transition: opacity 0.6s ease;
+}
+
+.spray-hero-logo.hidden {
+  opacity: 0;
 }
 
 .spray-logo-img {

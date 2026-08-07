@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
           fillWhite();
           hasStarted = false;
           setRandomTreeImage();
-          if (hint) hint.classList.remove('hidden');
+          showHeroLogo();
           return;
         }
         ctx.save();
