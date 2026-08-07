@@ -1,6 +1,5 @@
 /*
-  Goofy Foot® — Pine Wood Room Spray
-  Figma 15:7 Full Web Flow Implementation
+  Goofy Foot® — 1920x5400 Figma Design Specs
 */
 
 @import url('pretendardvariable.css');
@@ -43,7 +42,7 @@ body {
    ======================================== */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(28px);
   transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
@@ -54,115 +53,112 @@ body {
 }
 
 /* ========================================
-   SECTION 1: HERO COVER
+   MAIN 1920 CONTAINER
    ======================================== */
-.section-hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.web-flow-container {
   position: relative;
-  padding: 2rem 1.5rem;
-  background-color: var(--bg-color);
-}
-
-.hero-center-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: auto 0;
-}
-
-.brand-logo-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.brand-logo-svg {
-  width: clamp(260px, 30vw, 420px) !important;
-  max-width: 90vw !important;
-  height: auto !important;
-  display: block;
-}
-
-.cicada-icon {
-  margin-top: 2.2rem !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.character-svg {
-  width: 32px !important;
-  height: 54px !important;
-  display: block;
-  transition: transform 0.4s ease;
-}
-
-.character-svg:hover {
-  transform: scale(1.1);
-}
-
-.scroll-explore {
-  position: absolute;
-  bottom: 2.2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-}
-
-.explore-text {
-  font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 0.72rem !important;
-  color: #8D8D8D !important;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-.direction-arrow {
-  width: 14px !important;
-  height: 8px !important;
-  margin-top: 0.6rem !important;
-  display: block;
-  animation: bounce-down 2.5s infinite;
-}
-
-@keyframes bounce-down {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(4px); }
-  60% { transform: translateY(2px); }
+  width: 100vw;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #FFFFFF;
+  overflow: hidden;
 }
 
 /* ========================================
-   SECTION 2: SPRAY REVEAL INTERACTION
+   SECTION 1: HERO (1080px)
    ======================================== */
-.section-interaction {
-  width: 100vw;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
+.section-1 {
+  position: relative;
+  width: 100%;
+  height: 1080px;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-logo-container {
+  position: absolute;
+  left: 50%;
+  top: 469px;
+  transform: translateX(-50%);
+  width: 722px;
+  height: 142px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-logo-img {
+  width: 722px;
+  height: 142px;
+  object-fit: contain;
+}
+
+.cicada-character-container {
+  position: absolute;
+  left: 50%;
+  top: 675px;
+  transform: translateX(-50%);
+  width: 55px;
+  height: 93px;
+}
+
+.character-img {
+  width: 55px;
+  height: 93px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.character-img:hover {
+  transform: scale(1.08);
+}
+
+.btn-click-to-spray {
+  position: absolute;
+  left: 50%;
+  top: 946px;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 55px;
+  background: #CCCCCC;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-family: var(--font-kr);
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: var(--transition-smooth);
+}
+
+.btn-click-to-spray:hover {
+  background: #111111;
+  color: #FFFFFF;
+}
+
+/* ========================================
+   SECTION 2: SPRAY REVEAL & STORY 1 (1080px)
+   ======================================== */
+.section-2 {
+  position: relative;
+  width: 100%;
+  min-height: 1080px;
+  background: #FFFFFF;
 }
 
 .spray-reveal-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9;
-  min-height: 500px;
+  height: 600px;
   overflow: hidden;
   cursor: crosshair;
   user-select: none;
   -webkit-user-select: none;
-  border: none;
 }
 
 .reveal-image {
@@ -186,10 +182,7 @@ body {
 
 .gradient-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   pointer-events: none;
   z-index: 3;
   background: linear-gradient(
@@ -210,9 +203,9 @@ body {
   transform: translate(-50%, -50%);
   z-index: 4;
   font-family: var(--font-kr);
-  font-size: clamp(0.75rem, 1.2vw, 1.25rem);
+  font-size: 20px;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #FFFFFF;
   background-color: rgba(204, 204, 204, 0.85);
@@ -226,206 +219,161 @@ body {
   opacity: 0;
 }
 
-/* ========================================
-   SECTION 3: BRAND STORY & REAL TREE BG
-   ======================================== */
-.section-story {
-  width: 100vw;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.story-upper-container {
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 6rem 1.5rem;
+.story-part-1 {
+  padding: 4rem 1.5rem 6rem;
   text-align: center;
-  background-color: var(--bg-color);
+  background: #FFFFFF;
 }
 
 .story-tag {
   font-family: var(--font-kr);
-  font-size: clamp(1rem, 1.8vw, 1.8rem);
+  font-size: 20px;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: #8D8D8D;
   margin-bottom: 3.5rem;
-  display: block;
+  letter-spacing: 0.08em;
 }
 
-.story-upper-text {
+.story-line {
   font-family: var(--font-kr);
-  font-size: clamp(1.1rem, 2vw, 2.2rem);
+  font-size: 35px;
   font-weight: 600;
-  line-height: 1.8;
+  line-height: 52px;
   color: #000000;
+  margin-bottom: 0.8rem;
   word-break: keep-all;
-  max-width: 1000px;
 }
 
-.blank-space {
-  height: 1.5rem;
+.story-line.line-1 {
+  line-height: 40px;
 }
 
-/* "언제나, 소나무다." real tree.jpg 배경 섹션 */
-.story-real-tree-section {
+/* ========================================
+   SECTION 3: REAL TREE PHOTO BG & STORY 2 (1080px)
+   ======================================== */
+.section-3 {
   position: relative;
-  width: 100vw;
-  max-width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  width: 100%;
+  height: 1080px;
   background-image: url('images/real tree.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-/* 35% 어두운 오버레이 */
 .real-tree-bg-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.35);
   z-index: 1;
 }
 
-.real-tree-content {
+.story-part-2 {
   position: relative;
   z-index: 2;
   color: #FFFFFF;
-  padding: 4rem 1.5rem;
-  max-width: 1100px;
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+}
+
+.story-line-white {
   font-family: var(--font-kr);
-  font-size: clamp(1.1rem, 2vw, 2.2rem);
+  font-size: 35px;
   font-weight: 600;
-  line-height: 1.8;
+  line-height: 52px;
+  color: #FFFFFF;
+  margin-bottom: 2rem;
   word-break: keep-all;
 }
 
-.real-tree-content p {
-  color: #FFFFFF;
-}
-
-.story-highlight {
-  font-weight: 700;
-  font-size: clamp(1.3rem, 2.2vw, 2.5rem);
+.story-line-white.line-5 {
+  font-size: 35px;
+  font-weight: 600;
 }
 
 /* ========================================
-   SECTION 4: BRAND PRODUCT PHOTOS (3-CARD GRID)
+   SECTION 4: PRODUCT GRID (1080px)
    ======================================== */
-.section-products {
-  width: 100vw;
-  max-width: 100%;
-  margin: 0;
-  padding: 15px 15px 4rem;
-}
-
-.products-grid-3item {
+.section-4 {
+  position: relative;
+  width: 100%;
+  height: 1080px;
+  background: #FFFFFF;
+  padding: 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 940px 1fr 1fr;
   gap: 15px;
 }
 
-.main-product {
-  aspect-ratio: 1/1;
-  background-color: #E8E8E8;
+.product-card {
+  background: #CCCCCC;
   overflow: hidden;
 }
 
-.main-product img {
+.product-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.product-side-stack {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  gap: 15px;
+.product-card.card-1 {
+  height: 1060px;
 }
 
-.product-side-stack .product-box {
-  background-color: #E8E8E8;
-  overflow: hidden;
-}
-
-.product-side-stack .product-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.product-card.card-2,
+.product-card.card-3 {
+  height: 427px;
 }
 
 /* ========================================
-   SECTION 5: STORE LINK & FOOTER
+   SECTION 5: STORE & FOOTER (1080px)
    ======================================== */
-.section-store-footer {
-  min-height: 90vh;
+.section-5 {
+  position: relative;
+  width: 100%;
+  height: 1080px;
+  background: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem 2rem 2.5rem;
-  text-align: center;
-  position: relative;
-  background-color: var(--bg-color);
+  padding: 4rem 45px 3rem;
 }
 
-.store-button-wrapper {
-  margin: auto 0;
+.smart-store-btn-wrapper {
+  margin: auto 0 4rem;
 }
 
-.btn-store {
+.btn-smart-store {
+  width: 456px;
+  height: 108px;
+  background: #CCCCCC;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #CCCCCC;
-  color: #000000;
-  font-family: var(--font-kr);
-  font-size: clamp(1rem, 1.8vw, 1.8rem);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 1.2rem 3.5rem;
   text-decoration: none;
-  border: none;
+  font-family: var(--font-kr);
+  font-size: 35px;
+  font-weight: 600;
+  color: #000000;
   transition: var(--transition-smooth);
-  cursor: pointer;
 }
 
-.btn-store:hover {
-  background-color: #111111;
+.btn-smart-store:hover {
+  background: #111111;
   color: #FFFFFF;
 }
 
-.site-footer {
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  padding: 2rem 1.5rem 1rem;
-}
-
-.footer-top-row {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-family: var(--font-kr);
-  font-size: clamp(0.9rem, 1.6vw, 1.6rem);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .footer-link {
+  position: absolute;
+  top: 45px;
+  font-family: var(--font-kr);
+  font-size: 35px;
+  font-weight: 600;
   color: #8D8D8D;
   text-decoration: none;
   transition: 0.2s ease;
@@ -435,54 +383,76 @@ body {
   color: #000000;
 }
 
+.footer-link.instagram-link {
+  left: 45px;
+}
+
+.footer-link.email-link {
+  right: 45px;
+}
+
 .footer-bottom-info {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
+  padding-top: 2rem;
   border-top: 1px solid #EEEEEE;
-  padding-top: 1.8rem;
   font-family: var(--font-kr);
-  font-size: 0.75rem;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
   color: #8D8D8D;
-  line-height: 1.7;
 }
 
-.footer-info-col.left-col {
+.info-left {
   text-align: left;
 }
 
-.footer-info-col.center-col {
+.info-center {
   text-align: center;
 }
 
-.footer-info-col.right-col {
+.info-right {
   text-align: right;
 }
 
-.footer-logo-svg {
+.footer-logo-img {
   width: 140px;
   height: auto;
-  opacity: 0.75;
+  opacity: 0.8;
 }
 
 /* ========================================
-   RESPONSIVE
+   RESPONSIVE SCALING
    ======================================== */
-@media (max-width: 768px) {
-  .products-grid-3item {
+@media (max-width: 1024px) {
+  .section-1, .section-2, .section-3, .section-4, .section-5 {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .brand-logo-img {
+    width: clamp(280px, 60vw, 600px);
+    height: auto;
+  }
+
+  .section-4 {
     grid-template-columns: 1fr;
-    gap: 1rem;
+  }
+
+  .footer-link {
+    position: static;
   }
 
   .footer-bottom-info {
     flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 1.5rem;
-    text-align: center !important;
   }
 
-  .footer-info-col {
-    text-align: center !important;
+  .info-left, .info-center, .info-right {
+    text-align: center;
   }
 }
