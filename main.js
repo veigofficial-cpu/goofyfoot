@@ -106,39 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // -------------------------------------------------------
-  // Custom Character Cursor Follower for Spray Section
-  // -------------------------------------------------------
-  const spraySection = document.getElementById('spray');
-  const customCursor = document.getElementById('spray-custom-cursor');
-
-  if (spraySection && customCursor) {
-    window.addEventListener('mousemove', (e) => {
-      const rect = spraySection.getBoundingClientRect();
-      const x = e.clientX;
-      const y = e.clientY;
-
-      const isInside = (
-        x >= rect.left &&
-        x <= rect.right &&
-        y >= rect.top &&
-        y <= rect.bottom
-      );
-
-      if (isInside) {
-        customCursor.classList.add('is-active');
-        customCursor.style.left = `${x}px`;
-        customCursor.style.top = `${y}px`;
-      } else {
-        customCursor.classList.remove('is-active');
-      }
-    });
-
-    window.addEventListener('touchstart', () => {
-      customCursor.classList.remove('is-active');
-    }, { passive: true });
-  }
-
-  // -------------------------------------------------------
   // Spray Reveal Canvas
   // -------------------------------------------------------
   const canvas = document.getElementById('spray-canvas');
