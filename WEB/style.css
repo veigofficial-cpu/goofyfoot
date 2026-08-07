@@ -1,5 +1,5 @@
 /*
-  Goofy Foot® — 1920*1080 6-Page Design System
+  Goofy Foot® — Figma Node 15:470 Design System & Layout Specs
 */
 
 @import url('pretendardvariable.css');
@@ -115,7 +115,7 @@ body {
 }
 
 /* ========================================
-   1920*1080 6-PAGE CONTAINER & SECTIONS
+   1920*1080 PAGE SECTIONS (FIGMA 15:470)
    ======================================== */
 .web-flow-container {
   width: 100vw;
@@ -134,7 +134,7 @@ body {
 }
 
 /* ========================================
-   PAGE 1: HERO COVER (CLEAN & CENTERED)
+   SECTION 1: HERO COVER (FIGMA 15:470)
    ======================================== */
 .section-hero {
   display: flex;
@@ -160,16 +160,32 @@ body {
 }
 
 .brand-logo-img {
-  width: clamp(340px, 42vw, 750px);
+  width: clamp(340px, 42vw, 722px);
   height: auto;
   object-fit: contain;
 }
 
+.btn-click-to-spray-link {
+  margin-top: 2rem;
+  font-family: var(--font-en);
+  font-size: 22px;
+  font-weight: 600;
+  color: #000000;
+  text-decoration: underline;
+  text-underline-position: from-font;
+  transition: opacity 0.3s ease;
+}
+
+.btn-click-to-spray-link:hover {
+  opacity: 0.7;
+}
+
 .cicada-character-container {
-  margin-top: 2.8rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  right: 80px;
+  bottom: 80px;
+  width: 55px;
+  height: 93px;
 }
 
 .character-img {
@@ -184,20 +200,22 @@ body {
 }
 
 /* ========================================
-   PAGE 2: SPRAY REVEAL INTERACTION
+   SECTION 2: SPRAY REVEAL & STORY & 5-PHOTO GALLERY
    ======================================== */
-.section-interaction {
-  width: 100vw;
-  height: 100vh;
-  min-height: 720px;
-  position: relative;
+.section-interaction-story {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  min-height: 100vh;
+  padding-bottom: 20px;
   background: #FFFFFF;
 }
 
 .spray-reveal-container {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 480px;
   overflow: hidden;
   cursor: crosshair;
   user-select: none;
@@ -272,154 +290,71 @@ body {
   opacity: 0;
 }
 
-.floating-prompt-bar {
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  pointer-events: none;
-}
-
-.prompt-bar-pill {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  padding: 8px 18px;
-  border-radius: 20px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-  font-family: var(--font-kr);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #111111;
-}
-
-.status-indicator {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #000000;
-}
-
-/* ========================================
-   PAGE 3: STORY PART 1 (1920*1080 FULL PAGE - WHITE BG)
-   ======================================== */
-.section-story-1 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.story-section-wrapper {
+  padding: 3rem 1.5rem 2rem;
   text-align: center;
   background: #FFFFFF;
-  padding: 2rem 1.5rem;
-}
-
-.story-center-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 1200px;
-}
-
-.story-header-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #F2F2F2;
-  padding: 8px 18px;
-  border-radius: 20px;
-  margin-bottom: 3.5rem;
-}
-
-.pill-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #000000;
 }
 
 .story-tag {
-  font-family: var(--font-kr);
-  font-size: 13px;
-  font-weight: 700;
-  color: #8D8D8D;
-  letter-spacing: 0.08em;
-}
-
-.story-text-group {
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-}
-
-.story-line {
-  font-family: var(--font-kr);
-  font-size: clamp(1.4rem, 2.3vw, 2.5rem);
+  font-family: var(--font-en);
+  font-size: 22px;
   font-weight: 600;
-  line-height: 1.6;
+  color: #959595;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.04em;
+}
+
+.story-body-text {
+  font-family: var(--font-kr);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 34px;
   color: #000000;
+  max-width: 1100px;
+  margin: 0 auto;
   word-break: keep-all;
 }
 
-/* ========================================
-   PAGE 4: STORY PART 2 (1920*1080 FULL PAGE - REAL TREE PHOTO BG)
-   ======================================== */
-.section-story-2 {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-image: url('images/real tree.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.blank-space {
+  height: 1rem;
 }
 
-.real-tree-bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: 1;
-}
-
-.story-center-wrapper-white {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 1200px;
-  padding: 2rem 1.5rem;
-}
-
-.blank-space-large {
-  height: 2.2rem;
-}
-
-.story-line-white {
-  font-family: var(--font-kr);
-  font-size: clamp(1.4rem, 2.3vw, 2.5rem);
+.highlight-text {
   font-weight: 600;
-  line-height: 1.6;
-  color: #FFFFFF;
-  word-break: keep-all;
 }
 
-.story-line-white.highlight {
-  font-size: clamp(1.6rem, 2.6vw, 2.8rem);
-  font-weight: 700;
+/* 5-Photo Gallery Strip */
+.gallery-strip-container {
+  display: flex;
+  gap: 10px;
+  width: 100vw;
+  max-width: 100%;
+  height: 380px;
+  padding: 0 10px;
+}
+
+.gallery-item {
+  flex: 1;
+  height: 100%;
+  background: #E8E8E8;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
 }
 
 /* ========================================
-   PAGE 5: PRODUCT GRID (1920*1080 FULL PAGE)
+   SECTION 3: PRODUCT GRID (FIGMA 15:470)
    ======================================== */
 .section-products {
   width: 100vw;
@@ -454,7 +389,7 @@ body {
 
 .product-card {
   position: relative;
-  background: #E8E8E8;
+  background: #CCCCCC;
   border-radius: 6px;
   overflow: hidden;
   transition: transform 0.4s cubic-bezier(0.2, 0, 0.05, 1), box-shadow 0.4s ease;
@@ -507,8 +442,7 @@ body {
 }
 
 /* ========================================
-   PAGE 6: STORE & FOOTER (1920*1080 FULL PAGE)
-   SMART STORE BUTTON PERFECTLY GEOMETRICALLY CENTERED
+   SECTION 4: STORE & FOOTER (FIGMA 15:470)
    ======================================== */
 .section-store-footer {
   position: relative;
@@ -550,7 +484,7 @@ body {
   gap: 12px;
   text-decoration: none;
   font-family: var(--font-kr);
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 600;
   color: #000000;
   border-radius: 6px;
@@ -574,16 +508,16 @@ body {
   position: absolute;
   top: 45px;
   font-family: var(--font-kr);
-  font-size: 32px;
+  font-size: 20px;
   font-weight: 600;
-  color: #8D8D8D;
+  color: #000000;
   text-decoration: none;
   transition: 0.2s ease;
   z-index: 5;
 }
 
 .footer-link:hover {
-  color: #000000;
+  color: #8D8D8D;
 }
 
 .footer-link.instagram-link {
@@ -602,9 +536,9 @@ body {
   border-top: 1px solid #EEEEEE;
   padding-top: 1.5rem;
   font-family: var(--font-kr);
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 24px;
   color: #8D8D8D;
   margin-top: auto;
   z-index: 5;
@@ -649,6 +583,16 @@ body {
   .section-page {
     height: auto;
     min-height: 100vh;
+  }
+
+  .gallery-strip-container {
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .gallery-item {
+    flex: 1 1 calc(50% - 10px);
+    height: 220px;
   }
 
   .btn-smart-store {

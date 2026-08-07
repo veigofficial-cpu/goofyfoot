@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="pretendardvariable.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
     
-    <link rel="stylesheet" href="style.css?v=10">
+    <link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 
@@ -25,7 +25,7 @@
             <a href="#interaction" class="nav-pill" id="nav-link-spray">
                 <span>01. SPRAY</span>
             </a>
-            <a href="#story-1" class="nav-pill" id="nav-link-story">
+            <a href="#story" class="nav-pill" id="nav-link-story">
                 <span>02. STORY</span>
             </a>
             <a href="#products" class="nav-pill" id="nav-link-products">
@@ -39,21 +39,26 @@
 
     <div class="web-flow-container">
         
-        <!-- PAGE 1: HERO COVER (1920*1080 - CLICK TO SPRAY BUTTON REMOVED) -->
+        <!-- SECTION 1: HERO COVER (Figma Node 15:470 Layout) -->
         <section class="section-page section-hero" id="hero">
             <div class="hero-center-content scroll-reveal">
                 <div class="brand-logo-container">
                     <img src="svg/logo.svg" alt="Goofy Foot® Logo" class="brand-logo-img">
                 </div>
-                
-                <div class="cicada-character-container">
-                    <img src="svg/character.svg" alt="Goofy Foot Character" class="character-img">
-                </div>
+            </div>
+
+            <a href="#interaction" class="btn-click-to-spray-link scroll-reveal" id="btn-spray-link">
+                <span>Click To Spray</span>
+            </a>
+
+            <div class="cicada-character-container scroll-reveal">
+                <img src="svg/character.svg" alt="Goofy Foot Character" class="character-img">
             </div>
         </section>
 
-        <!-- PAGE 2: SPRAY REVEAL INTERACTION (1920*1080 FULL VIEWPORT) -->
-        <section class="section-page section-interaction" id="interaction">
+        <!-- SECTION 2: SPRAY REVEAL & STORY & 5-PHOTO GALLERY (Figma Node 15:470 Layout) -->
+        <section class="section-page section-interaction-story" id="interaction">
+            <!-- SPRAY REVEAL INTERACTION CANVAS -->
             <div class="spray-reveal-container" id="spray-container">
                 <img src="images/tree_2.png" alt="Goofy Foot Pine Wood Illustration" class="reveal-image" id="reveal-image">
                 <canvas id="spray-canvas"></canvas>
@@ -63,44 +68,42 @@
                     <span>CLICK OR DRAG TO SPRAY</span>
                 </div>
             </div>
-            
-            <div class="floating-prompt-bar">
-                <div class="prompt-bar-pill">
-                    <span class="status-indicator"></span>
-                    <p>PINE WOOD ROOM SPRAY — VOL.01 · AEROSOL MIST INTERACTION</p>
+
+            <!-- STORY TEXT CONTENT (Figma Node 15:470 Specs) -->
+            <div class="story-section-wrapper" id="story">
+                <div class="story-tag scroll-reveal">THE STORY</div>
+                <div class="story-body-text">
+                    <p class="scroll-reveal">매미는 땅속에서 최대 7년을 기다린다. 7년의 어둠.</p>
+                    <p class="scroll-reveal">그리고 지상에서 주어진 시간은 단 한 계절. 깨어난 매미는 숲에서 가장 향이 짙은 나무를 찾아 오른다.</p>
+                    <div class="blank-space"></div>
+                    <p class="highlight-text scroll-reveal">언제나, 소나무다.</p>
+                    <p class="scroll-reveal">GOOFY FOOT® PINE WOOD ROOM SPRAY는 그 한 계절의 공기를 담았다.</p>
+                    <div class="blank-space"></div>
+                    <p class="scroll-reveal">7년을 기다려 만나는, 여름 소나무 숲의 향.</p>
+                </div>
+            </div>
+
+            <!-- 5-PHOTO GALLERY STRIP (Figma Node 15:470 Specs) -->
+            <div class="gallery-strip-container scroll-reveal">
+                <div class="gallery-item">
+                    <img src="images/gallery_01.png" alt="Cicada on branch">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery_02.png" alt="Cicada on trunk">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery_03.png" alt="Cicada shell on tree">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/pine_tree.png" alt="Pine tree in sky">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/real tree.jpg" alt="Pine forest landscape">
                 </div>
             </div>
         </section>
 
-        <!-- PAGE 3: BRAND STORY PART 1 (1920*1080 FULL VIEWPORT - WHITE BG) -->
-        <section class="section-page section-story-1" id="story-1">
-            <div class="story-center-wrapper">
-                <div class="story-header-pill scroll-reveal">
-                    <span class="pill-dot"></span>
-                    <span class="story-tag">THE STORY</span>
-                </div>
-                <div class="story-text-group">
-                    <p class="story-line scroll-reveal">매미는 땅속에서 최대 7년을 기다린다.</p>
-                    <p class="story-line scroll-reveal">7년의 어둠.</p>
-                    <p class="story-line scroll-reveal">그리고 지상에서 주어진 시간은 단 한 계절.</p>
-                    <p class="story-line scroll-reveal">깨어난 매미는 숲에서 가장 향이 짙은 나무를 찾아 오른다.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 4: BRAND STORY PART 2 (1920*1080 FULL VIEWPORT - REAL TREE PHOTO BG) -->
-        <section class="section-page section-story-2" id="story-2">
-            <div class="real-tree-bg-overlay"></div>
-            <div class="story-center-wrapper-white">
-                <p class="story-line-white highlight scroll-reveal">언제나, 소나무다.</p>
-                <div class="blank-space-large"></div>
-                <p class="story-line-white scroll-reveal">GOOFY FOOT® PINE WOOD ROOM SPRAY는<br>그 한 계절의 공기를 담았다.</p>
-                <div class="blank-space-large"></div>
-                <p class="story-line-white scroll-reveal">7년을 기다려 만나는, 여름 소나무 숲의 향.</p>
-            </div>
-        </section>
-
-        <!-- PAGE 5: PRODUCT GRID (1920*1080 FULL VIEWPORT) -->
+        <!-- SECTION 3: PRODUCT GRID (Figma Node 15:470 Specs) -->
         <section class="section-page section-products" id="products">
             <div class="section-title-pill scroll-reveal">
                 <span class="pill-dot"></span>
@@ -136,7 +139,7 @@
             </div>
         </section>
 
-        <!-- PAGE 6: STORE & FOOTER (1920*1080 FULL VIEWPORT - STORE BUTTON PERFECTLY CENTERED) -->
+        <!-- SECTION 4: STORE & FOOTER (Figma Node 15:470 Specs - Centered Button) -->
         <section class="section-page section-store-footer" id="store">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-link instagram-link">INSTAGRAM</a>
             <a href="mailto:contact@goofyfoot.com" class="footer-link email-link">EMAIL</a>
