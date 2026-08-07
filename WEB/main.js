@@ -332,12 +332,33 @@ document.addEventListener('DOMContentLoaded', () => {
   canvas.addEventListener('touchend', onSprayEnd, { passive: true });
 
   // -------------------------------------------------------
-  // Gallery Horizontal Drag-to-Scroll Interaction
+  // Gallery Infinite Loop Drag-to-Scroll Interaction
   // -------------------------------------------------------
   const gallerySection = document.getElementById('gallery');
   const galleryTrack = document.getElementById('gallery-track');
 
   if (gallerySection && galleryTrack) {
+    // 무한 루프를 위해 카드들을 양쪽에 복제
+    const originalCards = Array.from(galleryTrack.children);
+    const clonesBefore = originalCards.map(card => {
+      const clone = card.cloneNode(true);
+      clone.classList.add('gallery-clone');
+      return clone;
+    });
+    const clonesAfter = originalCards.map(card => {
+      const clone = card.cloneNode(true);
+      clone.classList.add('gallery-clone');
+      return clone;
+    });
+
+    // 앞쪽과 뒤쪽에 복제 카드 삽입
+    clonesBefore.reverse().forEach(clone => {
+      galleryTrack.insertBefore(clone, galleryTrack.firstChild);
+    });
+    clonesAfter.forEach(clone => {
+      galleryTrack.appendChild(clone);
+    });
+
     let isDragging = false;
     let startX = 0;
     let scrollLeft = 0;
@@ -347,27 +368,57 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastMoveTime = 0;
     let momentumId = null;
 
-    // 트랙의 최대 드래그 거리 계산
-    function getMaxScroll() {
-      const trackWidth = galleryTrack.scrollWidth;
-      const viewWidth = gallerySection.clientWidth;
-      return Math.max(0, trackWidth - viewWidth);
+    // 원본 카드 세트의 전체 너비 계산 (gap 포함)
+    function getOriginalSetWidth() {
+      const gap = 10;
+      let totalWidth = 0;
+      originalCards.forEach(card => {
+        totalWidth += card.getBoundingClientRect().width + gap;
+      });
+      return totalWidth;
     }
 
-    function setTrackPosition(x) {
-      const max = getMaxScroll();
-      trackX = Math.max(-max, Math.min(0, x));
+    // 초기 위치: 복제 카드 세트 건너뛰고 원본 시작점으로
+    function initPosition() {
+      const setWidth = getOriginalSetWidth();
+      trackX = -setWidth;
+      galleryTrack.style.transition = 'none';
       galleryTrack.style.transform = `translateX(${trackX}px)`;
     }
 
-    // 관성 스크롤 (momentum)
+    initPosition();
+
+    function setTrackPosition(x) {
+      trackX = x;
+      galleryTrack.style.transform = `translateX(${trackX}px)`;
+    }
+
+    // 무한 루프 위치 보정
+    function wrapPosition() {
+      const setWidth = getOriginalSetWidth();
+      // 왼쪽 끝 도달 → 원본 위치로 점프
+      if (trackX > 0) {
+        trackX -= setWidth;
+        galleryTrack.style.transition = 'none';
+        galleryTrack.style.transform = `translateX(${trackX}px)`;
+      }
+      // 오른쪽 끝 도달 → 원본 위치로 점프
+      if (trackX < -setWidth * 2) {
+        trackX += setWidth;
+        galleryTrack.style.transition = 'none';
+        galleryTrack.style.transform = `translateX(${trackX}px)`;
+      }
+    }
+
+    // 관성 스크롤 (momentum) + 무한 루프
     function momentumScroll() {
       if (Math.abs(velocity) < 0.5) {
         velocity = 0;
         return;
       }
-      velocity *= 0.95; // 마찰 감속
+      velocity *= 0.95;
       setTrackPosition(trackX + velocity);
+      wrapPosition();
       momentumId = requestAnimationFrame(momentumScroll);
     }
 
@@ -395,12 +446,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isDragging) return;
       const dx = e.clientX - startX;
       setTrackPosition(scrollLeft + dx);
+      wrapPosition();
 
-      // 속도 계산 (관성용)
       const now = performance.now();
       const dt = now - lastMoveTime;
       if (dt > 0) {
-        velocity = (e.clientX - lastMoveX) / dt * 16; // 프레임당 속도
+        velocity = (e.clientX - lastMoveX) / dt * 16;
       }
       lastMoveX = e.clientX;
       lastMoveTime = now;
@@ -410,7 +461,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isDragging) return;
       isDragging = false;
       galleryTrack.style.transition = 'transform 0.08s ease-out';
-      // 관성 스크롤 시작
       momentumScroll();
     });
 
@@ -431,6 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isDragging || !e.touches.length) return;
       const dx = e.touches[0].clientX - startX;
       setTrackPosition(scrollLeft + dx);
+      wrapPosition();
 
       const now = performance.now();
       const dt = now - lastMoveTime;
@@ -454,6 +505,11 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         e.stopPropagation();
       }
+    });
+
+    // 리사이즈 시 위치 재보정
+    window.addEventListener('resize', () => {
+      initPosition();
     });
   }
 });

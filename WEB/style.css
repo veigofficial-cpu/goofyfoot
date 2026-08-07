@@ -431,19 +431,19 @@ body {
 
 .btn-smart-store {
   pointer-events: auto;
-  width: 456px;
-  height: 108px;
+  width: 319px;
+  height: 76px;
   background: #CCCCCC;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 8px;
   text-decoration: none;
   font-family: var(--font-kr);
-  font-size: 30px;
+  font-size: 21px;
   font-weight: 600;
   color: #000000;
-  border-radius: 6px;
+  border-radius: 4px;
   transition: var(--transition-smooth);
 }
 
