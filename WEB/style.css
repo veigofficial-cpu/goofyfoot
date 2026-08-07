@@ -41,66 +41,6 @@ body {
 }
 
 /* ========================================
-   FLOATING GLASSMORPHIC NAV BAR
-   ======================================== */
-.yoyo-nav {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  pointer-events: auto;
-}
-
-.nav-bar-inner {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  padding: 6px 10px;
-  border-radius: 0;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-}
-
-.nav-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 0;
-  font-family: var(--font-kr);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #111111;
-  text-decoration: none;
-  transition: var(--transition-smooth);
-}
-
-.nav-pill:hover {
-  background: rgba(0, 0, 0, 0.06);
-}
-
-.logo-pill {
-  background: #000000;
-  color: #FFFFFF;
-}
-
-.logo-pill:hover {
-  background: #222222;
-}
-
-.nav-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #FFFFFF;
-}
-
-/* ========================================
    SCROLL REVEAL ANIMATION
    ======================================== */
 .scroll-reveal {
@@ -135,73 +75,7 @@ body {
 }
 
 /* ========================================
-   SECTION 1: HERO COVER (1920×1080)
-   ======================================== */
-.section-hero {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: #FFFFFF;
-}
-
-.hero-center-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.brand-logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.brand-logo-img {
-  width: clamp(340px, 42vw, 722px);
-  height: auto;
-  object-fit: contain;
-}
-
-.btn-click-to-spray-link {
-  margin-top: 2rem;
-  font-family: var(--font-en);
-  font-size: 14px;
-  font-weight: 600;
-  color: #000000;
-  text-decoration: underline;
-  text-underline-position: from-font;
-  transition: opacity 0.3s ease;
-}
-
-.btn-click-to-spray-link:hover {
-  opacity: 0.7;
-}
-
-.cicada-character-container {
-  position: absolute;
-  right: 80px;
-  bottom: 80px;
-  width: 55px;
-  height: 93px;
-}
-
-.character-img {
-  width: 55px;
-  height: 93px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
-
-.character-img:hover {
-  transform: scale(1.1);
-}
-
-/* ========================================
-   SECTION 2: SPRAY REVEAL (1920×1080)
+   SECTION 1: SPRAY REVEAL HERO (1920×1080)
    ======================================== */
 .section-spray {
   width: 100vw;
@@ -255,6 +129,27 @@ body {
     rgba(255, 255, 255, 0.85) 95%,
     #FFFFFF 100%
   );
+}
+
+.spray-hero-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.spray-logo-img {
+  width: clamp(280px, 45vw, 720px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.05));
 }
 
 .spray-hint {
@@ -582,46 +477,123 @@ body {
 }
 
 /* ========================================
-   RESPONSIVE
+   RESPONSIVE & MOBILE OPTIMIZATION
    ======================================== */
 @media (max-width: 1024px) {
-  .yoyo-nav {
-    top: 12px;
-  }
-
-  .nav-bar-inner {
-    padding: 4px 8px;
-    gap: 4px;
-  }
-
-  .nav-pill {
-    padding: 4px 10px;
-    font-size: 11px;
-  }
-
   .section-page {
     height: auto;
     min-height: 100vh;
   }
 
-  .btn-smart-store {
-    width: clamp(280px, 80vw, 456px);
-    height: 80px;
-    font-size: 24px;
+  .gallery-card {
+    width: clamp(240px, 60vw, 400px);
+  }
+}
+
+@media (max-width: 768px) {
+  .section-page {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .section-spray {
+    height: 100vh;
+    min-height: 560px;
+  }
+
+  .spray-logo-img {
+    width: clamp(220px, 75vw, 450px);
+  }
+
+  .story-center-wrapper {
+    padding: 3rem 1.2rem;
+  }
+
+  .story-body-text {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .story-tag {
+    font-size: 13px;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-gallery {
+    height: auto;
+    min-height: 80vh;
+    padding: 2rem 0;
+  }
+
+  .gallery-drag-track {
+    height: 55vh;
+    min-height: 320px;
   }
 
   .gallery-card {
-    width: clamp(240px, 70vw, 400px);
+    width: clamp(220px, 70vw, 320px);
+  }
+
+  .section-products {
+    height: auto;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .products-grid-3col {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 0;
+  }
+
+  .product-box {
+    height: 50vh;
+    min-height: 300px;
+  }
+
+  .section-store-footer {
+    height: 100vh;
+    min-height: 580px;
+    padding: 24px 16px;
+  }
+
+  .footer-link {
+    top: 24px;
+    font-size: 12px;
+  }
+
+  .footer-link.instagram-link {
+    left: 20px;
+  }
+
+  .footer-link.email-link {
+    right: 20px;
+  }
+
+  .btn-smart-store {
+    width: clamp(160px, 65vw, 208px);
+    height: 44px;
+    font-size: 12px;
   }
 
   .footer-bottom-info {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1.5rem;
+    gap: 12px;
+    font-size: 9px;
+    line-height: 14px;
+    padding-bottom: 16px;
   }
 
   .info-left, .info-center, .info-right {
     text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .footer-logo-img {
+    width: clamp(140px, 45vw, 220px);
   }
 }
