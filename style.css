@@ -184,7 +184,7 @@ body {
 }
 
 /* ========================================
-   SECTION 3: BRAND STORY (1920×1080)
+   SECTION 2: BRAND STORY (1920×1080)
    ======================================== */
 .section-story {
   display: flex;
@@ -200,36 +200,59 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   max-width: 1200px;
   padding: 2rem 1.5rem;
+  margin: 0 auto;
 }
 
 .story-tag {
   font-family: var(--font-en);
-  font-size: 17px;
-  font-weight: 600;
-  color: #959595;
-  margin-bottom: 2rem;
-  letter-spacing: 0.04em;
+  font-size: 14px;
+  font-weight: 700;
+  color: #8D8D8D;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.12em;
+  text-align: center;
 }
 
-.story-body-text {
-  font-family: var(--font-kr);
-  font-size: 17px;
-  font-weight: 500;
-  line-height: 30px;
+.story-subtitle {
+  font-family: var(--font-en);
+  font-size: 24px;
+  font-weight: 700;
   color: #000000;
-  max-width: 1100px;
-  margin: 0 auto;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.story-english-text {
+  font-family: var(--font-en);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 27px;
+  color: #111111;
+  margin-bottom: 2.2rem;
   word-break: keep-all;
+  text-align: center;
 }
 
-.blank-space {
-  height: 1.2rem;
+.story-english-text p {
+  margin: 0 0 4px 0;
 }
 
-.highlight-text {
-  font-weight: 600;
+.story-korean-text {
+  font-family: var(--font-kr);
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #111111;
+  word-break: keep-all;
+  text-align: center;
+}
+
+.story-korean-text p {
+  margin: 0 0 4px 0;
 }
 
 /* ========================================
@@ -514,14 +537,25 @@ body {
     padding: 3rem 1.2rem;
   }
 
-  .story-body-text {
-    font-size: 14px;
+  .story-subtitle {
+    font-size: 20px;
+    margin-bottom: 1.5rem;
+  }
+
+  .story-english-text {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 1.6rem;
+  }
+
+  .story-korean-text {
+    font-size: 15px;
     line-height: 24px;
   }
 
   .story-tag {
-    font-size: 13px;
-    margin-bottom: 1.2rem;
+    font-size: 12px;
+    margin-bottom: 1rem;
   }
 
   .section-gallery {
