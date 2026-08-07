@@ -1,6 +1,6 @@
 /*
   Goofy Foot® — Pine Wood Room Spray
-  Clean & Minimal 5-Section Design
+  Figma 15:7 Full Web Flow Implementation
 */
 
 @import url('pretendardvariable.css');
@@ -10,7 +10,7 @@
 :root {
   --bg-color: #FFFFFF;
   --text-main: #111111;
-  --text-muted: #777777;
+  --text-muted: #8D8D8D;
 
   --font-en: 'acumin-pro', 'acumin-pro-wide', -apple-system, sans-serif;
   --font-kr: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
@@ -39,6 +39,21 @@ body {
 }
 
 /* ========================================
+   SCROLL REVEAL ANIMATION SYSTEM
+   ======================================== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
    SECTION 1: HERO COVER
    ======================================== */
 .section-hero {
@@ -50,6 +65,7 @@ body {
   text-align: center;
   position: relative;
   padding: 2rem 1.5rem;
+  background-color: var(--bg-color);
 }
 
 .hero-center-content {
@@ -211,10 +227,17 @@ body {
 }
 
 /* ========================================
-   SECTION 3: BRAND STORY
+   SECTION 3: BRAND STORY & REAL TREE BG
    ======================================== */
 .section-story {
-  min-height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.story-upper-container {
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -222,11 +245,6 @@ body {
   padding: 6rem 1.5rem;
   text-align: center;
   background-color: var(--bg-color);
-}
-
-.story-container {
-  max-width: 960px;
-  margin: 0 auto;
 }
 
 .story-tag {
@@ -240,46 +258,107 @@ body {
   display: block;
 }
 
-.story-content {
+.story-upper-text {
   font-family: var(--font-kr);
-  font-size: clamp(1rem, 1.8vw, 1.8rem);
+  font-size: clamp(1.1rem, 2vw, 2.2rem);
   font-weight: 600;
   line-height: 1.8;
   color: #000000;
   word-break: keep-all;
+  max-width: 1000px;
 }
 
-.story-content .blank-space {
+.blank-space {
   height: 1.5rem;
 }
 
-.story-content p.highlight {
+/* "언제나, 소나무다." real tree.jpg 배경 섹션 */
+.story-real-tree-section {
+  position: relative;
+  width: 100vw;
+  max-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url('images/real tree.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* 35% 어두운 오버레이 */
+.real-tree-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+.real-tree-content {
+  position: relative;
+  z-index: 2;
+  color: #FFFFFF;
+  padding: 4rem 1.5rem;
+  max-width: 1100px;
+  font-family: var(--font-kr);
+  font-size: clamp(1.1rem, 2vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+
+.real-tree-content p {
+  color: #FFFFFF;
+}
+
+.story-highlight {
   font-weight: 700;
+  font-size: clamp(1.3rem, 2.2vw, 2.5rem);
 }
 
 /* ========================================
-   SECTION 4: BRAND PRODUCT PHOTOS
+   SECTION 4: BRAND PRODUCT PHOTOS (3-CARD GRID)
    ======================================== */
 .section-products {
   width: 100vw;
   max-width: 100%;
   margin: 0;
-  padding: 0 10px 4rem;
+  padding: 15px 15px 4rem;
 }
 
-.products-grid-2col {
+.products-grid-3item {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
 
-.product-box {
+.main-product {
   aspect-ratio: 1/1;
   background-color: #E8E8E8;
   overflow: hidden;
 }
 
-.product-box img {
+.main-product img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-side-stack {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 15px;
+}
+
+.product-side-stack .product-box {
+  background-color: #E8E8E8;
+  overflow: hidden;
+}
+
+.product-side-stack .product-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -289,7 +368,7 @@ body {
    SECTION 5: STORE LINK & FOOTER
    ======================================== */
 .section-store-footer {
-  min-height: 80vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -297,6 +376,7 @@ body {
   padding: 6rem 2rem 2.5rem;
   text-align: center;
   position: relative;
+  background-color: var(--bg-color);
 }
 
 .store-button-wrapper {
@@ -326,12 +406,18 @@ body {
 }
 
 .site-footer {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 2rem 1.5rem 1rem;
+}
+
+.footer-top-row {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 100%;
-  padding: 1.5rem 2rem;
-  border-top: none;
   font-family: var(--font-kr);
   font-size: clamp(0.9rem, 1.6vw, 1.6rem);
   font-weight: 600;
@@ -349,32 +435,54 @@ body {
   color: #000000;
 }
 
+.footer-bottom-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  border-top: 1px solid #EEEEEE;
+  padding-top: 1.8rem;
+  font-family: var(--font-kr);
+  font-size: 0.75rem;
+  color: #8D8D8D;
+  line-height: 1.7;
+}
+
+.footer-info-col.left-col {
+  text-align: left;
+}
+
+.footer-info-col.center-col {
+  text-align: center;
+}
+
+.footer-info-col.right-col {
+  text-align: right;
+}
+
+.footer-logo-svg {
+  width: 140px;
+  height: auto;
+  opacity: 0.75;
+}
+
 /* ========================================
    RESPONSIVE
    ======================================== */
 @media (max-width: 768px) {
-  .brand-title {
-    font-size: 3rem;
-  }
-
-  .spray-reveal-container {
-    aspect-ratio: 1/1;
-  }
-
-  .section-story {
-    padding: 5rem 1.5rem;
-  }
-
-  .story-content {
-    font-size: 0.95rem;
-  }
-
-  .products-grid-2col {
+  .products-grid-3item {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .btn-store {
-    margin-bottom: 5rem;
+  .footer-bottom-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center !important;
+  }
+
+  .footer-info-col {
+    text-align: center !important;
   }
 }

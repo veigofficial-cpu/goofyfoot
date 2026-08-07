@@ -57,6 +57,28 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('touchstart', initAudio, { passive: true, once: true });
 
   // -------------------------------------------------------
+  // Scroll Reveal Observer (텍스트 & real tree.jpg 스크롤 시 서서히 나타남)
+  // -------------------------------------------------------
+  const revealElements = document.querySelectorAll('.scroll-reveal');
+  
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach((el) => revealObserver.observe(el));
+  } else {
+    revealElements.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  // -------------------------------------------------------
   // Spray Reveal Canvas
   // -------------------------------------------------------
   const canvas = document.getElementById('spray-canvas');

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="pretendardvariable.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
     
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
@@ -51,46 +51,75 @@
 
     <!-- SECTION 3: BRAND STORY -->
     <section class="section-story" id="story">
-        <div class="story-container">
-            <span class="story-tag">THE STORY</span>
-            <div class="story-content">
-                <p>국립생물자원관에 따르면, 매미는 땅속에서 최대 7년을 기다린다.</p>
+        <div class="story-upper-container">
+            <span class="story-tag scroll-reveal">THE STORY</span>
+            <div class="story-upper-text">
+                <p class="scroll-reveal">매미는 땅속에서 최대 7년을 기다린다.</p>
                 <p class="blank-space"></p>
-                <p>7년의 어둠. 그리고 지상에서 주어진 시간은 단 한 계절.</p>
-                <p>깨어난 매미는 숲에서 가장 향이 짙은 나무를 찾아 오른다.</p>
+                <p class="scroll-reveal">7년의 어둠.</p>
+                <p class="scroll-reveal">그리고 지상에서 주어진 시간은 단 한 계절.</p>
+                <p class="scroll-reveal">깨어난 매미는 숲에서 가장 향이 짙은 나무를 찾아 오른다.</p>
+            </div>
+        </div>
+
+        <!-- "언제나, 소나무다." 이하 real tree.jpg 배경 섹션 (스크롤 투명도 페이드인 & 35% 어두운 오버레이) -->
+        <div class="story-real-tree-section scroll-reveal" id="real-tree-section">
+            <div class="real-tree-bg-overlay"></div>
+            <div class="real-tree-content">
+                <p class="story-highlight scroll-reveal">언제나, 소나무다.</p>
                 <p class="blank-space"></p>
-                <p class="highlight">언제나, 소나무다.</p>
+                <p class="scroll-reveal">GOOFY FOOT® PINE WOOD ROOM SPRAY는<br>그 한 계절의 공기를 담았다.</p>
                 <p class="blank-space"></p>
-                <p>GOOFY FOOT® PINE WOOD ROOM SPRAY는<br>그 한 계절의 공기를 담았다.</p>
-                <p class="blank-space"></p>
-                <p>7년을 기다려 만나는, 여름 소나무 숲의 향.</p>
+                <p class="scroll-reveal">7년을 기다려 만나는, 여름 소나무 숲의 향.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 4: BRAND PRODUCT PHOTOS -->
+    <!-- SECTION 4: BRAND PRODUCT PHOTOS (product 1, package 1, package 2) -->
     <section class="section-products" id="products">
-        <div class="products-grid-2col">
-            <div class="product-box">
+        <div class="products-grid-3item">
+            <div class="product-box main-product scroll-reveal">
                 <img src="images/product 1.png" alt="Goofy Foot Pine Wood Room Spray Bottle">
             </div>
-            <div class="product-box">
-                <img src="images/package 1.png" alt="Goofy Foot Room Spray Package">
+            <div class="product-side-stack">
+                <div class="product-box scroll-reveal">
+                    <img src="images/package 1.png" alt="Goofy Foot Room Spray Package 1">
+                </div>
+                <div class="product-box scroll-reveal">
+                    <img src="images/package 2.png" alt="Goofy Foot Room Spray Package 2">
+                </div>
             </div>
         </div>
     </section>
 
     <!-- SECTION 5: BRAND STORE LINK & FOOTER -->
     <section class="section-store-footer" id="store">
-        <div class="store-button-wrapper">
+        <div class="store-button-wrapper scroll-reveal">
             <a href="https://smartstore.naver.com" target="_blank" rel="noopener noreferrer" class="btn-store" id="btn-smart-store">
                 Goofy Foot Smart Store
             </a>
         </div>
 
         <footer class="site-footer">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-link" id="link-instagram">INSTAGRAM</a>
-            <a href="mailto:contact@goofyfoot.com" class="footer-link" id="link-email">EMAIL</a>
+            <div class="footer-top-row">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-link" id="link-instagram">INSTAGRAM</a>
+                <a href="mailto:contact@goofyfoot.com" class="footer-link" id="link-email">EMAIL</a>
+            </div>
+
+            <div class="footer-bottom-info">
+                <div class="footer-info-col left-col">
+                    <p>PINE WOOD ROOM SPRAY — VOL.01</p>
+                    <p>MADE IN KOREA · © 2026 GOOFY FOOT</p>
+                </div>
+                <div class="footer-info-col center-col">
+                    <p>대표자명 : VEIG l 사업자번호 : 123-45-6789</p>
+                    <p>이메일 문의 : veig@veig.tv l 개인정보보호책임자 : VEIG</p>
+                    <p>이용약관 l 개인정보처리방침 l 공지사항</p>
+                </div>
+                <div class="footer-info-col right-col">
+                    <img src="svg/logo.svg" alt="Goofy Foot Logo" class="footer-logo-svg">
+                </div>
+            </div>
         </footer>
     </section>
 
