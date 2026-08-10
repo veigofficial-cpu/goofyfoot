@@ -349,6 +349,17 @@ document.addEventListener('DOMContentLoaded', () => {
         onSprayMove(e.touches[0].clientX, e.touches[0].clientY);
       }
     }, { passive: true });
-    window.addEventListener('touchend', onSprayEnd, { passive: true });
+    interactEl.addEventListener('touchend', onSprayEnd, { passive: true });
+  }
+
+  // -------------------------------------------------------
+  // Cicada FAB Scroll to Top
+  // -------------------------------------------------------
+  const cicadaFab = document.getElementById('cicada-fab');
+  if (cicadaFab) {
+    cicadaFab.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 });

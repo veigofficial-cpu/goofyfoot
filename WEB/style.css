@@ -450,6 +450,65 @@ button,
 }
 
 /* ========================================
+   CICADA FLOATING ACTION BUTTON (60×60px)
+   ======================================== */
+.cicada-fab {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  width: 60px;
+  height: 60px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.05, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cicada-fab:hover {
+  transform: translateY(-4px) scale(1.08);
+}
+
+.cicada-fab:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.cicada-fab-sprite {
+  width: 60px;
+  height: 60px;
+  background-image: url('images/floating%20button_1.png');
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  background-size: 540px 60px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.18));
+  transition: filter 0.3s ease;
+}
+
+.cicada-fab:hover .cicada-fab-sprite {
+  animation: cicada-wing-flutter 0.48s steps(8) infinite alternate;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.28));
+}
+
+@keyframes cicada-wing-flutter {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -480px 0px;
+  }
+}
+
+/* ========================================
    RESPONSIVE & MOBILE OPTIMIZATION
    ======================================== */
 @media (max-width: 1024px) {
@@ -460,6 +519,28 @@ button,
 }
 
 @media (max-width: 768px) {
+  .cicada-fab {
+    right: 20px;
+    bottom: 24px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .cicada-fab-sprite {
+    width: 52px;
+    height: 52px;
+    background-size: 468px 52px;
+  }
+
+  @keyframes cicada-wing-flutter {
+    from {
+      background-position: 0px 0px;
+    }
+    to {
+      background-position: -416px 0px;
+    }
+  }
+
   .section-page {
     height: auto;
     min-height: 100vh;
