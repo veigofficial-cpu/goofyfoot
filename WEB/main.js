@@ -192,6 +192,17 @@ document.addEventListener('DOMContentLoaded', () => {
       fade();
     }
 
+    // 리셋 버튼 클릭 시 스프레이 캔버스 초기화 및 로고 복원
+    const sprayResetBtn = document.getElementById('spray-reset-btn');
+    if (sprayResetBtn) {
+      sprayResetBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        fillWhite();
+        hasStarted = false;
+        showHeroLogo();
+      });
+    }
+
     function resetInactivityTimer() {
       if (inactivityTimer) clearTimeout(inactivityTimer);
       inactivityTimer = setTimeout(resetToWhite, INACTIVITY_TIMEOUT);
@@ -353,16 +364,20 @@ document.addEventListener('DOMContentLoaded', () => {
     bgmAudio.volume = 0.5; // 50% volume
   }
 
+  const soundIconImg = document.getElementById('sound-icon-img');
+
   function updateSoundUI(playing) {
     if (!bgmToggleBtn) return;
-    if (playing) {
-      bgmToggleBtn.textContent = 'SOUND ON';
-      bgmToggleBtn.classList.remove('is-muted');
-      bgmToggleBtn.setAttribute('aria-label', 'Turn Sound Off');
-    } else {
-      bgmToggleBtn.textContent = 'SOUND OFF';
-      bgmToggleBtn.classList.add('is-muted');
-      bgmToggleBtn.setAttribute('aria-label', 'Turn Sound On');
+    if (soundIconImg) {
+      if (playing) {
+        soundIconImg.src = 'svg/sound%20on%20icon_1.svg';
+        soundIconImg.alt = 'Sound On';
+        bgmToggleBtn.setAttribute('aria-label', 'Sound On (Click to turn off)');
+      } else {
+        soundIconImg.src = 'svg/sound%20off%20icon_2.svg';
+        soundIconImg.alt = 'Sound Off';
+        bgmToggleBtn.setAttribute('aria-label', 'Sound Off (Click to turn on)');
+      }
     }
   }
 

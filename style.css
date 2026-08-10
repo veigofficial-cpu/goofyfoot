@@ -448,39 +448,79 @@ button,
 /* ========================================
    TOP-RIGHT BGM SOUND TOGGLE
    ======================================== */
-.bgm-toggle-btn {
+/* ========================================
+   TOP CONTROLS: RESET (LEFT) & SOUND (RIGHT)
+   ======================================== */
+.spray-reset-btn {
   position: fixed;
   top: 28px;
-  right: 36px;
-  z-index: 999;
+  left: 36px;
+  width: 38px;
+  height: 38px;
+  z-index: 1000;
   background: transparent;
   border: none;
+  padding: 0;
+  margin: 0;
   outline: none;
-  font-family: var(--font-en);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #111111;
-  text-transform: uppercase;
   cursor: pointer;
-  padding: 6px 10px;
-  transition: opacity 0.25s ease, color 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0.05, 1), opacity 0.2s ease;
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 
+.spray-reset-btn img {
+  width: 38px;
+  height: 38px;
+  display: block;
+}
+
+.spray-reset-btn:hover {
+  transform: scale(1.08);
+}
+
+.spray-reset-btn:active {
+  transform: scale(0.92);
+}
+
+.bgm-toggle-btn {
+  position: fixed;
+  top: 28px;
+  right: 36px;
+  width: 38px;
+  height: 38px;
+  z-index: 1000;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0.05, 1), opacity 0.2s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bgm-toggle-btn img {
+  width: 38px;
+  height: 38px;
+  display: block;
+}
+
 .bgm-toggle-btn:hover {
-  opacity: 0.55;
+  transform: scale(1.08);
 }
 
-.bgm-toggle-btn.is-muted {
-  color: #888888;
-  opacity: 0.7;
-}
-
-.bgm-toggle-btn.is-muted:hover {
-  opacity: 1;
+.bgm-toggle-btn:active {
+  transform: scale(0.92);
 }
 
 /* ========================================
@@ -488,8 +528,8 @@ button,
    ======================================== */
 .cicada-fab {
   position: fixed;
-  top: 24px;
-  left: 36px;
+  top: 18px;
+  left: 88px;
   width: 80px;
   height: 80px;
   z-index: 999;
@@ -548,24 +588,41 @@ button,
 }
 
 @media (max-width: 768px) {
+  .spray-reset-btn {
+    top: 20px;
+    left: 20px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .spray-reset-btn img {
+    width: 32px;
+    height: 32px;
+  }
+
   .bgm-toggle-btn {
     top: 20px;
     right: 20px;
-    font-size: 11px;
-    padding: 4px 6px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .bgm-toggle-btn img {
+    width: 32px;
+    height: 32px;
   }
 
   .cicada-fab {
-    top: 16px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
+    top: 14px;
+    left: 60px;
+    width: 44px;
+    height: 44px;
   }
 
   .cicada-fab-sprite {
-    width: 50px;
-    height: 50px;
-    background-size: 450px 50px;
+    width: 44px;
+    height: 44px;
+    background-size: 396px 44px;
   }
 
   @keyframes cicada-wing-flutter {
@@ -573,7 +630,7 @@ button,
       background-position: 0px 0px;
     }
     to {
-      background-position: -400px 0px;
+      background-position: -352px 0px;
     }
   }
 
