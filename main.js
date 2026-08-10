@@ -353,6 +353,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
+  // Product Explain Accordion Interactive Toggles
+  // -------------------------------------------------------
+  const accordionHeaders = document.querySelectorAll('.product-accordion-group .accordion-header');
+  accordionHeaders.forEach((header) => {
+    header.addEventListener('click', () => {
+      const item = header.closest('.accordion-item');
+      if (!item) return;
+      const isOpen = item.classList.contains('is-open');
+
+      if (isOpen) {
+        item.classList.remove('is-open');
+        header.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('is-open');
+        header.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // -------------------------------------------------------
   // Background Music (BGM) & Sound Toggle (Volume: 50%)
   // -------------------------------------------------------
   const bgmAudio = document.getElementById('bgm-audio');
