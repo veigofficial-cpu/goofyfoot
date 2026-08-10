@@ -433,4 +433,25 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('pointerdown', triggerAudioOnFirstAction, { once: true });
   window.addEventListener('keydown', triggerAudioOnFirstAction, { once: true });
   window.addEventListener('touchstart', triggerAudioOnFirstAction, { once: true });
+
+  // -------------------------------------------------------
+  // Cicada FAB Hover SFX Interaction (Button Sound.wav)
+  // -------------------------------------------------------
+  const hoverSfx = document.getElementById('hover-sfx');
+
+  if (cicadaFab && hoverSfx) {
+    hoverSfx.volume = 0.45;
+
+    const playHoverSfx = () => {
+      // Only play SFX if sound is ON and not muted by user
+      if (isUserExplicitlyMuted || !isBgmPlaying) return;
+      try {
+        hoverSfx.currentTime = 0;
+        hoverSfx.play().catch(() => {});
+      } catch (err) {}
+    };
+
+    cicadaFab.addEventListener('mouseenter', playHoverSfx);
+    cicadaFab.addEventListener('touchstart', playHoverSfx, { passive: true });
+  }
 });
