@@ -450,14 +450,14 @@ button,
 }
 
 /* ========================================
-   CICADA FLOATING ACTION BUTTON (60×60px)
+   CICADA FLOATING ACTION BUTTON (80×80px)
    ======================================== */
 .cicada-fab {
   position: fixed;
-  right: 100px;
-  bottom: 300px;
-  width: 60px;
-  height: 60px;
+  right: 110px;
+  bottom: 150px;
+  width: 80px;
+  height: 80px;
   z-index: 999;
   display: flex;
   align-items: center;
@@ -474,7 +474,7 @@ button,
 }
 
 .cicada-fab:hover {
-  transform: translateY(-4px) scale(1.08);
+  transform: translateY(-4px) scale(1.06);
 }
 
 .cicada-fab:active {
@@ -482,21 +482,19 @@ button,
 }
 
 .cicada-fab-sprite {
-  width: 60px;
-  height: 60px;
-  background-image: url('images/floating%20button_2.png');
+  width: 80px;
+  height: 80px;
+  background-image: url('svg/floating%20button_3.svg');
   background-repeat: no-repeat;
   background-position: 0px 0px;
-  background-size: 540px 60px;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.18));
+  background-size: 720px 80px;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.18));
   transition: filter 0.3s ease;
 }
 
 .cicada-fab:hover .cicada-fab-sprite {
   animation: cicada-wing-flutter 0.48s steps(8) infinite alternate;
-  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.28));
+  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.28));
 }
 
 @keyframes cicada-wing-flutter {
@@ -504,7 +502,7 @@ button,
     background-position: 0px 0px;
   }
   to {
-    background-position: -480px 0px;
+    background-position: -640px 0px;
   }
 }
 
@@ -522,14 +520,14 @@ button,
   .cicada-fab {
     right: clamp(16px, 4vw, 32px);
     bottom: clamp(24px, 15vh, 120px);
-    width: 52px;
-    height: 52px;
+    width: 60px;
+    height: 60px;
   }
 
   .cicada-fab-sprite {
-    width: 52px;
-    height: 52px;
-    background-size: 468px 52px;
+    width: 60px;
+    height: 60px;
+    background-size: 540px 60px;
   }
 
   @keyframes cicada-wing-flutter {
@@ -537,7 +535,7 @@ button,
       background-position: 0px 0px;
     }
     to {
-      background-position: -416px 0px;
+      background-position: -480px 0px;
     }
   }
 
