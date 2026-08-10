@@ -454,7 +454,7 @@ button,
    ======================================== */
 .cicada-fab {
   position: fixed;
-  right: 130px;
+  right: 150px;
   bottom: 150px;
   width: 80px;
   height: 80px;
@@ -488,13 +488,10 @@ button,
   background-repeat: no-repeat;
   background-position: 0px 0px;
   background-size: 720px 80px;
-  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.18));
-  transition: filter 0.3s ease;
 }
 
 .cicada-fab:hover .cicada-fab-sprite {
   animation: cicada-wing-flutter 0.48s steps(8) infinite alternate;
-  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.28));
 }
 
 @keyframes cicada-wing-flutter {
