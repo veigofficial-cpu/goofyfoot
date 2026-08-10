@@ -364,6 +364,15 @@ button,
   background-color: rgba(0, 0, 0, 0.02);
 }
 
+.accordion-item.is-disabled .accordion-header {
+  cursor: default;
+  opacity: 0.85;
+}
+
+.accordion-item.is-disabled .accordion-header:hover {
+  background-color: transparent;
+}
+
 .accordion-title {
   font-family: var(--font-en);
   font-size: 13px;

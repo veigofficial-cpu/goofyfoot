@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
   accordionHeaders.forEach((header) => {
     header.addEventListener('click', () => {
       const item = header.closest('.accordion-item');
-      if (!item) return;
+      if (!item || item.classList.contains('is-disabled')) return;
       const isOpen = item.classList.contains('is-open');
 
       if (isOpen) {
