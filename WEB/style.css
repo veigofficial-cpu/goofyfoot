@@ -271,6 +271,8 @@ button,
   justify-content: center;
   overflow: hidden;
   border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  margin-bottom: 150px;
 }
 
 .product-explain-container {
@@ -386,7 +388,7 @@ button,
   align-items: center;
   justify-content: center;
   color: #000000;
-  transition: transform 0.35s cubic-bezier(0.2, 0, 0.05, 1);
+  transition: transform 0.45s cubic-bezier(0.2, 0, 0.05, 1);
 }
 
 .accordion-item.is-open .accordion-icon {
@@ -394,18 +396,24 @@ button,
 }
 
 .accordion-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.45s cubic-bezier(0.2, 0, 0.05, 1), opacity 0.35s ease;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.2, 0, 0.05, 1), opacity 0.35s ease;
   opacity: 0;
 }
 
 .accordion-item.is-open .accordion-body {
-  max-height: 1000px;
+  grid-template-rows: 1fr;
   opacity: 1;
 }
 
 .accordion-content-inner {
+  overflow: hidden;
+  padding: 0 40px;
+  transition: padding 0.45s cubic-bezier(0.2, 0, 0.05, 1);
+}
+
+.accordion-item.is-open .accordion-content-inner {
   padding: 24px 40px 36px 40px;
 }
 
@@ -895,6 +903,7 @@ button,
   .section-product-explain {
     height: auto;
     min-height: 100vh;
+    margin-bottom: 80px;
   }
 
   .product-explain-container {
@@ -931,6 +940,10 @@ button,
   }
 
   .accordion-content-inner {
+    padding: 0 20px;
+  }
+
+  .accordion-item.is-open .accordion-content-inner {
     padding: 20px 20px 28px 20px;
   }
 
