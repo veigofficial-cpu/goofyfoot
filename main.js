@@ -152,22 +152,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => resizeCanvas(true), 100);
     setTimeout(() => resizeCanvas(true), 400);
 
-    // 소나무 이미지 설정 (최초 로드 시 1회 고정으로 이미지 깜빡임 방지)
+    // 스프레이 소나무 이미지 설정: tree_7.png 단일 고정
     const revealImage = document.getElementById('reveal-image');
-    const treeImages = [
-      'images/tree_2.png',
-      'images/tree_3.png',
-      'images/tree_4.png',
-      'images/tree_5.png'
-    ];
-
-    function setRandomTreeImage() {
-      if (!revealImage) return;
-      const randomIndex = Math.floor(Math.random() * treeImages.length);
-      revealImage.src = treeImages[randomIndex];
+    if (revealImage) {
+      revealImage.src = 'images/tree_7.png';
     }
-
-    setRandomTreeImage();
 
     const heroLogo = document.getElementById('spray-hero-logo');
 
