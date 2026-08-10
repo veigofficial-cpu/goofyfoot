@@ -449,12 +449,12 @@ button,
    TOP-RIGHT BGM SOUND TOGGLE
    ======================================== */
 /* ========================================
-   TOP CONTROLS: RESET (LEFT) & SOUND (RIGHT)
+   TOP CONTROLS: RESET & SOUND TOGGLE (RIGHT)
    ======================================== */
 .spray-reset-btn {
   position: fixed;
   top: 28px;
-  left: 36px;
+  right: 86px;
   width: 38px;
   height: 38px;
   z-index: 1000;
@@ -528,8 +528,8 @@ button,
    ======================================== */
 .cicada-fab {
   position: fixed;
-  top: 18px;
-  left: 88px;
+  top: 24px;
+  left: 36px;
   width: 80px;
   height: 80px;
   z-index: 999;
@@ -588,18 +588,6 @@ button,
 }
 
 @media (max-width: 768px) {
-  .spray-reset-btn {
-    top: 20px;
-    left: 20px;
-    width: 32px;
-    height: 32px;
-  }
-
-  .spray-reset-btn img {
-    width: 32px;
-    height: 32px;
-  }
-
   .bgm-toggle-btn {
     top: 20px;
     right: 20px;
@@ -612,17 +600,30 @@ button,
     height: 32px;
   }
 
+  .spray-reset-btn {
+    top: 20px;
+    right: 60px;
+    left: auto;
+    width: 32px;
+    height: 32px;
+  }
+
+  .spray-reset-btn img {
+    width: 32px;
+    height: 32px;
+  }
+
   .cicada-fab {
-    top: 14px;
-    left: 60px;
-    width: 44px;
-    height: 44px;
+    top: 16px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
   }
 
   .cicada-fab-sprite {
-    width: 44px;
-    height: 44px;
-    background-size: 396px 44px;
+    width: 50px;
+    height: 50px;
+    background-size: 450px 50px;
   }
 
   @keyframes cicada-wing-flutter {
@@ -630,7 +631,7 @@ button,
       background-position: 0px 0px;
     }
     to {
-      background-position: -352px 0px;
+      background-position: -400px 0px;
     }
   }
 
