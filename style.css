@@ -221,7 +221,7 @@ button,
   color: #000000;
   margin-bottom: 2.5rem;
   letter-spacing: -0.01em;
-  line-height: 60px;
+  line-height: 62px;
   text-align: left;
 }
 
@@ -229,7 +229,7 @@ button,
   font-family: var(--font-en);
   font-size: 55px;
   font-weight: 500;
-  line-height: 60px;
+  line-height: 62px;
   color: #111111;
   margin-bottom: 3.5rem;
   max-width: 90vw;
@@ -244,9 +244,9 @@ button,
 
 .story-korean-text {
   font-family: var(--font-kr);
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 500;
-  line-height: 55px;
+  line-height: 44px;
   color: #111111;
   max-width: 90vw;
   word-break: keep-all;
