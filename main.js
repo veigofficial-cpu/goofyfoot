@@ -364,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // Background Music (BGM) & Sound Toggle (Volume: 30%)
+  // Background Music (BGM) & Sound Toggle (Volume: 50%)
   // -------------------------------------------------------
   const bgmAudio = document.getElementById('bgm-audio');
   const bgmToggleBtn = document.getElementById('bgm-toggle-btn');
@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let isUserExplicitlyMuted = false;
 
   if (bgmAudio) {
-    bgmAudio.volume = 0.3; // 30% volume
+    bgmAudio.volume = 0.5; // 50% volume
   }
 
   function updateSoundUI(playing) {
@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function playBGM() {
     if (!bgmAudio || isUserExplicitlyMuted) return;
-    bgmAudio.volume = 0.3;
+    bgmAudio.volume = 0.5;
     const playPromise = bgmAudio.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {
@@ -408,6 +408,10 @@ document.addEventListener('DOMContentLoaded', () => {
     bgmAudio.pause();
     isBgmPlaying = false;
     updateSoundUI(false);
+    if (hoverSfx) {
+      hoverSfx.pause();
+      hoverSfx.currentTime = 0;
+    }
   }
 
   if (bgmToggleBtn) {
@@ -435,23 +439,34 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('touchstart', triggerAudioOnFirstAction, { once: true });
 
   // -------------------------------------------------------
-  // Cicada FAB Hover SFX Interaction (Button Sound.wav)
+  // Cicada FAB Hover SFX Interaction (Volume: 100%, Hover Only)
   // -------------------------------------------------------
   const hoverSfx = document.getElementById('hover-sfx');
 
   if (cicadaFab && hoverSfx) {
-    hoverSfx.volume = 0.45;
+    hoverSfx.volume = 1.0; // 100% volume
 
-    const playHoverSfx = () => {
+    const startHoverSfx = () => {
       // Only play SFX if sound is ON and not muted by user
       if (isUserExplicitlyMuted || !isBgmPlaying) return;
       try {
         hoverSfx.currentTime = 0;
+        hoverSfx.loop = true;
         hoverSfx.play().catch(() => {});
       } catch (err) {}
     };
 
-    cicadaFab.addEventListener('mouseenter', playHoverSfx);
-    cicadaFab.addEventListener('touchstart', playHoverSfx, { passive: true });
+    const stopHoverSfx = () => {
+      try {
+        hoverSfx.pause();
+        hoverSfx.currentTime = 0;
+      } catch (err) {}
+    };
+
+    cicadaFab.addEventListener('mouseenter', startHoverSfx);
+    cicadaFab.addEventListener('mouseleave', stopHoverSfx);
+    cicadaFab.addEventListener('touchstart', startHoverSfx, { passive: true });
+    cicadaFab.addEventListener('touchend', stopHoverSfx, { passive: true });
+    cicadaFab.addEventListener('touchcancel', stopHoverSfx, { passive: true });
   }
 });
