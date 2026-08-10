@@ -666,19 +666,17 @@ button,
    TOP-RIGHT BGM SOUND TOGGLE
    ======================================== */
 /* ========================================
-   TOP CONTROLS: RESET & SOUND TOGGLE (FIXED TOP-RIGHT)
+   SECTION 1 TOP CONTROLS: RESET & SOUND (ABSOLUTE TO SECTION 1 ONLY)
    ======================================== */
 .spray-reset-btn {
-  position: fixed !important;
-  top: 28px !important;
-  right: 86px !important;
-  left: auto !important;
+  position: absolute;
+  top: 28px;
+  right: 86px;
+  left: auto;
   width: 38px;
   height: 38px;
-  z-index: 99999 !important;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  z-index: 100;
+  background: transparent;
   border: none;
   padding: 0;
   margin: 0;
@@ -710,15 +708,13 @@ button,
 }
 
 .bgm-toggle-btn {
-  position: fixed !important;
-  top: 28px !important;
-  right: 36px !important;
+  position: absolute;
+  top: 28px;
+  right: 36px;
   width: 38px;
   height: 38px;
-  z-index: 99999 !important;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  z-index: 100;
+  background: transparent;
   border: none;
   padding: 0;
   margin: 0;

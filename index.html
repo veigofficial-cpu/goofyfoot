@@ -13,20 +13,11 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
 
-    <!-- Cache buster v67 -->
-    <link rel="stylesheet" href="style.css?v=67">
+    <!-- Cache buster v69 -->
+    <link rel="stylesheet" href="style.css?v=69">
 </head>
 
 <body>
-
-    <!-- TOP CONTROLS: RESET (LEFT) & SOUND TOGGLE (RIGHT) -->
-    <button class="spray-reset-btn" id="spray-reset-btn" aria-label="Reset Spray Canvas">
-        <img src="svg/reset%20icon_1.svg" alt="Reset Spray" id="reset-icon-img" width="38" height="38">
-    </button>
-
-    <button class="bgm-toggle-btn" id="bgm-toggle-btn" aria-label="Sound Off (Click to turn on)">
-        <img src="svg/sound%20off%20icon_2.svg" alt="Sound Off" id="sound-icon-img" width="38" height="38">
-    </button>
 
     <!-- BGM AUDIO (Volume 50%) -->
     <audio id="bgm-audio" loop preload="auto">
@@ -50,6 +41,15 @@
 
         <!-- SECTION 1: SPRAY REVEAL HERO (1920×1080) -->
         <section class="section-page section-spray" id="spray">
+            <!-- SECTION 1 TOP-RIGHT CONTROLS: RESET & SOUND TOGGLE -->
+            <button class="spray-reset-btn" id="spray-reset-btn" aria-label="Reset Spray Canvas">
+                <img src="svg/reset%20icon_1.svg" alt="Reset Spray" id="reset-icon-img" width="38" height="38">
+            </button>
+
+            <button class="bgm-toggle-btn" id="bgm-toggle-btn" aria-label="Sound Off (Click to turn on)">
+                <img src="svg/sound%20off%20icon_2.svg" alt="Sound Off" id="sound-icon-img" width="38" height="38">
+            </button>
+
             <div class="spray-reveal-container" id="spray-container">
                 <img src="images/tree_7.png" alt="Goofy Foot Pine Wood Illustration" class="reveal-image"
                     id="reveal-image">
