@@ -450,6 +450,44 @@ button,
 }
 
 /* ========================================
+   TOP-RIGHT BGM SOUND TOGGLE
+   ======================================== */
+.bgm-toggle-btn {
+  position: fixed;
+  top: 28px;
+  right: 36px;
+  z-index: 999;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-en);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #111111;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 6px 10px;
+  transition: opacity 0.25s ease, color 0.25s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bgm-toggle-btn:hover {
+  opacity: 0.55;
+}
+
+.bgm-toggle-btn.is-muted {
+  color: #888888;
+  opacity: 0.7;
+}
+
+.bgm-toggle-btn.is-muted:hover {
+  opacity: 1;
+}
+
+/* ========================================
    CICADA FLOATING ACTION BUTTON (80×80px)
    ======================================== */
 .cicada-fab {
@@ -514,6 +552,13 @@ button,
 }
 
 @media (max-width: 768px) {
+  .bgm-toggle-btn {
+    top: 20px;
+    right: 20px;
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+
   .cicada-fab {
     right: clamp(16px, 4vw, 32px);
     bottom: clamp(24px, 15vh, 120px);

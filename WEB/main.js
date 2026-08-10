@@ -362,4 +362,75 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  // -------------------------------------------------------
+  // Background Music (BGM) & Sound Toggle (Volume: 30%)
+  // -------------------------------------------------------
+  const bgmAudio = document.getElementById('bgm-audio');
+  const bgmToggleBtn = document.getElementById('bgm-toggle-btn');
+  let isBgmPlaying = false;
+  let isUserExplicitlyMuted = false;
+
+  if (bgmAudio) {
+    bgmAudio.volume = 0.3; // 30% volume
+  }
+
+  function updateSoundUI(playing) {
+    if (!bgmToggleBtn) return;
+    if (playing) {
+      bgmToggleBtn.textContent = 'SOUND ON';
+      bgmToggleBtn.classList.remove('is-muted');
+      bgmToggleBtn.setAttribute('aria-label', 'Turn Sound Off');
+    } else {
+      bgmToggleBtn.textContent = 'SOUND OFF';
+      bgmToggleBtn.classList.add('is-muted');
+      bgmToggleBtn.setAttribute('aria-label', 'Turn Sound On');
+    }
+  }
+
+  function playBGM() {
+    if (!bgmAudio || isUserExplicitlyMuted) return;
+    bgmAudio.volume = 0.3;
+    const playPromise = bgmAudio.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        isBgmPlaying = true;
+        updateSoundUI(true);
+      }).catch(() => {
+        isBgmPlaying = false;
+        updateSoundUI(false);
+      });
+    }
+  }
+
+  function pauseBGM() {
+    if (!bgmAudio) return;
+    bgmAudio.pause();
+    isBgmPlaying = false;
+    updateSoundUI(false);
+  }
+
+  if (bgmToggleBtn) {
+    bgmToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isBgmPlaying) {
+        isUserExplicitlyMuted = true;
+        pauseBGM();
+      } else {
+        isUserExplicitlyMuted = false;
+        playBGM();
+      }
+    });
+  }
+
+  // Auto-play on first user interaction across the window
+  const triggerAudioOnFirstAction = () => {
+    if (!isBgmPlaying && !isUserExplicitlyMuted) {
+      playBGM();
+    }
+  };
+
+  window.addEventListener('pointerdown', triggerAudioOnFirstAction, { once: true });
+  window.addEventListener('keydown', triggerAudioOnFirstAction, { once: true });
+  window.addEventListener('touchstart', triggerAudioOnFirstAction, { once: true });
 });
