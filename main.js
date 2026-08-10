@@ -29,30 +29,18 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) { /* 오디오 미지원 */ }
   }
 
+  const sprayAudio = document.getElementById('spray-sfx');
+
   function playSpraySound() {
-    initAudio();
-    if (!audioCtx) return;
-    try {
-      const len = audioCtx.sampleRate * 0.35;
-      const buf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
-      const d = buf.getChannelData(0);
-      for (let i = 0; i < len; i++) {
-        d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (len * 0.18));
-      }
-      const src = audioCtx.createBufferSource();
-      src.buffer = buf;
-      const filt = audioCtx.createBiquadFilter();
-      filt.type = 'bandpass';
-      filt.frequency.value = 1800;
-      filt.Q.value = 2;
-      const gain = audioCtx.createGain();
-      gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.005, audioCtx.currentTime + 0.3);
-      src.connect(filt);
-      filt.connect(gain);
-      gain.connect(audioCtx.destination);
-      src.start();
-    } catch (e) { /* 오디오 에러 무시 */ }
+    if (isUserExplicitlyMuted) return;
+    if (sprayAudio) {
+      try {
+        sprayAudio.volume = 0.75;
+        sprayAudio.currentTime = 0;
+        sprayAudio.play().catch(() => {});
+        return;
+      } catch (e) {}
+    }
   }
 
   document.addEventListener('click', initAudio, { once: true });
@@ -288,9 +276,10 @@ document.addEventListener('DOMContentLoaded', () => {
       currentX = x;
       currentY = y;
 
+      playSpraySound();
+
       if (!hasStarted) {
         hasStarted = true;
-        playSpraySound();
         hideHeroLogo();
       }
 
