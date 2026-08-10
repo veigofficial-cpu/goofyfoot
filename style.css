@@ -454,8 +454,8 @@ button,
    ======================================== */
 .cicada-fab {
   position: fixed;
-  right: 32px;
-  bottom: 32px;
+  right: 100px;
+  bottom: 300px;
   width: 60px;
   height: 60px;
   z-index: 999;
@@ -484,7 +484,7 @@ button,
 .cicada-fab-sprite {
   width: 60px;
   height: 60px;
-  background-image: url('images/floating%20button_1.png');
+  background-image: url('images/floating%20button_2.png');
   background-repeat: no-repeat;
   background-position: 0px 0px;
   background-size: 540px 60px;
@@ -520,8 +520,8 @@ button,
 
 @media (max-width: 768px) {
   .cicada-fab {
-    right: 20px;
-    bottom: 24px;
+    right: clamp(16px, 4vw, 32px);
+    bottom: clamp(24px, 15vh, 120px);
     width: 52px;
     height: 52px;
   }
