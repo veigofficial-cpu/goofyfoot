@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fade();
     }
 
-    // 리셋 버튼 클릭 시 스프레이 캔버스 초기화 및 로고 복원
+    // 리셋 버튼 클릭 시 스프레이 캔버스 초기화 및 로고 복원 (타 섹션 스크롤 시 상단 복귀)
     const sprayResetBtn = document.getElementById('spray-reset-btn');
     if (sprayResetBtn) {
       sprayResetBtn.addEventListener('click', (e) => {
@@ -200,6 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
         fillWhite();
         hasStarted = false;
         showHeroLogo();
+        if (window.scrollY > 50) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       });
     }
 

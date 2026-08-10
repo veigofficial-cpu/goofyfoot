@@ -657,15 +657,16 @@ button,
    TOP-RIGHT BGM SOUND TOGGLE
    ======================================== */
 /* ========================================
-   TOP CONTROLS: RESET & SOUND TOGGLE (RIGHT)
+   TOP CONTROLS: RESET & SOUND TOGGLE (FIXED TOP-RIGHT)
    ======================================== */
 .spray-reset-btn {
-  position: fixed;
-  top: 28px;
-  right: 86px;
+  position: fixed !important;
+  top: 28px !important;
+  right: 86px !important;
+  left: auto !important;
   width: 38px;
   height: 38px;
-  z-index: 1000;
+  z-index: 99999 !important;
   background: transparent;
   border: none;
   padding: 0;
@@ -679,12 +680,14 @@ button,
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
 }
 
 .spray-reset-btn img {
   width: 38px;
   height: 38px;
   display: block;
+  pointer-events: none;
 }
 
 .spray-reset-btn:hover {
@@ -696,12 +699,12 @@ button,
 }
 
 .bgm-toggle-btn {
-  position: fixed;
-  top: 28px;
-  right: 36px;
+  position: fixed !important;
+  top: 28px !important;
+  right: 36px !important;
   width: 38px;
   height: 38px;
-  z-index: 1000;
+  z-index: 99999 !important;
   background: transparent;
   border: none;
   padding: 0;
@@ -715,12 +718,14 @@ button,
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
 }
 
 .bgm-toggle-btn img {
   width: 38px;
   height: 38px;
   display: block;
+  pointer-events: none;
 }
 
 .bgm-toggle-btn:hover {
@@ -735,12 +740,12 @@ button,
    CICADA FLOATING ACTION BUTTON (80×80px)
    ======================================== */
 .cicada-fab {
-  position: fixed;
-  top: 24px;
-  left: 36px;
+  position: fixed !important;
+  top: 24px !important;
+  left: 36px !important;
   width: 80px;
   height: 80px;
-  z-index: 999;
+  z-index: 99999 !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -753,6 +758,7 @@ button,
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
 }
 
 .cicada-fab:hover {
