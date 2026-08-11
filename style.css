@@ -388,6 +388,7 @@ button,
   align-items: center;
   justify-content: center;
   color: #000000;
+  margin-right: 10px;
   transition: transform 0.45s cubic-bezier(0.2, 0, 0.05, 1);
 }
 
