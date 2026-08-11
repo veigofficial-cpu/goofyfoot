@@ -839,8 +839,9 @@ button,
   .bgm-toggle-btn {
     top: 20px !important;
     right: 20px !important;
-    width: 32px !important;
-    height: 32px !important;
+    left: auto !important;
+    width: 38px !important;
+    height: 38px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -848,17 +849,17 @@ button,
   }
 
   .bgm-toggle-btn img {
-    width: 32px !important;
-    height: 32px !important;
+    width: 38px !important;
+    height: 38px !important;
     border: none !important;
   }
 
   .spray-reset-btn {
     top: 20px !important;
-    right: 60px !important;
+    right: 68px !important;
     left: auto !important;
-    width: 32px !important;
-    height: 32px !important;
+    width: 38px !important;
+    height: 38px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -866,26 +867,31 @@ button,
   }
 
   .spray-reset-btn img {
-    width: 32px !important;
-    height: 32px !important;
+    width: 38px !important;
+    height: 38px !important;
     border: none !important;
   }
 
   .cicada-fab {
-    top: 15px !important;
-    left: 9px !important;
-    width: 40px !important;
-    height: 40px !important;
+    top: 20px !important;
+    left: 20px !important;
+    right: auto !important;
+    width: 38px !important;
+    height: 38px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 99999 !important;
   }
 
   .cicada-fab-sprite {
-    width: 40px !important;
-    height: 40px !important;
-    background-size: 360px 40px !important;
+    width: 38px !important;
+    height: 38px !important;
+    background-size: 342px 38px !important;
   }
 
   @keyframes cicada-wing-flutter {
@@ -893,7 +899,7 @@ button,
       background-position: 0px 0px;
     }
     to {
-      background-position: -320px 0px;
+      background-position: -304px 0px;
     }
   }
 
@@ -949,8 +955,9 @@ button,
 
   .product-explain-visual {
     width: 100%;
-    height: 48vh;
-    min-height: 320px;
+    height: auto !important;
+    min-height: 280px !important;
+    max-height: 45vh !important;
     border-right: none;
     border-bottom: 1px solid #000000;
     padding: 30px 20px;

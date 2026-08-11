@@ -394,6 +394,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isOpen) {
         item.classList.add('is-open');
         header.setAttribute('aria-expanded', 'true');
+
+        if (window.innerWidth <= 768) {
+          setTimeout(() => {
+            const rect = header.getBoundingClientRect();
+            if (rect.top < 60 || rect.top > window.innerHeight * 0.4) {
+              const targetY = window.pageYOffset + rect.top - 70;
+              window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+          }, 50);
+        }
       }
     });
   });
