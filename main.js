@@ -11,6 +11,20 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // -------------------------------------------------------
+  // Always Start at Section 1 (Top Hero) on Page Load / Link Entry
+  // -------------------------------------------------------
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
+  window.scrollTo(0, 0);
+  window.addEventListener('load', () => {
+    window.scrollTo(0, 0);
+  });
+
+  // -------------------------------------------------------
   // Web Audio API (iOS Safari 호환)
   // -------------------------------------------------------
   let audioCtx = null;
