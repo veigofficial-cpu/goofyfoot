@@ -873,11 +873,11 @@ button,
   }
 
   .cicada-fab {
-    top: 20px !important;
-    left: 20px !important;
+    top: 14px !important;
+    left: 8px !important;
     right: auto !important;
-    width: 38px !important;
-    height: 38px !important;
+    width: 50px !important;
+    height: 50px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -889,9 +889,9 @@ button,
   }
 
   .cicada-fab-sprite {
-    width: 38px !important;
-    height: 38px !important;
-    background-size: 342px 38px !important;
+    width: 50px !important;
+    height: 50px !important;
+    background-size: 450px 50px !important;
   }
 
   @keyframes cicada-wing-flutter {
@@ -899,7 +899,7 @@ button,
       background-position: 0px 0px;
     }
     to {
-      background-position: -304px 0px;
+      background-position: -400px 0px;
     }
   }
 
