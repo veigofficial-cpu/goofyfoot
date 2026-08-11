@@ -619,7 +619,7 @@ button,
   right: 45px;
 }
 
-/* footer-bottom-info: border-top 제거 */
+/* footer-bottom-info: 2-column layout (Left: Business info, Right: Goofy Foot Logo) */
 .footer-bottom-info {
   width: 100%;
   display: flex;
@@ -629,7 +629,7 @@ button,
   font-family: var(--font-kr);
   font-size: 10px;
   font-weight: 400;
-  line-height: 15px;
+  line-height: 16px;
   color: #8D8D8D;
   margin-top: auto;
   z-index: 5;
@@ -642,20 +642,16 @@ button,
   flex-direction: column;
   justify-content: flex-end;
   align-self: flex-end;
+  gap: 2px;
 }
 
-.info-center {
-  flex: 1;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  align-self: flex-end;
+.info-left p {
+  margin: 0;
+  white-space: nowrap;
 }
 
 .info-right {
-  flex: 1;
+  flex: 0 0 auto;
   text-align: right;
   display: flex;
   align-items: flex-end;
@@ -992,11 +988,11 @@ button,
   .footer-bottom-info {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 12px;
+    align-items: flex-start;
+    text-align: left;
+    gap: 14px;
     font-size: 9px;
-    line-height: 14px;
+    line-height: 15px;
     padding-bottom: 16px;
   }
 
@@ -1004,7 +1000,7 @@ button,
     order: 1;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-bottom: 4px;
   }
@@ -1012,15 +1008,12 @@ button,
   .info-left {
     order: 2;
     width: 100%;
-    text-align: center;
-    align-items: center;
+    text-align: left;
+    align-items: flex-start;
   }
 
-  .info-center {
-    order: 3;
-    width: 100%;
-    text-align: center;
-    align-items: center;
+  .info-left p {
+    white-space: normal;
   }
 
   .footer-logo-img {
