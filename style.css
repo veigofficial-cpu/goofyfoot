@@ -581,7 +581,8 @@ button,
   pointer-events: auto;
   width: 208px;
   height: 50px;
-  background: #CCCCCC;
+  background: #FFFFFF;
+  border: 1px solid #000000;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -600,8 +601,9 @@ button,
 }
 
 .btn-smart-store:hover {
-  background: #111111;
+  background: #000000;
   color: #FFFFFF;
+  border-color: #000000;
 }
 
 .btn-smart-store:hover .btn-arrow {
