@@ -841,11 +841,16 @@ button,
     right: 20px;
     width: 32px;
     height: 32px;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
 
   .bgm-toggle-btn img {
     width: 32px;
     height: 32px;
+    border: none !important;
   }
 
   .spray-reset-btn {
@@ -854,18 +859,27 @@ button,
     left: auto;
     width: 32px;
     height: 32px;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
 
   .spray-reset-btn img {
     width: 32px;
     height: 32px;
+    border: none !important;
   }
 
   .cicada-fab {
-    top: 16px;
-    left: 20px;
+    top: 14px;
+    left: 4px;
     width: 50px;
     height: 50px;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
 
   .cicada-fab-sprite {

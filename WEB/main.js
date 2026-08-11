@@ -416,11 +416,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!bgmToggleBtn) return;
     if (soundIconImg) {
       if (playing) {
-        soundIconImg.src = 'svg/sound%20on%20icon_1.svg?v=2';
+        soundIconImg.src = 'svg/sound%20on%20icon_1.svg?v=99';
         soundIconImg.alt = 'Sound On';
         bgmToggleBtn.setAttribute('aria-label', 'Sound On (Click to turn off)');
       } else {
-        soundIconImg.src = 'svg/sound%20off%20icon_2.svg?v=2';
+        soundIconImg.src = 'svg/sound%20off%20icon_2.svg?v=99';
         soundIconImg.alt = 'Sound Off';
         bgmToggleBtn.setAttribute('aria-label', 'Sound Off (Click to turn on)');
       }
