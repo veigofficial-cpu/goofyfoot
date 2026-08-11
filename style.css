@@ -258,6 +258,18 @@ button,
   margin: 0;
 }
 
+.story-subtitle.scroll-reveal.is-visible {
+  transition-delay: 0.04s;
+}
+
+.story-english-text.scroll-reveal.is-visible {
+  transition-delay: 0.16s;
+}
+
+.story-korean-text.scroll-reveal.is-visible {
+  transition-delay: 0.28s;
+}
+
 /* ========================================
    SECTION 2.5: PRODUCT EXPLAIN (1920×1080 — 2-COLUMN ACCORDION)
    ======================================== */

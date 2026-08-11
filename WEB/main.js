@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('touchstart', initAudio, { passive: true, once: true });
 
   // -------------------------------------------------------
-  // Scroll Reveal Observer
+  // Scroll Reveal Observer (Triggers every time on scroll)
   // -------------------------------------------------------
   const revealElements = document.querySelectorAll('.scroll-reveal');
   
@@ -56,11 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
+        } else {
+          entry.target.classList.remove('is-visible');
         }
       });
     }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -50px 0px'
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
     });
 
     revealElements.forEach((el) => revealObserver.observe(el));
