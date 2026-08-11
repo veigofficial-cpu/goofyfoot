@@ -774,12 +774,12 @@ button,
    CICADA FLOATING ACTION BUTTON (80×80px)
    ======================================== */
 .cicada-fab {
-  position: fixed !important;
-  top: 24px !important;
-  left: 36px !important;
+  position: fixed;
+  top: 24px;
+  left: 36px;
   width: 80px;
   height: 80px;
-  z-index: 99999 !important;
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -837,10 +837,10 @@ button,
 
 @media (max-width: 768px) {
   .bgm-toggle-btn {
-    top: 20px;
-    right: 20px;
-    width: 32px;
-    height: 32px;
+    top: 20px !important;
+    right: 20px !important;
+    width: 32px !important;
+    height: 32px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -848,17 +848,17 @@ button,
   }
 
   .bgm-toggle-btn img {
-    width: 32px;
-    height: 32px;
+    width: 32px !important;
+    height: 32px !important;
     border: none !important;
   }
 
   .spray-reset-btn {
-    top: 20px;
-    right: 60px;
-    left: auto;
-    width: 32px;
-    height: 32px;
+    top: 20px !important;
+    right: 60px !important;
+    left: auto !important;
+    width: 32px !important;
+    height: 32px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -866,16 +866,16 @@ button,
   }
 
   .spray-reset-btn img {
-    width: 32px;
-    height: 32px;
+    width: 32px !important;
+    height: 32px !important;
     border: none !important;
   }
 
   .cicada-fab {
-    top: 14px;
-    left: 4px;
-    width: 50px;
-    height: 50px;
+    top: 15px !important;
+    left: 9px !important;
+    width: 40px !important;
+    height: 40px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -883,9 +883,9 @@ button,
   }
 
   .cicada-fab-sprite {
-    width: 50px;
-    height: 50px;
-    background-size: 450px 50px;
+    width: 40px !important;
+    height: 40px !important;
+    background-size: 360px 40px !important;
   }
 
   @keyframes cicada-wing-flutter {
@@ -893,7 +893,7 @@ button,
       background-position: 0px 0px;
     }
     to {
-      background-position: -400px 0px;
+      background-position: -320px 0px;
     }
   }
 
@@ -932,14 +932,19 @@ button,
   }
 
   .section-product-explain {
-    height: auto;
-    min-height: 100vh;
+    display: block !important;
+    height: auto !important;
+    min-height: auto !important;
     margin-bottom: 80px;
   }
 
   .product-explain-container {
-    flex-direction: column;
-    height: auto;
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: auto !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
   }
 
   .product-explain-visual {
