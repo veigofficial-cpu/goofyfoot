@@ -676,7 +676,7 @@ button,
 .spray-reset-btn {
   position: absolute;
   top: 98px;
-  right: 36px;
+  right: 48px;
   left: auto;
   width: 38px;
   height: 38px;
@@ -715,7 +715,7 @@ button,
 .bgm-toggle-btn {
   position: absolute;
   top: 48px;
-  right: 36px;
+  right: 48px;
   width: 38px;
   height: 38px;
   z-index: 100;
@@ -818,7 +818,7 @@ button,
 @media (max-width: 768px) {
   .bgm-toggle-btn {
     top: 40px !important;
-    right: 20px !important;
+    right: 14px !important;
     left: auto !important;
     width: 38px !important;
     height: 38px !important;
@@ -836,7 +836,7 @@ button,
 
   .spray-reset-btn {
     top: 88px !important;
-    right: 20px !important;
+    right: 14px !important;
     left: auto !important;
     width: 38px !important;
     height: 38px !important;
