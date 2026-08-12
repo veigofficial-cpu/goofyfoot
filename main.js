@@ -227,14 +227,14 @@ document.addEventListener('DOMContentLoaded', () => {
       inactivityTimer = setTimeout(resetToWhite, INACTIVITY_TIMEOUT);
     }
 
-    // 향수 에어로졸 스티플 미스트 (초미세 분자 & 외곽 분자수 50% 감축)
+    // 향수 에어로졸 스티플 미스트 (풍성한 코어 영역 50% 확장 & 초미세 분자)
     function triggerPerfumeBurst(x, y) {
       const rect = canvas.getBoundingClientRect();
       const cx = x - rect.left;
       const cy = y - rect.top;
 
       const isMobile = window.innerWidth < 768 || ('ontouchstart' in window);
-      const maxRadius = isMobile ? 220 : 325;
+      const maxRadius = isMobile ? 240 : 350;
       const startTime = performance.now();
       const DURATION = isMobile ? 600 : 800;
 
@@ -247,14 +247,14 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.save();
         ctx.globalCompositeOperation = 'destination-out';
 
-        const frameDots = isMobile ? 6000 : 38000;
+        const frameDots = isMobile ? 9000 : 56000;
         const opacitySlices = isMobile ? 5 : 8;
         const dotsPerSlice = Math.floor(frameDots / opacitySlices);
 
         for (let s = 0; s < opacitySlices; s++) {
           const t = s / (opacitySlices - 1);
-          const alpha = 0.95 * Math.pow(1 - t, 1.8) + 0.03;
-          const sliceMaxRadius = currentRadius * Math.pow(1 - (s / opacitySlices) * 0.65, 1.1);
+          const alpha = 0.98 * Math.pow(1 - t, 1.4) + 0.05;
+          const sliceMaxRadius = currentRadius * Math.pow(1 - (s / opacitySlices) * 0.55, 1.1);
 
           ctx.globalAlpha = alpha;
           ctx.beginPath();
@@ -262,11 +262,11 @@ document.addEventListener('DOMContentLoaded', () => {
           for (let i = 0; i < dotsPerSlice; i++) {
             const angle = Math.random() * Math.PI * 2;
             const u = Math.random();
-            // 외곽으로 갈수록 분자 수가 50% 줄어드는 농도 분포
-            const dist = Math.pow(u, 2.6) * sliceMaxRadius;
+            // 풍성한 중심 영역을 50% 넓히는 밀도 분포
+            const dist = Math.pow(u, 1.85) * sliceMaxRadius;
 
-            // 외곽 영역(반경 40% 이상) 분자 수 50% 필터링
-            if (dist > sliceMaxRadius * 0.4 && Math.random() < 0.5) {
+            // 풍성한 코어 영역(반경 60%까지) 확장 후 외곽 영역만 50% 필터링
+            if (dist > sliceMaxRadius * 0.60 && Math.random() < 0.5) {
               continue;
             }
 
