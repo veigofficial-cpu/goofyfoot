@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isUserExplicitlyMuted) return;
     if (sprayAudio) {
       try {
-        sprayAudio.volume = 0.75;
+        sprayAudio.volume = 0.5;
         sprayAudio.currentTime = 0;
         sprayAudio.play().catch(() => {});
         return;
@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let isUserExplicitlyMuted = false;
 
   if (bgmAudio) {
-    bgmAudio.volume = 0.5; // 50% volume
+    bgmAudio.volume = 0.75; // 75% volume
   }
 
   const soundIconImg = document.getElementById('sound-icon-img');
@@ -452,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function playBGM() {
     if (!bgmAudio || isUserExplicitlyMuted) return;
-    bgmAudio.volume = 0.5;
+    bgmAudio.volume = 0.75;
     const playPromise = bgmAudio.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {
