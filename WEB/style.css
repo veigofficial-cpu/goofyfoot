@@ -675,8 +675,8 @@ button,
    ======================================== */
 .spray-reset-btn {
   position: absolute;
-  top: 28px;
-  right: 86px;
+  top: 78px;
+  right: 36px;
   left: auto;
   width: 38px;
   height: 38px;
@@ -835,8 +835,8 @@ button,
   }
 
   .spray-reset-btn {
-    top: 20px !important;
-    right: 68px !important;
+    top: 68px !important;
+    right: 20px !important;
     left: auto !important;
     width: 38px !important;
     height: 38px !important;
