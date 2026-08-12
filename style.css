@@ -675,7 +675,7 @@ button,
    ======================================== */
 .spray-reset-btn {
   position: absolute;
-  top: 78px;
+  top: 98px;
   right: 36px;
   left: auto;
   width: 38px;
@@ -714,7 +714,7 @@ button,
 
 .bgm-toggle-btn {
   position: absolute;
-  top: 28px;
+  top: 48px;
   right: 36px;
   width: 38px;
   height: 38px;
@@ -755,7 +755,7 @@ button,
    ======================================== */
 .cicada-fab {
   position: fixed;
-  top: 24px;
+  top: 48px;
   left: 36px;
   width: 80px;
   height: 80px;
@@ -817,7 +817,7 @@ button,
 
 @media (max-width: 768px) {
   .bgm-toggle-btn {
-    top: 20px !important;
+    top: 40px !important;
     right: 20px !important;
     left: auto !important;
     width: 38px !important;
@@ -835,7 +835,7 @@ button,
   }
 
   .spray-reset-btn {
-    top: 68px !important;
+    top: 88px !important;
     right: 20px !important;
     left: auto !important;
     width: 38px !important;
@@ -853,7 +853,7 @@ button,
   }
 
   .cicada-fab {
-    top: 14px !important;
+    top: 34px !important;
     left: 8px !important;
     right: auto !important;
     width: 50px !important;
