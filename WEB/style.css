@@ -660,11 +660,11 @@ button,
    ======================================== */
 .spray-reset-btn {
   position: absolute;
-  top: 98px;
+  top: 94px;
   right: 48px;
   left: auto;
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   z-index: 100;
   background: transparent;
   border: none;
@@ -683,8 +683,8 @@ button,
 }
 
 .spray-reset-btn img {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   display: block;
   pointer-events: none;
 }
@@ -701,8 +701,8 @@ button,
   position: absolute;
   top: 48px;
   right: 48px;
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   z-index: 100;
   background: transparent;
   border: none;
@@ -721,8 +721,8 @@ button,
 }
 
 .bgm-toggle-btn img {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   display: block;
   pointer-events: none;
 }
@@ -802,11 +802,11 @@ button,
 
 @media (max-width: 768px) {
   .bgm-toggle-btn {
-    top: 40px !important;
+    top: 38px !important;
     right: 16px !important;
     left: auto !important;
-    width: 30px !important;
-    height: 30px !important;
+    width: 34px !important;
+    height: 34px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -817,17 +817,17 @@ button,
   }
 
   .bgm-toggle-btn img {
-    width: 30px !important;
-    height: 30px !important;
+    width: 34px !important;
+    height: 34px !important;
     border: none !important;
   }
 
   .spray-reset-btn {
-    top: 40px !important;
-    right: 54px !important;
+    top: 38px !important;
+    right: 62px !important;
     left: auto !important;
-    width: 30px !important;
-    height: 30px !important;
+    width: 34px !important;
+    height: 34px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -838,8 +838,8 @@ button,
   }
 
   .spray-reset-btn img {
-    width: 30px !important;
-    height: 30px !important;
+    width: 34px !important;
+    height: 34px !important;
     border: none !important;
   }
 
