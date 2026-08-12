@@ -660,11 +660,11 @@ button,
    ======================================== */
 .spray-reset-btn {
   position: absolute;
-  top: 104px;
+  top: 98px;
   right: 48px;
   left: auto;
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   z-index: 100;
   background: transparent;
   border: none;
@@ -683,8 +683,8 @@ button,
 }
 
 .spray-reset-btn img {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   display: block;
   pointer-events: none;
 }
@@ -701,8 +701,8 @@ button,
   position: absolute;
   top: 48px;
   right: 48px;
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   z-index: 100;
   background: transparent;
   border: none;
@@ -721,8 +721,8 @@ button,
 }
 
 .bgm-toggle-btn img {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   display: block;
   pointer-events: none;
 }
@@ -736,14 +736,14 @@ button,
 }
 
 /* ========================================
-   CICADA FLOATING ACTION BUTTON (48×48px)
+   CICADA FLOATING ACTION BUTTON (80×80px)
    ======================================== */
 .cicada-fab {
   position: fixed;
   top: 48px;
-  left: 48px;
-  width: 48px;
-  height: 48px;
+  left: 36px;
+  width: 80px;
+  height: 80px;
   z-index: 99999;
   display: flex;
   align-items: center;
@@ -769,12 +769,12 @@ button,
 }
 
 .cicada-fab-sprite {
-  width: 48px;
-  height: 48px;
+  width: 80px;
+  height: 80px;
   background-image: url('svg/floating%20button_4.svg?v=1');
   background-repeat: no-repeat;
   background-position: 0px 0px;
-  background-size: 432px 48px;
+  background-size: 720px 80px;
 }
 
 .cicada-fab:hover .cicada-fab-sprite {
@@ -786,7 +786,7 @@ button,
     background-position: 0px 0px;
   }
   to {
-    background-position: -384px 0px;
+    background-position: -640px 0px;
   }
 }
 
@@ -802,53 +802,47 @@ button,
 
 @media (max-width: 768px) {
   .bgm-toggle-btn {
-    top: 36px !important;
-    right: 20px !important;
+    top: 40px !important;
+    right: 14px !important;
     left: auto !important;
-    width: 20px !important;
-    height: 20px !important;
+    width: 38px !important;
+    height: 38px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
   }
 
   .bgm-toggle-btn img {
-    width: 20px !important;
-    height: 20px !important;
+    width: 38px !important;
+    height: 38px !important;
     border: none !important;
   }
 
   .spray-reset-btn {
-    top: 64px !important;
-    right: 20px !important;
+    top: 88px !important;
+    right: 14px !important;
     left: auto !important;
-    width: 20px !important;
-    height: 20px !important;
+    width: 38px !important;
+    height: 38px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
   }
 
   .spray-reset-btn img {
-    width: 20px !important;
-    height: 20px !important;
+    width: 38px !important;
+    height: 38px !important;
     border: none !important;
   }
 
   .cicada-fab {
-    top: 36px !important;
-    left: 20px !important;
+    top: 34px !important;
+    left: 8px !important;
     right: auto !important;
-    width: 48px !important;
-    height: 48px !important;
+    width: 50px !important;
+    height: 50px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -860,9 +854,9 @@ button,
   }
 
   .cicada-fab-sprite {
-    width: 48px !important;
-    height: 48px !important;
-    background-size: 432px 48px !important;
+    width: 50px !important;
+    height: 50px !important;
+    background-size: 450px 50px !important;
   }
 
   @keyframes cicada-wing-flutter {
@@ -870,7 +864,7 @@ button,
       background-position: 0px 0px;
     }
     to {
-      background-position: -384px 0px;
+      background-position: -400px 0px;
     }
   }
 
