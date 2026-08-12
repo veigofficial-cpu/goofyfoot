@@ -805,35 +805,41 @@ button,
     top: 36px !important;
     right: 20px !important;
     left: auto !important;
-    width: 36px !important;
-    height: 36px !important;
+    width: 20px !important;
+    height: 20px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .bgm-toggle-btn img {
-    width: 36px !important;
-    height: 36px !important;
+    width: 20px !important;
+    height: 20px !important;
     border: none !important;
   }
 
   .spray-reset-btn {
-    top: 80px !important;
+    top: 64px !important;
     right: 20px !important;
     left: auto !important;
-    width: 36px !important;
-    height: 36px !important;
+    width: 20px !important;
+    height: 20px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .spray-reset-btn img {
-    width: 36px !important;
-    height: 36px !important;
+    width: 20px !important;
+    height: 20px !important;
     border: none !important;
   }
 
@@ -841,8 +847,8 @@ button,
     top: 36px !important;
     left: 20px !important;
     right: auto !important;
-    width: 36px !important;
-    height: 36px !important;
+    width: 48px !important;
+    height: 48px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -854,9 +860,9 @@ button,
   }
 
   .cicada-fab-sprite {
-    width: 36px !important;
-    height: 36px !important;
-    background-size: 324px 36px !important;
+    width: 48px !important;
+    height: 48px !important;
+    background-size: 432px 48px !important;
   }
 
   @keyframes cicada-wing-flutter {
@@ -864,7 +870,7 @@ button,
       background-position: 0px 0px;
     }
     to {
-      background-position: -288px 0px;
+      background-position: -384px 0px;
     }
   }
 
