@@ -803,37 +803,43 @@ button,
 @media (max-width: 768px) {
   .bgm-toggle-btn {
     top: 40px !important;
-    right: 14px !important;
+    right: 16px !important;
     left: auto !important;
-    width: 38px !important;
-    height: 38px !important;
+    width: 30px !important;
+    height: 30px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .bgm-toggle-btn img {
-    width: 38px !important;
-    height: 38px !important;
+    width: 30px !important;
+    height: 30px !important;
     border: none !important;
   }
 
   .spray-reset-btn {
-    top: 88px !important;
-    right: 14px !important;
+    top: 40px !important;
+    right: 54px !important;
     left: auto !important;
-    width: 38px !important;
-    height: 38px !important;
+    width: 30px !important;
+    height: 30px !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .spray-reset-btn img {
-    width: 38px !important;
-    height: 38px !important;
+    width: 30px !important;
+    height: 30px !important;
     border: none !important;
   }
 
