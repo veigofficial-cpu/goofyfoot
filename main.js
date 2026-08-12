@@ -227,14 +227,14 @@ document.addEventListener('DOMContentLoaded', () => {
       inactivityTimer = setTimeout(resetToWhite, INACTIVITY_TIMEOUT);
     }
 
-    // 향수 에어로졸 스티플 미스트 (자연스러운 중간 밀집도 스무스스텝 그라데이션)
+    // 향수 에어로졸 스티플 미스트 (중심 밀집도 80% 대폭 확장 & 퀸틱 스무더스텝 분수 그라데이션)
     function triggerPerfumeBurst(x, y) {
       const rect = canvas.getBoundingClientRect();
       const cx = x - rect.left;
       const cy = y - rect.top;
 
       const isMobile = window.innerWidth < 768 || ('ontouchstart' in window);
-      const maxRadius = isMobile ? 240 : 350;
+      const maxRadius = isMobile ? 250 : 360;
       const startTime = performance.now();
       const DURATION = isMobile ? 600 : 800;
 
@@ -242,19 +242,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const elapsed = now - startTime;
         const progress = Math.min(1, elapsed / DURATION);
         const easeProgress = 1 - Math.pow(1 - progress, 3);
-        const currentRadius = maxRadius * (0.2 + 0.8 * easeProgress);
+        const currentRadius = maxRadius * (0.25 + 0.75 * easeProgress);
 
         ctx.save();
         ctx.globalCompositeOperation = 'destination-out';
 
-        const frameDots = isMobile ? 9000 : 56000;
-        const opacitySlices = isMobile ? 5 : 8;
+        const frameDots = isMobile ? 14000 : 85000;
+        const opacitySlices = isMobile ? 6 : 9;
         const dotsPerSlice = Math.floor(frameDots / opacitySlices);
 
         for (let s = 0; s < opacitySlices; s++) {
           const t = s / (opacitySlices - 1);
-          const alpha = 0.98 * Math.pow(1 - t, 1.4) + 0.05;
-          const sliceMaxRadius = currentRadius * Math.pow(1 - (s / opacitySlices) * 0.55, 1.1);
+          const alpha = 0.99 * Math.pow(1 - t, 1.2) + 0.08;
+          const sliceMaxRadius = currentRadius * Math.pow(1 - (s / opacitySlices) * 0.45, 1.05);
 
           ctx.globalAlpha = alpha;
           ctx.beginPath();
@@ -262,15 +262,15 @@ document.addEventListener('DOMContentLoaded', () => {
           for (let i = 0; i < dotsPerSlice; i++) {
             const angle = Math.random() * Math.PI * 2;
             const u = Math.random();
-            // 유기적인 중심 밀도 분포
-            const dist = Math.pow(u, 1.65) * sliceMaxRadius;
+            // 중심 분자 밀집 영역을 80% 확장하는 균일 코어 분포
+            const dist = Math.pow(u, 1.25) * sliceMaxRadius;
             const normDist = dist / sliceMaxRadius;
 
-            // 중간 단계가 완만하고 자연스럽게 이어지는 스무스스텝(Hermite Smoothstep) 밀도 필터링
-            if (normDist > 0.40) {
-              const k = Math.min(1, (normDist - 0.40) / 0.60);
-              const smoothFalloff = 3 * k * k - 2 * k * k * k; // 0 -> 1 부드러운 곡선
-              const survivalProb = 1.0 - 0.65 * smoothFalloff; // 1.0 -> 0.35 연속적 감쇄
+            // 중심 65% 반경까지 풍성한 밀집도 유지, 외곽 35% 구간은 퀸틱(Smootherstep) 곡선으로 초미세 분무 감쇄
+            if (normDist > 0.65) {
+              const k = Math.min(1, (normDist - 0.65) / 0.35);
+              const smootherFalloff = k * k * k * (k * (k * 6 - 15) + 10); // 5차 퀸틱 스무딩
+              const survivalProb = 1.0 - 0.82 * smootherFalloff; // 1.0 -> 0.18 완전 연속 감쇄
               if (Math.random() > survivalProb) {
                 continue;
               }
