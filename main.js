@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
       inactivityTimer = setTimeout(resetToWhite, INACTIVITY_TIMEOUT);
     }
 
-    // 향수 에어로졸 스티플 미스트 (모바일 GPU 최적화)
+    // 향수 에어로졸 스티플 미스트 (초미세 분자 & 외곽 분자수 50% 감축)
     function triggerPerfumeBurst(x, y) {
       const rect = canvas.getBoundingClientRect();
       const cx = x - rect.left;
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.save();
         ctx.globalCompositeOperation = 'destination-out';
 
-        const frameDots = isMobile ? 4000 : 28000;
+        const frameDots = isMobile ? 6000 : 38000;
         const opacitySlices = isMobile ? 5 : 8;
         const dotsPerSlice = Math.floor(frameDots / opacitySlices);
 
@@ -262,12 +262,19 @@ document.addEventListener('DOMContentLoaded', () => {
           for (let i = 0; i < dotsPerSlice; i++) {
             const angle = Math.random() * Math.PI * 2;
             const u = Math.random();
-            const dist = Math.pow(u, 2.0) * sliceMaxRadius;
+            // 외곽으로 갈수록 분자 수가 50% 줄어드는 농도 분포
+            const dist = Math.pow(u, 2.6) * sliceMaxRadius;
+
+            // 외곽 영역(반경 40% 이상) 분자 수 50% 필터링
+            if (dist > sliceMaxRadius * 0.4 && Math.random() < 0.5) {
+              continue;
+            }
 
             const px = cx + Math.cos(angle) * dist;
             const py = cy + Math.sin(angle) * dist;
 
-            const size = isMobile ? (Math.random() * 1.4 + 0.6) : (Math.random() * 0.8 + 0.2);
+            // 전체 분자 크기 60% 축소 (초미세 입자)
+            const size = isMobile ? (Math.random() * 0.56 + 0.24) : (Math.random() * 0.32 + 0.08);
             ctx.rect(px, py, size, size);
           }
           ctx.fill();
