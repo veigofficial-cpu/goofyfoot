@@ -139,29 +139,7 @@ button,
 }
 
 .spray-hero-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 4;
-  pointer-events: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 0 20px;
-  transition: opacity 0.6s ease;
-}
-
-.spray-hero-logo.hidden {
-  opacity: 0;
-}
-
-.spray-logo-img {
-  width: clamp(196px, 31.5vw, 504px);
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.05));
+  display: none !important;
 }
 
 .spray-hint {
@@ -915,9 +893,7 @@ button,
     min-height: 560px;
   }
 
-  .spray-logo-img {
-    width: clamp(154px, 52.5vw, 315px);
-  }
+
 
   .story-center-wrapper {
     padding: 4rem 1.5rem;
