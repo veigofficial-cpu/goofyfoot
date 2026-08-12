@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
       inactivityTimer = setTimeout(resetToWhite, INACTIVITY_TIMEOUT);
     }
 
-    // 향수 에어로졸 스티플 미스트 (풍성한 코어 영역 50% 확장 & 초미세 분자)
+    // 향수 에어로졸 스티플 미스트 (자연스러운 중간 밀집도 스무스스텝 그라데이션)
     function triggerPerfumeBurst(x, y) {
       const rect = canvas.getBoundingClientRect();
       const cx = x - rect.left;
@@ -262,20 +262,26 @@ document.addEventListener('DOMContentLoaded', () => {
           for (let i = 0; i < dotsPerSlice; i++) {
             const angle = Math.random() * Math.PI * 2;
             const u = Math.random();
-            // 풍성한 중심 영역을 50% 넓히는 밀도 분포
-            const dist = Math.pow(u, 1.85) * sliceMaxRadius;
+            // 유기적인 중심 밀도 분포
+            const dist = Math.pow(u, 1.65) * sliceMaxRadius;
+            const normDist = dist / sliceMaxRadius;
 
-            // 풍성한 코어 영역(반경 60%까지) 확장 후 외곽 영역만 50% 필터링
-            if (dist > sliceMaxRadius * 0.60 && Math.random() < 0.5) {
-              continue;
+            // 중간 단계가 완만하고 자연스럽게 이어지는 스무스스텝(Hermite Smoothstep) 밀도 필터링
+            if (normDist > 0.40) {
+              const k = Math.min(1, (normDist - 0.40) / 0.60);
+              const smoothFalloff = 3 * k * k - 2 * k * k * k; // 0 -> 1 부드러운 곡선
+              const survivalProb = 1.0 - 0.65 * smoothFalloff; // 1.0 -> 0.35 연속적 감쇄
+              if (Math.random() > survivalProb) {
+                continue;
+              }
             }
 
             const px = cx + Math.cos(angle) * dist;
             const py = cy + Math.sin(angle) * dist;
 
-            // 전체 분자 크기 60% 축소 (초미세 입자)
-            const size = isMobile ? (Math.random() * 0.56 + 0.24) : (Math.random() * 0.32 + 0.08);
-            ctx.rect(px, py, size, size);
+            // 전체 분자 크기 (초미세 입자)
+            const baseSize = isMobile ? (Math.random() * 0.56 + 0.24) : (Math.random() * 0.32 + 0.08);
+            ctx.rect(px, py, baseSize, baseSize);
           }
           ctx.fill();
         }
