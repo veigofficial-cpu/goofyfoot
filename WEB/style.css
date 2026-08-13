@@ -87,9 +87,10 @@ button,
 .section-spray {
   width: 100vw;
   height: 100vh;
-  min-height: 720px;
+  min-height: 100vh;
   position: relative;
   background: #FFFFFF;
+  touch-action: none;
 }
 
 .spray-reveal-container {
@@ -780,7 +781,7 @@ button,
    RESPONSIVE & MOBILE OPTIMIZATION
    ======================================== */
 @media (max-width: 1024px) {
-  .section-page {
+  .section-page:not(.section-spray) {
     height: auto;
     min-height: 100vh;
   }
@@ -866,8 +867,9 @@ button,
   }
 
   .section-spray {
-    height: 100vh;
-    min-height: 560px;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    touch-action: none !important;
   }
 
 

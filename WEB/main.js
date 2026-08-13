@@ -134,21 +134,32 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.restore();
     }
 
-    // 캔버스 크기 설정 (유효한 너비/높이 보장)
-    function resizeCanvas(forceFill = true) {
+    // 캔버스 크기 설정 (유효한 너비/높이 보장 및 드로잉 상태 보존)
+    function resizeCanvas(forceFill = false) {
       const rect = container.getBoundingClientRect();
       const w = Math.round(rect.width || container.offsetWidth || window.innerWidth || 1920);
       const h = Math.round(rect.height || container.offsetHeight || window.innerHeight || 1080);
 
-      if (w === 0 || h === 0) return;
+      if (w <= 0 || h <= 0) return;
 
       const changed = (canvas.width !== w || canvas.height !== h);
       if (changed) {
-        canvas.width = w;
-        canvas.height = h;
-      }
+        if (hasStarted && canvas.width > 0 && canvas.height > 0) {
+          const tempCanvas = document.createElement('canvas');
+          tempCanvas.width = canvas.width;
+          tempCanvas.height = canvas.height;
+          const tempCtx = tempCanvas.getContext('2d');
+          tempCtx.drawImage(canvas, 0, 0);
 
-      if (forceFill || changed || !hasStarted) {
+          canvas.width = w;
+          canvas.height = h;
+          ctx.drawImage(tempCanvas, 0, 0, w, h);
+        } else {
+          canvas.width = w;
+          canvas.height = h;
+          fillWhite();
+        }
+      } else if (forceFill || !hasStarted) {
         fillWhite();
       }
     }
@@ -355,31 +366,66 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    const interactEl = canvas || container;
+    // 마우스, 펜, 터치를 완벽히 지원하는 통합 포인터/터치 이벤트 리스너
+    [canvas, container].forEach((target) => {
+      if (!target) return;
 
-    // 마우스 및 터치 이벤트 핸들러 (어떤 비율/환경에서도 100% 즉각 반응)
-    interactEl.addEventListener('mousedown', (e) => {
-      onSprayStart(e.clientX, e.clientY);
+      target.addEventListener('pointerdown', (e) => {
+        if (e.button && e.button !== 0) return;
+        try {
+          target.setPointerCapture(e.pointerId);
+        } catch (err) {}
+        onSprayStart(e.clientX, e.clientY);
+      });
+
+      target.addEventListener('pointermove', (e) => {
+        if (isDrawing) {
+          onSprayMove(e.clientX, e.clientY);
+        }
+      });
+
+      target.addEventListener('pointerup', (e) => {
+        try {
+          target.releasePointerCapture(e.pointerId);
+        } catch (err) {}
+        onSprayEnd();
+      });
+
+      target.addEventListener('pointercancel', (e) => {
+        try {
+          target.releasePointerCapture(e.pointerId);
+        } catch (err) {}
+        onSprayEnd();
+      });
+
+      // 모바일 제스처 간섭 방지 Touch 이벤트 핸들러
+      target.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches.length > 0) {
+          e.preventDefault();
+          onSprayStart(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: false });
+
+      target.addEventListener('touchmove', (e) => {
+        if (e.touches && e.touches.length > 0) {
+          e.preventDefault();
+          onSprayMove(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: false });
+
+      target.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        onSprayEnd();
+      }, { passive: false });
+
+      target.addEventListener('touchcancel', (e) => {
+        onSprayEnd();
+      }, { passive: false });
     });
-    window.addEventListener('mousemove', (e) => {
-      onSprayMove(e.clientX, e.clientY);
-    });
+
+    window.addEventListener('pointerup', onSprayEnd);
     window.addEventListener('mouseup', onSprayEnd);
-
-    interactEl.addEventListener('touchstart', (e) => {
-      if (e.touches && e.touches.length > 0) {
-        onSprayStart(e.touches[0].clientX, e.touches[0].clientY);
-      }
-    }, { passive: true });
-
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches && e.touches.length > 0) {
-        onSprayMove(e.touches[0].clientX, e.touches[0].clientY);
-      }
-    }, { passive: true });
-
     window.addEventListener('touchend', onSprayEnd, { passive: true });
-    window.addEventListener('touchcancel', onSprayEnd, { passive: true });
   }
 
   // -------------------------------------------------------
