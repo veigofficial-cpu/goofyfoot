@@ -1015,9 +1015,9 @@ button,
   }
 
   .section-footer {
-    height: 100vh !important;
-    min-height: 560px !important;
-    padding: 0 0 32px 0 !important;
+    height: auto !important;
+    min-height: 38vh !important;
+    padding: 40px 0 24px 0 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-end !important;
