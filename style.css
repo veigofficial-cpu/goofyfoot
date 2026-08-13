@@ -172,6 +172,9 @@ button,
    SECTION 2: BRAND STORY (1920×1080)
    ======================================== */
 .section-story {
+  width: 100vw;
+  height: 135vh;
+  min-height: 972px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -211,9 +214,9 @@ button,
 
 .story-korean-text {
   font-family: var(--font-kr);
-  font-size: 55px;
+  font-size: 47px;
   font-weight: 400;
-  line-height: 72px;
+  line-height: 64px;
   color: #111111;
   max-width: 90vw;
   word-break: keep-all;
