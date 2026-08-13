@@ -596,7 +596,7 @@ button,
   flex-direction: column;
   justify-content: flex-end;
   align-items: stretch;
-  padding: 0 0 48px 0;
+  padding: 0 0 35px 0;
   overflow: hidden;
 }
 
@@ -1043,7 +1043,7 @@ button,
   .section-footer {
     height: auto !important;
     min-height: 38vh !important;
-    padding: 40px 0 24px 0 !important;
+    padding: 40px 0 35px 0 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-end !important;
