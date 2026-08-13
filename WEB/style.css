@@ -979,12 +979,15 @@ button,
 
   .footer-info-single-line {
     padding: 0 20px !important;
-    overflow-x: auto !important;
+    overflow-x: visible !important;
+    text-align: left !important;
   }
 
   .footer-info-single-line p {
-    font-size: 9.5px !important;
-    line-height: 15px !important;
-    white-space: nowrap !important;
+    font-size: 10px !important;
+    line-height: 16px !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
   }
 }
