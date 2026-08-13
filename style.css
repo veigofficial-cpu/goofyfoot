@@ -909,9 +909,10 @@ button,
 
   .product-explain-visual {
     width: 100% !important;
-    height: 48vh !important;
-    min-height: 280px !important;
-    max-height: 52vh !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    aspect-ratio: 961 / 1081 !important;
     border-right: none !important;
     border-bottom: 1px solid #000000 !important;
     padding: 0 !important;
@@ -923,6 +924,7 @@ button,
   .product-vertical-image-stack {
     width: 100% !important;
     height: 100% !important;
+    aspect-ratio: 961 / 1081 !important;
     display: flex !important;
     flex-direction: row !important;
     overflow-x: auto !important;
@@ -940,14 +942,20 @@ button,
     flex: 0 0 100% !important;
     width: 100% !important;
     height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     scroll-snap-align: center !important;
     scroll-snap-stop: always !important;
+    background: #FFFFFF !important;
   }
 
   .vertical-stack-img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;
+    aspect-ratio: 961 / 1081 !important;
+    object-fit: contain !important;
+    display: block !important;
   }
 
   .product-explain-details {
