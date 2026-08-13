@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isUserExplicitlyMuted) return;
     if (sprayAudio) {
       try {
-        sprayAudio.volume = 0.5;
+        sprayAudio.volume = 0.25; // 25% volume
         sprayAudio.currentTime = 0;
         sprayAudio.play().catch(() => {});
         return;
