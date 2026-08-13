@@ -671,8 +671,8 @@ button,
 }
 
 .spray-reset-btn img {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   display: block;
   pointer-events: none;
 }
@@ -826,8 +826,8 @@ button,
   }
 
   .spray-reset-btn img {
-    width: 34px !important;
-    height: 34px !important;
+    width: 31px !important;
+    height: 31px !important;
     border: none !important;
   }
 
