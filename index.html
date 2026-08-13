@@ -13,8 +13,8 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
 
-    <!-- Cache buster v119 -->
-    <link rel="stylesheet" href="style.css?v=119">
+    <!-- Cache buster v120 -->
+    <link rel="stylesheet" href="style.css?v=120">
 </head>
 
 <body>
@@ -76,38 +76,32 @@
             </div>
         </section>
 
-        <!-- SECTION 2.5: PRODUCT EXPLAIN (STICKY & PARALLAX SCROLLING) -->
+        <!-- SECTION 2.5: PRODUCT EXPLAIN (TAMBURINS STYLE: VERTICAL IMAGE STACK & STICKY DETAILS) -->
         <section class="section-page section-product-explain" id="product-explain">
-            <div class="product-explain-sticky-wrapper">
-                <div class="product-explain-container">
-                    <!-- Left Column: Parallax Cross-Fade Image Layers (spr 1~5.png) -->
-                    <div class="product-explain-visual" id="parallax-visual-container">
-                        <div class="parallax-image-layers" id="parallax-layers">
-                            <div class="parallax-layer is-active" data-index="0">
-                                <img src="images/spr%201.png" alt="Goofy Foot Room Spray Angle 1" class="parallax-product-img">
-                            </div>
-                            <div class="parallax-layer" data-index="1">
-                                <img src="images/spr%202.png" alt="Goofy Foot Room Spray Angle 2" class="parallax-product-img">
-                            </div>
-                            <div class="parallax-layer" data-index="2">
-                                <img src="images/spr%203.png" alt="Goofy Foot Room Spray Angle 3" class="parallax-product-img">
-                            </div>
-                            <div class="parallax-layer" data-index="3">
-                                <img src="images/spr%204.png" alt="Goofy Foot Room Spray Angle 4" class="parallax-product-img">
-                            </div>
-                            <div class="parallax-layer" data-index="4">
-                                <img src="images/spr%205.png" alt="Goofy Foot Room Spray Angle 5" class="parallax-product-img">
-                            </div>
+            <div class="product-explain-container">
+                <!-- Left Column: Vertical Image Stack (spr 1~5.png) -->
+                <div class="product-explain-visual" id="product-visual-stack">
+                    <div class="product-vertical-image-stack" id="product-image-stack">
+                        <div class="product-stack-item">
+                            <img src="images/spr%201.png" alt="Goofy Foot Room Spray Angle 1" class="vertical-stack-img" loading="eager">
                         </div>
-
-                        <!-- Minimal Angle Indicator -->
-                        <div class="parallax-progress-bar">
-                            <div class="parallax-progress-fill" id="parallax-progress-fill"></div>
+                        <div class="product-stack-item">
+                            <img src="images/spr%202.png" alt="Goofy Foot Room Spray Angle 2" class="vertical-stack-img" loading="lazy">
+                        </div>
+                        <div class="product-stack-item">
+                            <img src="images/spr%203.png" alt="Goofy Foot Room Spray Angle 3" class="vertical-stack-img" loading="lazy">
+                        </div>
+                        <div class="product-stack-item">
+                            <img src="images/spr%204.png" alt="Goofy Foot Room Spray Angle 4" class="vertical-stack-img" loading="lazy">
+                        </div>
+                        <div class="product-stack-item">
+                            <img src="images/spr%205.png" alt="Goofy Foot Room Spray Angle 5" class="vertical-stack-img" loading="lazy">
                         </div>
                     </div>
+                </div>
 
-                    <!-- Right Column: Sticky Accordion Details -->
-                    <div class="product-explain-details">
+                <!-- Right Column: Sticky Accordion Details (Pins to Screen) -->
+                <div class="product-explain-details">
                         <div class="product-explain-header">
                             <h3 class="product-explain-title">구피풋 파인우드 룸 스프레이</h3>
                         </div>
@@ -264,7 +258,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
 
         <!-- SECTION 4: PRODUCTS MOTION VIDEO (1920×1080) -->
@@ -306,7 +299,7 @@
         <div class="cicada-fab-sprite"></div>
     </a>
 
-    <script src="main.js?v=119"></script>
+    <script src="main.js?v=120"></script>
 </body>
 
 </html>

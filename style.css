@@ -234,13 +234,13 @@ button,
 }
 
 /* ========================================
-   SECTION 2.5: PRODUCT EXPLAIN (STICKY & PARALLAX SCROLLING)
+   SECTION 2.5: PRODUCT EXPLAIN (TAMBURINS STYLE: VERTICAL IMAGE STACK & STICKY DETAILS)
    ======================================== */
 .section-product-explain {
   position: relative;
   width: 100vw;
-  height: 400vh !important;
-  min-height: 400vh !important;
+  height: auto !important;
+  min-height: 100vh !important;
   background: #FFFFFF;
   display: block !important;
   border-top: 1px solid #000000;
@@ -249,122 +249,62 @@ button,
   overflow: visible !important;
 }
 
-.product-explain-sticky-wrapper {
-  position: sticky !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: stretch;
-  background: #FFFFFF;
-  z-index: 10;
-}
-
 .product-explain-container {
   display: flex;
   width: 100vw;
-  height: 100vh;
+  align-items: flex-start;
+  position: relative;
   background: #FFFFFF;
 }
 
 .product-explain-visual {
   flex: 1;
   width: 50%;
-  height: 100%;
   border-right: 1px solid #000000;
   background: #FFFFFF;
   position: relative;
-  overflow: hidden;
   padding: 0 !important;
   margin: 0 !important;
   box-sizing: border-box;
 }
 
-.parallax-image-layers {
-  position: absolute;
-  inset: 0;
+.product-vertical-image-stack {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
+  display: flex;
+  flex-direction: column;
 }
 
-.parallax-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
+.product-stack-item {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #FFFFFF;
-  will-change: transform;
-  transform: translate3d(0, 100%, 0);
-  pointer-events: none;
 }
 
-.parallax-layer[data-index="0"] {
-  z-index: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-.parallax-layer[data-index="1"] {
-  z-index: 2;
-}
-
-.parallax-layer[data-index="2"] {
-  z-index: 3;
-}
-
-.parallax-layer[data-index="3"] {
-  z-index: 4;
-}
-
-.parallax-layer[data-index="4"] {
-  z-index: 5;
-}
-
-.parallax-product-img {
+.vertical-stack-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
+  object-fit: cover;
   user-select: none;
   -webkit-user-select: none;
-  pointer-events: none;
-  will-change: transform;
-}
-
-.parallax-progress-bar {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 140px;
-  height: 2px;
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 2px;
-  overflow: hidden;
-  z-index: 20;
-}
-
-.parallax-progress-fill {
-  width: 0%;
-  height: 100%;
-  background: #000000;
-  transition: width 0.1s ease-out;
 }
 
 .product-explain-details {
   flex: 1;
   width: 50%;
-  height: 100%;
+  position: sticky !important;
+  top: 0 !important;
+  height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   background: #FFFFFF;
   box-sizing: border-box;
+  overflow-y: auto;
+  z-index: 10;
 }
 
 .product-explain-header {
@@ -950,15 +890,6 @@ button,
     position: relative !important;
   }
 
-  .product-explain-sticky-wrapper {
-    position: static !important;
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-    overflow: visible !important;
-    background: #FFFFFF !important;
-  }
-
   .product-explain-container {
     display: flex !important;
     flex-direction: column !important;
@@ -981,9 +912,7 @@ button,
     overflow: hidden !important;
   }
 
-  .parallax-image-layers {
-    position: absolute !important;
-    inset: 0 !important;
+  .product-vertical-image-stack {
     width: 100% !important;
     height: 100% !important;
     display: flex !important;
@@ -992,57 +921,32 @@ button,
     overflow-y: hidden !important;
     scroll-snap-type: x mandatory !important;
     -webkit-overflow-scrolling: touch !important;
-    pointer-events: auto !important;
     scrollbar-width: none !important;
   }
 
-  .parallax-image-layers::-webkit-scrollbar {
+  .product-vertical-image-stack::-webkit-scrollbar {
     display: none !important;
   }
 
-  .parallax-layer {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
+  .product-stack-item {
     flex: 0 0 100% !important;
     width: 100% !important;
     height: 100% !important;
     scroll-snap-align: center !important;
     scroll-snap-stop: always !important;
-    transform: none !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    background: #FFFFFF !important;
   }
 
-  .parallax-layer[data-index="0"],
-  .parallax-layer[data-index="1"],
-  .parallax-layer[data-index="2"],
-  .parallax-layer[data-index="3"],
-  .parallax-layer[data-index="4"] {
-    transform: none !important;
-    z-index: 1 !important;
-  }
-
-  .parallax-product-img {
+  .vertical-stack-img {
     width: 100% !important;
     height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
     object-fit: cover !important;
-    transform: none !important;
-  }
-
-  .parallax-progress-bar {
-    bottom: 12px !important;
-    width: 100px !important;
-    height: 2px !important;
-    pointer-events: none !important;
   }
 
   .product-explain-details {
     width: 100% !important;
+    position: static !important;
     height: auto !important;
+    max-height: none !important;
     flex: none !important;
     overflow-y: visible !important;
   }
