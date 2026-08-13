@@ -90,7 +90,7 @@ button,
   min-height: 100vh;
   position: relative;
   background: #FFFFFF;
-  touch-action: none;
+  touch-action: pan-y;
 }
 
 .spray-reveal-container {
@@ -98,7 +98,7 @@ button,
   width: 100%;
   height: 100%;
   overflow: hidden;
-  touch-action: none;
+  touch-action: pan-y;
   cursor: url('svg/GOOFY%20ICON%205.svg') 18 18, url('svg/GOOFY_ICON_5.png') 18 18, crosshair;
   user-select: none;
   -webkit-user-select: none;
@@ -121,7 +121,7 @@ button,
   width: 100%;
   height: 100%;
   z-index: 2;
-  touch-action: none;
+  touch-action: pan-y;
   cursor: url('svg/GOOFY%20ICON%205.svg') 18 18, url('svg/GOOFY_ICON_5.png') 18 18, crosshair;
 }
 
@@ -869,7 +869,7 @@ button,
   .section-spray {
     height: 100vh !important;
     min-height: 100vh !important;
-    touch-action: none !important;
+    touch-action: pan-y !important;
   }
 
 

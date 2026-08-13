@@ -366,64 +366,41 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 마우스, 펜, 터치를 완벽히 지원하는 통합 포인터/터치 이벤트 리스너
+    // 마우스 및 터치 이벤트 리스너 (모바일 자연스러운 터치 스크롤 100% 보장)
     [canvas, container].forEach((target) => {
       if (!target) return;
 
-      target.addEventListener('pointerdown', (e) => {
+      // 데스크톱 마우스 이벤트
+      target.addEventListener('mousedown', (e) => {
         if (e.button && e.button !== 0) return;
-        try {
-          target.setPointerCapture(e.pointerId);
-        } catch (err) {}
         onSprayStart(e.clientX, e.clientY);
       });
 
-      target.addEventListener('pointermove', (e) => {
+      target.addEventListener('mousemove', (e) => {
         if (isDrawing) {
           onSprayMove(e.clientX, e.clientY);
         }
       });
 
-      target.addEventListener('pointerup', (e) => {
-        try {
-          target.releasePointerCapture(e.pointerId);
-        } catch (err) {}
-        onSprayEnd();
-      });
+      target.addEventListener('mouseup', onSprayEnd);
 
-      target.addEventListener('pointercancel', (e) => {
-        try {
-          target.releasePointerCapture(e.pointerId);
-        } catch (err) {}
-        onSprayEnd();
-      });
-
-      // 모바일 제스처 간섭 방지 Touch 이벤트 핸들러
+      // 모바일 터치 이벤트: passive: true로 세로 스크롤을 절대 막지 않음
       target.addEventListener('touchstart', (e) => {
         if (e.touches && e.touches.length > 0) {
-          e.preventDefault();
           onSprayStart(e.touches[0].clientX, e.touches[0].clientY);
         }
-      }, { passive: false });
+      }, { passive: true });
 
       target.addEventListener('touchmove', (e) => {
         if (e.touches && e.touches.length > 0) {
-          e.preventDefault();
           onSprayMove(e.touches[0].clientX, e.touches[0].clientY);
         }
-      }, { passive: false });
+      }, { passive: true });
 
-      target.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        onSprayEnd();
-      }, { passive: false });
-
-      target.addEventListener('touchcancel', (e) => {
-        onSprayEnd();
-      }, { passive: false });
+      target.addEventListener('touchend', onSprayEnd, { passive: true });
+      target.addEventListener('touchcancel', onSprayEnd, { passive: true });
     });
 
-    window.addEventListener('pointerup', onSprayEnd);
     window.addEventListener('mouseup', onSprayEnd);
     window.addEventListener('touchend', onSprayEnd, { passive: true });
   }
