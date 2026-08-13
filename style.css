@@ -460,18 +460,8 @@ button,
 }
 
 /* ========================================
-   SECTION 3: PRODUCTS (1920×1080 — 3-COLUMN SEAMLESS FULL-BLEED)
+   SECTION 4: PRODUCTS FULLSCREEN VIDEO (1920×1080)
    ======================================== */
-.section-products {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  min-height: 720px;
-  background: #FFFFFF;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  display: flex;
 .section-products {
   position: relative;
   width: 100vw;
