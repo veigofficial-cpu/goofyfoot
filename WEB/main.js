@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // -------------------------------------------------------
-  // Section 3 (Product Explain) Parallax Image Scroll Controller (spr 1~5.png)
+  // Section 3 (Product Explain) Cyclemon-Style Stacking Overlay (spr 1~5.png)
   // -------------------------------------------------------
   const sectionExplain = document.getElementById('product-explain');
   const parallaxLayers = document.querySelectorAll('#parallax-layers .parallax-layer');
@@ -442,39 +442,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update progress bar width
     if (progressFill) {
-      progressFill.style.width = `${Math.max(18, progress * 100)}%`;
+      progressFill.style.width = `${(progress * 100).toFixed(1)}%`;
     }
 
-    // Map progress continuously across the 5 images (0, 1, 2, 3, 4)
     const count = parallaxLayers.length; // 5
-    const rawIndex = progress * (count - 1);
-    const activeIndex = Math.min(count - 1, Math.floor(rawIndex + 0.5));
+    const numTransitions = count - 1; // 4 transitions (0->1, 1->2, 2->3, 3->4)
 
     parallaxLayers.forEach((layer, idx) => {
-      const diff = idx - rawIndex; // -4 to +4
-      const absDiff = Math.abs(diff);
-      let opacity = 0;
-      let translateY = 0;
-      let scale = 1;
-
-      if (absDiff < 1.0) {
-        // Active or in smooth crossfade transition
-        opacity = 1 - absDiff;
-        translateY = -diff * 35; // gentle parallax vertical offset
-        scale = 1 - absDiff * 0.04;
-      } else {
-        opacity = 0;
-        translateY = diff > 0 ? 40 : -40;
-        scale = diff > 0 ? 0.96 : 1.03;
+      const img = layer.querySelector('.parallax-product-img');
+      if (idx === 0) {
+        // Base layer is pinned at 0%
+        layer.style.transform = 'translate3d(0, 0, 0)';
+        return;
       }
 
-      layer.style.opacity = Math.max(0, Math.min(1, opacity)).toFixed(3);
-      layer.style.transform = `translateY(${translateY.toFixed(1)}px) scale(${scale.toFixed(3)})`;
+      // Interval during which layer `idx` rises from 100% to 0% to cover the previous layer
+      const start = (idx - 1) / numTransitions;
+      const end = idx / numTransitions;
 
-      if (idx === activeIndex) {
-        layer.classList.add('is-active');
+      let layerY = 100;
+      let imgY = -12; // subtle parallax depth on inner image
+
+      if (progress <= start) {
+        layerY = 100;
+        imgY = -12;
+      } else if (progress >= end) {
+        layerY = 0;
+        imgY = 0;
       } else {
-        layer.classList.remove('is-active');
+        const t = (progress - start) / (end - start); // 0 to 1
+        layerY = (1 - t) * 100;
+        imgY = (t - 1) * 12;
+      }
+
+      layer.style.transform = `translate3d(0, ${layerY.toFixed(2)}%, 0)`;
+      if (img) {
+        img.style.transform = `translate3d(0, ${imgY.toFixed(2)}%, 0)`;
       }
     });
   }
