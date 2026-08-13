@@ -632,19 +632,19 @@ button,
 }
 
 /* ========================================
-   SECTION 6: FOOTER (50% HEIGHT)
+   SECTION 6: FOOTER (1920×1080 VIEWPORT RATIO)
    ======================================== */
 .section-footer {
   position: relative;
   width: 100vw;
-  height: 50vh;
-  min-height: 360px;
+  height: 100vh;
+  min-height: 720px;
   background: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: stretch;
-  padding: 0 0 24px 0;
+  padding: 0 0 48px 0;
   overflow: hidden;
 }
 
@@ -653,12 +653,12 @@ button,
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 16px;
+  gap: 20px;
 }
 
 .footer-logo-wrapper {
   width: 100%;
-  padding: 0 20px;
+  padding: 0 48px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -674,7 +674,7 @@ button,
 
 .footer-info-single-line {
   width: 100%;
-  padding: 0 20px;
+  padding: 0 48px;
   box-sizing: border-box;
   text-align: left;
   overflow-x: auto;
@@ -781,7 +781,7 @@ button,
 .cicada-fab {
   position: fixed;
   top: 48px;
-  left: 36px;
+  left: 48px;
   width: 80px;
   height: 80px;
   z-index: 99999;
@@ -843,7 +843,7 @@ button,
 @media (max-width: 768px) {
   .bgm-toggle-btn {
     top: 38px !important;
-    right: 16px !important;
+    right: 20px !important;
     left: auto !important;
     width: 34px !important;
     height: 34px !important;
@@ -864,7 +864,7 @@ button,
 
   .spray-reset-btn {
     top: 38px !important;
-    right: 62px !important;
+    right: 64px !important;
     left: auto !important;
     width: 34px !important;
     height: 34px !important;
@@ -885,7 +885,7 @@ button,
 
   .cicada-fab {
     top: 34px !important;
-    left: 8px !important;
+    left: 20px !important;
     right: auto !important;
     width: 50px !important;
     height: 50px !important;
@@ -1088,9 +1088,16 @@ button,
   }
 
   .section-footer {
-    height: auto !important;
-    min-height: 35vh !important;
-    padding: 30px 0 20px 0 !important;
+    height: 100vh !important;
+    min-height: 560px !important;
+    padding: 0 0 32px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+  }
+
+  .footer-container {
+    gap: 16px !important;
   }
 
   .footer-logo-wrapper {
