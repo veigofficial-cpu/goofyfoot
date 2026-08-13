@@ -609,6 +609,7 @@ button,
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  margin-bottom: 15px;
 }
 
 .footer-full-logo {
@@ -1045,6 +1046,7 @@ button,
 
   .footer-logo-wrapper {
     padding: 0 20px !important;
+    margin-bottom: 15px !important;
   }
 
   .footer-full-logo {
