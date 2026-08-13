@@ -456,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // -------------------------------------------------------
-  // Background Music (BGM) & Sound Toggle (Volume: 50%)
+  // Background Music (BGM: BGM 2.wav) & Sound Toggle (Volume: 90%)
   // -------------------------------------------------------
   const bgmAudio = document.getElementById('bgm-audio');
   const bgmToggleBtn = document.getElementById('bgm-toggle-btn');
@@ -464,7 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let isUserExplicitlyMuted = false;
 
   if (bgmAudio) {
-    bgmAudio.volume = 0.75; // 75% volume
+    bgmAudio.volume = 0.9; // 90% volume
   }
 
   const soundIconImg = document.getElementById('sound-icon-img');
@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function playBGM() {
     if (!bgmAudio || isUserExplicitlyMuted) return;
-    bgmAudio.volume = 0.75;
+    bgmAudio.volume = 0.9;
     const playPromise = bgmAudio.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {
