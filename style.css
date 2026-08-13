@@ -234,31 +234,42 @@ button,
 }
 
 /* ========================================
-   SECTION 2.5: PRODUCT EXPLAIN (1920×1080 — 2-COLUMN ACCORDION)
+   SECTION 2.5: PRODUCT EXPLAIN (STICKY & PARALLAX SCROLLING)
    ======================================== */
 .section-product-explain {
   position: relative;
   width: 100vw;
-  min-height: 100vh;
+  height: 500vh;
+  min-height: 500vh;
   background: #FFFFFF;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  overflow: hidden;
+  display: block;
   border-top: 1px solid #000000;
   border-bottom: 1px solid #000000;
   margin-bottom: 150px;
 }
 
+.product-explain-sticky-wrapper {
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  background: #FFFFFF;
+  z-index: 10;
+}
+
 .product-explain-container {
   display: flex;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .product-explain-visual {
   flex: 1;
   width: 50%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -266,31 +277,91 @@ button,
   border-right: 1px solid #000000;
   background: #FFFFFF;
   position: relative;
+  overflow: hidden;
 }
 
-.product-explain-3d-img {
+.parallax-image-layers {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.parallax-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+  transition: opacity 0.45s cubic-bezier(0.2, 0, 0.05, 1), transform 0.45s cubic-bezier(0.2, 0, 0.05, 1);
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+.parallax-layer.is-active {
+  opacity: 1;
+  transform: translateY(0px) scale(1);
+  pointer-events: auto;
+}
+
+.parallax-layer.exit-up {
+  opacity: 0;
+  transform: translateY(-40px) scale(1.03);
+}
+
+.parallax-product-img {
   max-width: 520px;
   width: 80%;
   max-height: 75vh;
   object-fit: contain;
   filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.08));
-  transition: transform 0.6s cubic-bezier(0.2, 0, 0.05, 1);
+  transition: transform 0.4s ease;
   user-select: none;
   -webkit-user-select: none;
   pointer-events: none;
 }
 
-.product-explain-visual:hover .product-explain-3d-img {
+.product-explain-visual:hover .parallax-layer.is-active .parallax-product-img {
   transform: translateY(-6px) scale(1.02);
+}
+
+.parallax-progress-bar {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.parallax-progress-fill {
+  width: 20%;
+  height: 100%;
+  background: #000000;
+  transition: width 0.2s cubic-bezier(0.2, 0, 0.05, 1);
 }
 
 .product-explain-details {
   flex: 1;
   width: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   background: #FFFFFF;
+  overflow-y: auto;
 }
 
 .product-explain-header {
@@ -860,37 +931,58 @@ button,
 
   .section-product-explain {
     display: block !important;
-    height: auto !important;
-    min-height: auto !important;
+    height: 320vh !important;
+    min-height: 320vh !important;
     margin-bottom: 80px;
+    position: relative !important;
+  }
+
+  .product-explain-sticky-wrapper {
+    position: sticky !important;
+    top: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    background: #FFFFFF !important;
   }
 
   .product-explain-container {
     display: flex !important;
     flex-direction: column !important;
-    height: auto !important;
-    min-height: auto !important;
+    width: 100% !important;
+    height: 100% !important;
     justify-content: flex-start !important;
     align-items: stretch !important;
   }
 
   .product-explain-visual {
-    width: 100%;
-    height: auto !important;
-    min-height: 280px !important;
-    max-height: 45vh !important;
-    border-right: none;
-    border-bottom: 1px solid #000000;
-    padding: 30px 20px;
+    width: 100% !important;
+    height: 44vh !important;
+    min-height: 240px !important;
+    max-height: 44vh !important;
+    border-right: none !important;
+    border-bottom: 1px solid #000000 !important;
+    padding: 16px !important;
+    position: relative !important;
+    overflow: hidden !important;
   }
 
-  .product-explain-3d-img {
-    max-width: 260px;
-    max-height: 40vh;
+  .parallax-product-img {
+    max-width: 250px !important;
+    max-height: 36vh !important;
+  }
+
+  .parallax-progress-bar {
+    bottom: 12px !important;
+    width: 120px !important;
   }
 
   .product-explain-details {
-    width: 100%;
+    width: 100% !important;
+    flex: 1 !important;
+    overflow-y: auto !important;
   }
 
   .product-explain-header {

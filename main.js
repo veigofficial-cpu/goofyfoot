@@ -422,6 +422,79 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // -------------------------------------------------------
+  // Section 3 (Product Explain) Parallax Image Scroll Controller (spr 1~5.png)
+  // -------------------------------------------------------
+  const sectionExplain = document.getElementById('product-explain');
+  const parallaxLayers = document.querySelectorAll('#parallax-layers .parallax-layer');
+  const progressFill = document.getElementById('parallax-progress-fill');
+
+  function updateSection3Parallax() {
+    if (!sectionExplain || parallaxLayers.length === 0) return;
+
+    const rect = sectionExplain.getBoundingClientRect();
+    const scrollableHeight = sectionExplain.offsetHeight - window.innerHeight;
+
+    if (scrollableHeight <= 0) return;
+
+    // Calculate progress between 0 and 1
+    const scrolled = -rect.top;
+    const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
+
+    // Update progress bar width
+    if (progressFill) {
+      progressFill.style.width = `${Math.max(18, progress * 100)}%`;
+    }
+
+    // Map progress continuously across the 5 images (0, 1, 2, 3, 4)
+    const count = parallaxLayers.length; // 5
+    const rawIndex = progress * (count - 1);
+    const activeIndex = Math.min(count - 1, Math.floor(rawIndex + 0.5));
+
+    parallaxLayers.forEach((layer, idx) => {
+      const diff = idx - rawIndex; // -4 to +4
+      const absDiff = Math.abs(diff);
+      let opacity = 0;
+      let translateY = 0;
+      let scale = 1;
+
+      if (absDiff < 1.0) {
+        // Active or in smooth crossfade transition
+        opacity = 1 - absDiff;
+        translateY = -diff * 35; // gentle parallax vertical offset
+        scale = 1 - absDiff * 0.04;
+      } else {
+        opacity = 0;
+        translateY = diff > 0 ? 40 : -40;
+        scale = diff > 0 ? 0.96 : 1.03;
+      }
+
+      layer.style.opacity = Math.max(0, Math.min(1, opacity)).toFixed(3);
+      layer.style.transform = `translateY(${translateY.toFixed(1)}px) scale(${scale.toFixed(3)})`;
+
+      if (idx === activeIndex) {
+        layer.classList.add('is-active');
+      } else {
+        layer.classList.remove('is-active');
+      }
+    });
+  }
+
+  let isParallaxTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!isParallaxTicking) {
+      window.requestAnimationFrame(() => {
+        updateSection3Parallax();
+        isParallaxTicking = false;
+      });
+      isParallaxTicking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', updateSection3Parallax, { passive: true });
+  // Run on initial load
+  setTimeout(updateSection3Parallax, 50);
+
+  // -------------------------------------------------------
   // Background Music (BGM) & Sound Toggle (Volume: 50%)
   // -------------------------------------------------------
   const bgmAudio = document.getElementById('bgm-audio');
