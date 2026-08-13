@@ -137,12 +137,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // 캔버스 크기 설정 (유효한 너비/높이 보장)
     function resizeCanvas(forceFill = true) {
       const rect = container.getBoundingClientRect();
-      const w = Math.floor(rect.width || container.offsetWidth || window.innerWidth || 1920);
-      const h = Math.floor(rect.height || container.offsetHeight || window.innerHeight || 1080);
+      const w = Math.round(rect.width || container.offsetWidth || window.innerWidth || 1920);
+      const h = Math.round(rect.height || container.offsetHeight || window.innerHeight || 1080);
+
+      if (w === 0 || h === 0) return;
 
       const changed = (canvas.width !== w || canvas.height !== h);
-      canvas.width = w;
-      canvas.height = h;
+      if (changed) {
+        canvas.width = w;
+        canvas.height = h;
+      }
 
       if (forceFill || changed || !hasStarted) {
         fillWhite();
@@ -178,10 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        resizeCanvas(true);
-        hasStarted = false;
-        showHeroLogo();
-      }, 200);
+        resizeCanvas(false);
+      }, 100);
     });
 
     // 1분 비활성 후 흰색으로 부드럽게 복원
@@ -227,11 +229,15 @@ document.addEventListener('DOMContentLoaded', () => {
       inactivityTimer = setTimeout(resetToWhite, INACTIVITY_TIMEOUT);
     }
 
-    // 향수 에어로졸 스티플 미스트 (중심 밀집도 80% 대폭 확장 & 퀸틱 스무더스텝 분수 그라데이션)
+    // 향수 에어로졸 스티플 미스트 (화면 비율 및 캔버스 스케일 1:1 매핑)
     function triggerPerfumeBurst(x, y) {
       const rect = canvas.getBoundingClientRect();
-      const cx = x - rect.left;
-      const cy = y - rect.top;
+      if (!rect.width || !rect.height) return;
+
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      const cx = (x - rect.left) * scaleX;
+      const cy = (y - rect.top) * scaleY;
 
       const isMobile = window.innerWidth < 768 || ('ontouchstart' in window);
       const maxRadius = isMobile ? 250 : 360;
@@ -349,9 +355,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    const interactEl = container || canvas;
+    const interactEl = canvas || container;
 
-    // 마우스 및 터치 이벤트 핸들러
+    // 마우스 및 터치 이벤트 핸들러 (어떤 비율/환경에서도 100% 즉각 반응)
     interactEl.addEventListener('mousedown', (e) => {
       onSprayStart(e.clientX, e.clientY);
     });
@@ -361,16 +367,19 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('mouseup', onSprayEnd);
 
     interactEl.addEventListener('touchstart', (e) => {
-      if (e.touches.length) {
+      if (e.touches && e.touches.length > 0) {
         onSprayStart(e.touches[0].clientX, e.touches[0].clientY);
       }
     }, { passive: true });
+
     window.addEventListener('touchmove', (e) => {
-      if (e.touches.length) {
+      if (e.touches && e.touches.length > 0) {
         onSprayMove(e.touches[0].clientX, e.touches[0].clientY);
       }
     }, { passive: true });
-    interactEl.addEventListener('touchend', onSprayEnd, { passive: true });
+
+    window.addEventListener('touchend', onSprayEnd, { passive: true });
+    window.addEventListener('touchcancel', onSprayEnd, { passive: true });
   }
 
   // -------------------------------------------------------
