@@ -440,18 +440,18 @@ button,
 
 .spec-label-kr {
   font-family: var(--font-kr);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
   color: #000000;
-  line-height: 16px;
+  line-height: 20px;
 }
 
 .spec-label-en {
   font-family: var(--font-en);
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 400;
   color: #666666;
-  line-height: 16px;
+  line-height: 20px;
 }
 
 .spec-value-group {
@@ -462,20 +462,20 @@ button,
 
 .spec-value-kr {
   font-family: var(--font-kr);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
   color: #000000;
-  line-height: 17px;
+  line-height: 22px;
   margin: 0;
   word-break: keep-all;
 }
 
 .spec-value-en {
   font-family: var(--font-en);
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 400;
   color: #666666;
-  line-height: 14px;
+  line-height: 18px;
   margin: 0;
   word-break: keep-all;
 }
@@ -485,6 +485,30 @@ button,
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+.notes-pyramid .spec-row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.notes-pyramid .spec-label {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+  line-height: 20px;
+  min-width: 58px;
+}
+
+.notes-pyramid .spec-value {
+  font-family: var(--font-en);
+  font-size: 13px;
+  font-weight: 400;
+  color: #666666;
+  line-height: 20px;
 }
 
 .notes-desc {
@@ -993,6 +1017,37 @@ button,
 
   .accordion-item.is-open .accordion-content-inner {
     padding: 20px 20px 28px 20px;
+  }
+
+  .spec-label-kr {
+    font-size: 13px !important;
+    line-height: 16px !important;
+    font-weight: 500 !important;
+  }
+
+  .spec-label-en {
+    font-size: 10px !important;
+    line-height: 16px !important;
+  }
+
+  .spec-value-kr {
+    font-size: 13px !important;
+    line-height: 17px !important;
+    font-weight: 500 !important;
+  }
+
+  .spec-value-en {
+    font-size: 10px !important;
+    line-height: 14px !important;
+  }
+
+  .notes-pyramid .spec-label {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+  }
+
+  .notes-pyramid .spec-value {
+    font-size: 10px !important;
   }
 
   .section-products {
