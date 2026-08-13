@@ -272,19 +272,25 @@ button,
   padding: 0 !important;
   margin: 0 !important;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .product-vertical-image-stack {
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
 }
 
 .product-stack-item {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  font-size: 0;
+  overflow: hidden;
   background: #FFFFFF;
 }
 
@@ -913,7 +919,7 @@ button,
     height: auto !important;
     min-height: auto !important;
     max-height: none !important;
-    aspect-ratio: 961 / 1081 !important;
+    aspect-ratio: 960 / 1080 !important;
     border-right: none !important;
     border-bottom: 1px solid #000000 !important;
     padding: 0 !important;
@@ -925,7 +931,7 @@ button,
   .product-vertical-image-stack {
     width: 100% !important;
     height: 100% !important;
-    aspect-ratio: 961 / 1081 !important;
+    aspect-ratio: 960 / 1080 !important;
     display: flex !important;
     flex-direction: row !important;
     overflow-x: auto !important;
@@ -949,13 +955,16 @@ button,
     scroll-snap-align: center !important;
     scroll-snap-stop: always !important;
     background: #FFFFFF !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
   }
 
   .vertical-stack-img {
     width: 100% !important;
     height: 100% !important;
-    aspect-ratio: 961 / 1081 !important;
-    object-fit: contain !important;
+    aspect-ratio: 960 / 1080 !important;
+    object-fit: cover !important;
     display: block !important;
   }
 
