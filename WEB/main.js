@@ -422,15 +422,27 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // -------------------------------------------------------
-  // Section 3 (Product Explain) Cyclemon-Style Stacking Overlay (spr 1~5.png)
+  // Section 3 (Product Explain) Cyclemon-Style Stacking Overlay & Mobile Swipe
   // -------------------------------------------------------
   const sectionExplain = document.getElementById('product-explain');
+  const parallaxLayersContainer = document.getElementById('parallax-layers');
   const parallaxLayers = document.querySelectorAll('#parallax-layers .parallax-layer');
   const progressFill = document.getElementById('parallax-progress-fill');
 
   function updateSection3Parallax() {
     if (!sectionExplain || parallaxLayers.length === 0) return;
 
+    // Mobile horizontal swipe mode
+    if (window.innerWidth <= 768) {
+      parallaxLayers.forEach((layer) => {
+        layer.style.transform = '';
+        const img = layer.querySelector('.parallax-product-img');
+        if (img) img.style.transform = '';
+      });
+      return;
+    }
+
+    // Desktop sticky stacking overlay mode
     const rect = sectionExplain.getBoundingClientRect();
     const scrollableHeight = sectionExplain.offsetHeight - window.innerHeight;
 
@@ -480,6 +492,19 @@ document.addEventListener('DOMContentLoaded', () => {
         img.style.transform = `translate3d(0, ${imgY.toFixed(2)}%, 0)`;
       }
     });
+  }
+
+  // Mobile horizontal swipe progress listener
+  if (parallaxLayersContainer) {
+    parallaxLayersContainer.addEventListener('scroll', () => {
+      if (window.innerWidth <= 768 && progressFill) {
+        const maxScroll = parallaxLayersContainer.scrollWidth - parallaxLayersContainer.clientWidth;
+        if (maxScroll > 0) {
+          const ratio = parallaxLayersContainer.scrollLeft / maxScroll;
+          progressFill.style.width = `${Math.max(20, ratio * 100).toFixed(1)}%`;
+        }
+      }
+    }, { passive: true });
   }
 
   let isParallaxTicking = false;
