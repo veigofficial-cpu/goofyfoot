@@ -336,7 +336,7 @@ button,
   justify-content: flex-start;
   background: #FFFFFF;
   box-sizing: border-box;
-  overflow-y: auto;
+  overflow: hidden;
   z-index: 10;
 }
 
@@ -525,7 +525,7 @@ button,
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 #accordion-woody-notes .accordion-content-inner {
