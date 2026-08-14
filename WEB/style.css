@@ -523,10 +523,10 @@ button,
   height: calc(100vh - 224px);
   max-height: calc(100vh - 224px);
   box-sizing: border-box;
-  padding: clamp(10px, 1.8vh, 20px) 20px clamp(12px, 2vh, 24px) 20px;
+  padding: clamp(16px, 2.2vh, 24px) 20px clamp(28px, 3.8vh, 40px) 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   overflow-y: auto;
 }
 
@@ -541,11 +541,10 @@ button,
 }
 
 #accordion-description .product-specs-list {
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: clamp(4px, 1vh, 12px);
+  gap: clamp(10px, 1.5vh, 18px);
+  padding-bottom: 12px;
 }
 
 .spec-row {
