@@ -634,7 +634,7 @@ button,
 
 .footer-logo-wrapper {
   width: 100%;
-  padding: 0 48px;
+  padding: 0 clamp(36px, 4.5vw, 80px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -651,7 +651,7 @@ button,
 
 .footer-info-single-line {
   width: 100%;
-  padding: 0 48px;
+  padding: 0 clamp(36px, 4.5vw, 80px);
   box-sizing: border-box;
   text-align: left;
   overflow: visible;
@@ -1107,7 +1107,7 @@ button,
   }
 
   .footer-logo-wrapper {
-    padding: 0 20px !important;
+    padding: 0 1.5rem !important;
     margin-bottom: 15px !important;
   }
 
@@ -1116,7 +1116,7 @@ button,
   }
 
   .footer-info-single-line {
-    padding: 0 20px !important;
+    padding: 0 1.5rem !important;
     overflow-x: visible !important;
     text-align: left !important;
   }
