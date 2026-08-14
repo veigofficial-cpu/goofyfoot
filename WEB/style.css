@@ -231,6 +231,20 @@ button,
   margin: 0;
 }
 
+.story-veig-link {
+  color: #8D8D8D;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+  cursor: pointer;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.story-veig-link:hover {
+  color: #555555;
+  opacity: 0.8;
+}
+
 .story-english-text.scroll-reveal.is-visible {
   transition-delay: 0.08s;
 }
@@ -980,6 +994,11 @@ button,
     font-size: clamp(18px, 4.8vw, 28px);
     font-weight: 450;
     line-height: 1.55;
+  }
+
+  .story-veig-link {
+    text-underline-offset: 4px !important;
+    text-decoration-thickness: 1.5px !important;
   }
 
   .section-product-explain {
