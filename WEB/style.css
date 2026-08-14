@@ -670,7 +670,7 @@ button,
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  margin-bottom: 15px;
+  margin-bottom: 35px;
 }
 
 .footer-full-logo {
@@ -1155,7 +1155,7 @@ button,
 
   .footer-logo-wrapper {
     padding: 0 1.5rem !important;
-    margin-bottom: 15px !important;
+    margin-bottom: 35px !important;
   }
 
   .footer-full-logo {
