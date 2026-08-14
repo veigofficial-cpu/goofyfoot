@@ -219,7 +219,7 @@ button,
 
 .story-korean-text {
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif !important;
-  font-size: clamp(24px, 2.45vw, 47px);
+  font-size: clamp(24px, 2.6vw, 50px);
   font-weight: 450;
   line-height: clamp(38px, 3.55vw, 68px);
   color: #111111;
