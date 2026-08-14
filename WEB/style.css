@@ -489,7 +489,7 @@ button,
 .accordion-body {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.45s cubic-bezier(0.2, 0, 0.05, 1), opacity 0.35s ease;
+  transition: grid-template-rows 0.5s cubic-bezier(0.2, 0, 0.05, 1), opacity 0.4s ease;
   opacity: 0;
 }
 
@@ -498,27 +498,25 @@ button,
   opacity: 1;
 }
 
-/* Description is-open specific: expands precisely to 100vh - 224px */
-#accordion-description.is-open .accordion-body {
-  height: calc(100vh - 224px);
-  min-height: calc(100vh - 224px);
-  max-height: calc(100vh - 224px);
-  display: flex;
-  flex-direction: column;
-}
-
 .accordion-content-inner {
+  min-height: 0;
   overflow: hidden;
   padding: 0 20px;
-  transition: padding 0.45s cubic-bezier(0.2, 0, 0.05, 1);
+  transition: padding 0.5s cubic-bezier(0.2, 0, 0.05, 1);
 }
 
 .accordion-item.is-open .accordion-content-inner {
   padding: 24px 20px 36px 20px;
 }
 
+#accordion-description .accordion-content-inner {
+  min-height: 0;
+  transition: padding 0.5s cubic-bezier(0.2, 0, 0.05, 1);
+}
+
 #accordion-description.is-open .accordion-content-inner {
-  height: 100%;
+  height: calc(100vh - 224px);
+  min-height: calc(100vh - 224px);
   box-sizing: border-box;
   padding: 20px 20px 24px 20px;
   display: flex;
