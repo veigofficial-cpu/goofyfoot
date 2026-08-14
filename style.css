@@ -432,7 +432,7 @@ button,
   padding: 0 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   background: #000000;
   color: #FFFFFF;
   text-decoration: none;
@@ -453,22 +453,6 @@ button,
   font-weight: 500;
   color: #FFFFFF;
   letter-spacing: 0.02em;
-}
-
-.accordion-store-arrow {
-  font-family: var(--font-en);
-  font-size: 16px;
-  font-weight: 400;
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 8px;
-  transition: transform 0.3s ease;
-}
-
-.accordion-store-link:hover .accordion-store-arrow {
-  transform: translateX(4px);
 }
 
 .accordion-icon {
