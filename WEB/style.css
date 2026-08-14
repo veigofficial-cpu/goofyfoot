@@ -383,12 +383,21 @@ button,
   display: flex;
   flex-direction: column;
   width: 100%;
-  flex-shrink: 0;
+  flex: 1;
+  min-height: 0;
 }
 
 .accordion-item {
   border-bottom: 1px solid #000000;
   flex-shrink: 0;
+  transition: flex 0.45s cubic-bezier(0.2, 0, 0.05, 1);
+}
+
+.accordion-item.is-open {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .accordion-header {
@@ -436,8 +445,9 @@ button,
 /* Smart Store Accordion Button Item */
 .accordion-item-store {
   background: #000000;
-  border-bottom: 1px solid #000000;
-  flex-shrink: 0;
+  border-bottom: none;
+  flex: 0 0 auto;
+  margin-top: auto;
   transition: background-color 0.25s ease;
 }
 
@@ -495,22 +505,33 @@ button,
 .accordion-item.is-open .accordion-body {
   grid-template-rows: 1fr;
   opacity: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .accordion-content-inner {
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: 0 20px;
   transition: padding 0.45s cubic-bezier(0.2, 0, 0.05, 1);
 }
 
 .accordion-item.is-open .accordion-content-inner {
-  padding: 24px 20px 36px 20px;
+  padding: 20px 20px 24px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .product-specs-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 16px;
+  flex: 1;
 }
 
 .spec-row {
@@ -1059,6 +1080,18 @@ button,
   .product-explain-title .title-en,
   .product-explain-title .title-kr {
     font-size: inherit !important;
+  }
+
+  .product-accordion-group {
+    flex: 0 0 auto !important;
+  }
+
+  .accordion-item.is-open {
+    flex: 0 0 auto !important;
+  }
+
+  .accordion-item-store {
+    margin-top: 0 !important;
   }
 
   .accordion-header {
