@@ -257,15 +257,19 @@ button,
 
 .product-explain-container {
   display: flex;
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
   align-items: flex-start;
   position: relative;
   background: #FFFFFF;
+  box-sizing: border-box;
 }
 
 .product-explain-visual {
-  flex: 1;
+  flex: 0 0 50%;
   width: 50%;
+  max-width: 50%;
+  min-width: 50%;
   border-right: 1px solid #000000;
   background: #FFFFFF;
   position: relative;
@@ -296,6 +300,7 @@ button,
 
 .vertical-stack-img {
   width: 100%;
+  max-width: 100%;
   height: auto;
   display: block;
   object-fit: cover;
@@ -304,8 +309,10 @@ button,
 }
 
 .product-explain-details {
-  flex: 1;
+  flex: 0 0 50%;
   width: 50%;
+  max-width: 50%;
+  min-width: 50%;
   position: sticky !important;
   top: 0 !important;
   height: 100vh;
@@ -940,7 +947,10 @@ button,
   }
 
   .product-explain-visual {
+    flex: 0 0 100% !important;
     width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
     height: auto !important;
     min-height: auto !important;
     max-height: none !important;
@@ -994,11 +1004,13 @@ button,
   }
 
   .product-explain-details {
+    flex: 0 0 100% !important;
     width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
     position: static !important;
     height: auto !important;
     max-height: none !important;
-    flex: none !important;
     overflow-y: visible !important;
   }
 
