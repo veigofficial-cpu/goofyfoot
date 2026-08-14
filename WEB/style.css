@@ -535,7 +535,7 @@ button,
 
 .spec-label-en {
   font-family: var(--font-en);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 400;
   color: #666666;
   line-height: 20px;
@@ -559,10 +559,10 @@ button,
 
 .spec-value-en {
   font-family: var(--font-en);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 400;
   color: #666666;
-  line-height: 18px;
+  line-height: 22px;
   margin: 0;
   word-break: keep-all;
 }
@@ -1093,7 +1093,7 @@ button,
 
   .spec-label-en {
     font-family: var(--font-en);
-    font-size: 13px !important;
+    font-size: 16px !important;
     line-height: 20px !important;
     font-weight: 400 !important;
   }
@@ -1107,8 +1107,8 @@ button,
 
   .spec-value-en {
     font-family: var(--font-en);
-    font-size: 13px !important;
-    line-height: 18px !important;
+    font-size: 16px !important;
+    line-height: 22px !important;
     font-weight: 400 !important;
   }
 
