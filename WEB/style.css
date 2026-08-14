@@ -655,49 +655,6 @@ button,
   overflow: hidden;
 }
 
-.footer-veig-group {
-  position: absolute;
-  top: 48px;
-  right: clamp(36px, 4.5vw, 80px);
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  z-index: 20;
-}
-
-.footer-veig-text {
-  font-family: var(--font-kr);
-  font-size: 14px;
-  font-weight: 400;
-  color: #8D8D8D;
-  line-height: 24px;
-  white-space: nowrap;
-  letter-spacing: -0.01em;
-  user-select: text;
-  cursor: default;
-  margin-top: 2px;
-}
-
-.footer-veig-logo-link {
-  display: block;
-  line-height: 0;
-  text-decoration: none;
-  cursor: pointer;
-  transition: opacity 0.3s cubic-bezier(0.2, 0, 0.05, 1), transform 0.3s cubic-bezier(0.2, 0, 0.05, 1);
-}
-
-.footer-veig-logo-link:hover {
-  opacity: 0.7;
-  transform: translateY(-1px);
-}
-
-.footer-veig-logo {
-  width: 141.73px;
-  height: 45.35px;
-  display: block;
-  object-fit: contain;
-}
-
 .footer-container {
   width: 100%;
   display: flex;
@@ -1186,28 +1143,10 @@ button,
   .section-footer {
     height: auto !important;
     min-height: 38vh !important;
-    padding: 84px 0 24px 0 !important;
+    padding: 40px 0 24px 0 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-end !important;
-  }
-
-  .footer-veig-group {
-    top: 34px !important;
-    right: 1.5rem !important;
-    align-items: flex-start !important;
-    gap: 8px !important;
-  }
-
-  .footer-veig-text {
-    font-size: 12px !important;
-    line-height: 18px !important;
-    margin-top: 1px !important;
-  }
-
-  .footer-veig-logo {
-    width: 98px !important;
-    height: 31px !important;
   }
 
   .footer-container {
