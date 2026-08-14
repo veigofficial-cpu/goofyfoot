@@ -523,10 +523,9 @@ button,
   height: calc(100vh - 224px);
   max-height: calc(100vh - 224px);
   box-sizing: border-box;
-  padding: 24px 20px 36px 20px;
+  padding: 24px 20px 0 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   overflow-y: auto;
 }
 
@@ -541,11 +540,14 @@ button,
 }
 
 #accordion-description .product-specs-list {
+  flex: 1;
   height: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 14px;
+  gap: 12px;
+  padding-bottom: 40px !important;
 }
 
 .spec-row {
@@ -602,13 +604,14 @@ button,
   word-break: keep-all;
 }
 
-@media (max-height: 800px) and (min-width: 769px) {
+@media (max-height: 850px) and (min-width: 769px) {
   #accordion-description .accordion-content-inner {
-    padding: 16px 20px 24px 20px;
+    padding: 16px 20px 0 20px;
   }
 
   #accordion-description .product-specs-list {
     gap: 8px;
+    padding-bottom: 32px !important;
   }
 
   .spec-label-kr,
