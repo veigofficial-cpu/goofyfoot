@@ -353,13 +353,28 @@ button,
 }
 
 .product-explain-title {
-  font-family: var(--font-kr);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
   font-size: 16px;
   font-weight: 500;
   color: #000000;
   letter-spacing: -0.01em;
   line-height: 1.2;
   margin: 0;
+  white-space: nowrap;
+}
+
+.product-explain-title .title-en {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.product-explain-title .title-kr {
+  font-family: var(--font-kr);
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .product-accordion-group {
@@ -1030,6 +1045,18 @@ button,
     flex: 0 0 52px !important;
     flex-shrink: 0 !important;
     padding: 0 20px !important;
+  }
+
+  .product-explain-title {
+    font-size: clamp(12px, 3.4vw, 16px) !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+    line-height: 1.3 !important;
+  }
+
+  .product-explain-title .title-en,
+  .product-explain-title .title-kr {
+    font-size: inherit !important;
   }
 
   .accordion-header {
