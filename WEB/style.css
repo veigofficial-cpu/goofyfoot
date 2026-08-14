@@ -176,8 +176,8 @@ button,
    ======================================== */
 .section-story {
   width: 100vw;
-  height: 135vh;
-  min-height: 972px;
+  height: 100vh;
+  min-height: 720px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -204,7 +204,7 @@ button,
   font-weight: 500;
   line-height: 68px;
   color: #111111;
-  margin-bottom: 160px;
+  margin-bottom: 80px;
   max-width: 90vw;
   word-break: keep-all;
   text-align: left;
@@ -972,7 +972,7 @@ button,
   .story-english-text {
     font-size: clamp(18px, 4.8vw, 28px);
     line-height: 1.45;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
   }
 
   .story-korean-text {
