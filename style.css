@@ -620,64 +620,6 @@ button,
 }
 
 /* ========================================
-   SECTION 5: STORE (1920×1080)
-   ======================================== */
-.section-store {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  min-height: 720px;
-  background: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.smart-store-center-box {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  width: auto;
-  height: auto;
-  pointer-events: none;
-}
-
-.btn-smart-store {
-  pointer-events: auto;
-  width: 208px;
-  height: 50px;
-  background: #FFFFFF;
-  border: 1px solid #000000;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  text-decoration: none;
-  font-family: var(--font-kr);
-  font-size: 14px;
-  font-weight: 600;
-  color: #000000;
-  border-radius: 0;
-  transition: var(--transition-smooth);
-}
-
-.btn-arrow {
-  transition: transform 0.3s ease;
-}
-
-.btn-smart-store:hover {
-  background: #000000;
-  color: #FFFFFF;
-  border-color: #000000;
-}
-
-.btn-smart-store:hover .btn-arrow {
-  transform: translateX(6px);
-}
-
-/* ========================================
    SECTION 6: FOOTER (1920×1080 VIEWPORT RATIO)
    ======================================== */
 .section-footer {
@@ -1169,21 +1111,6 @@ button,
     height: 100% !important;
     aspect-ratio: 16 / 9 !important;
     object-fit: contain !important;
-  }
-
-  .section-store {
-    height: auto !important;
-    min-height: 38vh !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 60px 20px !important;
-  }
-
-  .btn-smart-store {
-    width: clamp(160px, 65vw, 208px);
-    height: 44px;
-    font-size: 12px;
   }
 
   .section-footer {
