@@ -408,22 +408,14 @@ button,
   outline: none;
   cursor: pointer;
   text-align: left;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.2s ease;
   user-select: none;
   -webkit-user-select: none;
   box-sizing: border-box;
 }
 
 .accordion-header:hover {
-  background-color: #000000;
-}
-
-.accordion-header:hover .accordion-title {
-  color: #FFFFFF;
-}
-
-.accordion-header:hover .accordion-icon {
-  color: #FFFFFF;
+  background-color: #F5F5F5;
 }
 
 .accordion-item.is-disabled .accordion-header {
