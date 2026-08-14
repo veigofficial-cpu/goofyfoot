@@ -523,10 +523,10 @@ button,
   height: calc(100vh - 224px);
   max-height: calc(100vh - 224px);
   box-sizing: border-box;
-  padding: clamp(16px, 2.2vh, 24px) 20px clamp(28px, 3.8vh, 40px) 20px;
+  padding: 24px 20px 36px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   overflow-y: auto;
 }
 
@@ -541,16 +541,17 @@ button,
 }
 
 #accordion-description .product-specs-list {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 1.5vh, 18px);
-  padding-bottom: 12px;
+  justify-content: space-between;
+  gap: 14px;
 }
 
 .spec-row {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .spec-label-group {
@@ -561,44 +562,66 @@ button,
 
 .spec-label-kr {
   font-family: var(--font-kr);
-  font-size: clamp(12px, 0.85vw, 16px);
+  font-size: 16px;
   font-weight: 500;
   color: #000000;
-  line-height: 1.25;
+  line-height: 20px;
 }
 
 .spec-label-en {
   font-family: var(--font-en);
-  font-size: clamp(12px, 0.85vw, 16px);
+  font-size: 16px;
   font-weight: 400;
   color: #666666;
-  line-height: 1.25;
+  line-height: 20px;
 }
 
 .spec-value-group {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 2px;
 }
 
 .spec-value-kr {
   font-family: var(--font-kr);
-  font-size: clamp(12px, 0.85vw, 16px);
+  font-size: 16px;
   font-weight: 400;
   color: #000000;
-  line-height: 1.35;
+  line-height: 22px;
   margin: 0;
   word-break: keep-all;
 }
 
 .spec-value-en {
   font-family: var(--font-en);
-  font-size: clamp(12px, 0.85vw, 16px);
+  font-size: 16px;
   font-weight: 400;
   color: #666666;
-  line-height: 1.35;
+  line-height: 22px;
   margin: 0;
   word-break: keep-all;
+}
+
+@media (max-height: 800px) and (min-width: 769px) {
+  #accordion-description .accordion-content-inner {
+    padding: 16px 20px 24px 20px;
+  }
+
+  #accordion-description .product-specs-list {
+    gap: 8px;
+  }
+
+  .spec-label-kr,
+  .spec-label-en {
+    font-size: 14px !important;
+    line-height: 18px !important;
+  }
+
+  .spec-value-kr,
+  .spec-value-en {
+    font-size: 14px !important;
+    line-height: 19px !important;
+  }
 }
 
 .notes-pyramid,
