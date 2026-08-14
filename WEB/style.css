@@ -1021,34 +1021,31 @@ button,
   }
 
   .spec-label-kr {
-    font-size: 13px !important;
-    line-height: 16px !important;
+    font-family: var(--font-kr);
+    font-size: 16px !important;
+    line-height: 20px !important;
     font-weight: 500 !important;
   }
 
   .spec-label-en {
-    font-size: 10px !important;
-    line-height: 16px !important;
+    font-family: var(--font-en);
+    font-size: 13px !important;
+    line-height: 20px !important;
+    font-weight: 400 !important;
   }
 
   .spec-value-kr {
-    font-size: 13px !important;
-    line-height: 17px !important;
+    font-family: var(--font-kr);
+    font-size: 16px !important;
+    line-height: 22px !important;
     font-weight: 400 !important;
   }
 
   .spec-value-en {
-    font-size: 10px !important;
-    line-height: 14px !important;
-  }
-
-  .notes-pyramid .spec-label {
+    font-family: var(--font-en);
     font-size: 13px !important;
-    font-weight: 500 !important;
-  }
-
-  .notes-pyramid .spec-value {
-    font-size: 13px !important;
+    line-height: 18px !important;
+    font-weight: 400 !important;
   }
 
   .section-products {
