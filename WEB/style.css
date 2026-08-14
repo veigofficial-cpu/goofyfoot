@@ -383,21 +383,12 @@ button,
   display: flex;
   flex-direction: column;
   width: 100%;
-  flex: 1;
-  min-height: 0;
+  flex-shrink: 0;
 }
 
 .accordion-item {
   border-bottom: 1px solid #000000;
   flex-shrink: 0;
-  transition: flex 0.45s cubic-bezier(0.2, 0, 0.05, 1);
-}
-
-.accordion-item.is-open {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
 }
 
 .accordion-header {
@@ -445,9 +436,9 @@ button,
 /* Smart Store Accordion Button Item */
 .accordion-item-store {
   background: #000000;
-  border-bottom: none;
-  flex: 0 0 auto;
-  margin-top: auto;
+  border-bottom: 1px solid #000000;
+  flex-shrink: 0;
+  margin-top: 0;
   transition: background-color 0.25s ease;
 }
 
@@ -505,33 +496,49 @@ button,
 .accordion-item.is-open .accordion-body {
   grid-template-rows: 1fr;
   opacity: 1;
-  flex: 1;
+}
+
+/* Description is-open specific: expands precisely to 100vh - 224px */
+#accordion-description.is-open .accordion-body {
+  height: calc(100vh - 224px);
+  min-height: calc(100vh - 224px);
+  max-height: calc(100vh - 224px);
   display: flex;
   flex-direction: column;
-  min-height: 0;
 }
 
 .accordion-content-inner {
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   padding: 0 20px;
   transition: padding 0.45s cubic-bezier(0.2, 0, 0.05, 1);
 }
 
 .accordion-item.is-open .accordion-content-inner {
+  padding: 24px 20px 36px 20px;
+}
+
+#accordion-description.is-open .accordion-content-inner {
+  height: 100%;
+  box-sizing: border-box;
   padding: 20px 20px 24px 20px;
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: auto;
 }
 
 .product-specs-list {
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+
+#accordion-description.is-open .product-specs-list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  gap: 16px;
-  flex: 1;
+  gap: 12px;
 }
 
 .spec-row {
@@ -1082,16 +1089,24 @@ button,
     font-size: inherit !important;
   }
 
-  .product-accordion-group {
-    flex: 0 0 auto !important;
+  #accordion-description.is-open .accordion-body {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    display: block !important;
   }
 
-  .accordion-item.is-open {
-    flex: 0 0 auto !important;
+  #accordion-description.is-open .accordion-content-inner {
+    height: auto !important;
+    padding: 20px 20px 28px 20px !important;
+    display: block !important;
   }
 
-  .accordion-item-store {
-    margin-top: 0 !important;
+  #accordion-description.is-open .product-specs-list {
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
   }
 
   .accordion-header {
