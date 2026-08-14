@@ -406,14 +406,22 @@ button,
   outline: none;
   cursor: pointer;
   text-align: left;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
   user-select: none;
   -webkit-user-select: none;
   box-sizing: border-box;
 }
 
 .accordion-header:hover {
-  background-color: rgba(0, 0, 0, 0.02);
+  background-color: #000000;
+}
+
+.accordion-header:hover .accordion-title {
+  color: #FFFFFF;
+}
+
+.accordion-header:hover .accordion-icon {
+  color: #FFFFFF;
 }
 
 .accordion-item.is-disabled .accordion-header {
@@ -431,6 +439,7 @@ button,
   font-weight: 400;
   color: #000000;
   letter-spacing: 0.02em;
+  transition: color 0.25s ease;
 }
 
 /* Smart Store Accordion Button Item */
