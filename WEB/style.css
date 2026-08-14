@@ -416,6 +416,61 @@ button,
   letter-spacing: 0.02em;
 }
 
+/* Smart Store Accordion Button Item */
+.accordion-item-store {
+  background: #000000;
+  border-bottom: 1px solid #000000;
+  flex-shrink: 0;
+  transition: background-color 0.25s ease;
+}
+
+.accordion-store-link {
+  width: 100%;
+  height: 56px;
+  min-height: 56px;
+  flex: 0 0 56px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #000000;
+  color: #FFFFFF;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  box-sizing: border-box;
+  transition: background-color 0.25s ease;
+}
+
+.accordion-store-link:hover {
+  background-color: #1f1f1f;
+}
+
+.accordion-store-title {
+  font-family: var(--font-en);
+  font-size: 13px;
+  font-weight: 500;
+  color: #FFFFFF;
+  letter-spacing: 0.02em;
+}
+
+.accordion-store-arrow {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 400;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+}
+
+.accordion-store-link:hover .accordion-store-arrow {
+  transform: translateX(4px);
+}
+
 .accordion-icon {
   display: flex;
   align-items: center;
@@ -1056,6 +1111,13 @@ button,
     min-height: 52px !important;
     flex: 0 0 52px !important;
     flex-shrink: 0 !important;
+    padding: 0 20px !important;
+  }
+
+  .accordion-store-link {
+    height: 52px !important;
+    min-height: 52px !important;
+    flex: 0 0 52px !important;
     padding: 0 20px !important;
   }
 
