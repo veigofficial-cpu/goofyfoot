@@ -539,7 +539,15 @@ button,
   flex-direction: column;
   justify-content: space-between;
   gap: 12px;
-  padding-bottom: 40px !important;
+}
+
+#accordion-description .product-specs-list::after {
+  content: '';
+  display: block;
+  height: 36px;
+  min-height: 36px;
+  flex: 0 0 36px;
+  flex-shrink: 0;
 }
 
 .spec-row {
@@ -603,7 +611,12 @@ button,
 
   #accordion-description .product-specs-list {
     gap: 8px;
-    padding-bottom: 32px !important;
+  }
+
+  #accordion-description .product-specs-list::after {
+    height: 28px;
+    min-height: 28px;
+    flex: 0 0 28px;
   }
 
   .spec-label-kr,
@@ -1133,6 +1146,10 @@ button,
     display: flex !important;
     flex-direction: column !important;
     gap: 20px !important;
+  }
+
+  #accordion-description .product-specs-list::after {
+    display: none !important;
   }
 
   .accordion-header {
