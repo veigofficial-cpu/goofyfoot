@@ -247,6 +247,16 @@ button,
   opacity: 0.8;
 }
 
+.story-brand-reg {
+  display: inline-block;
+  font-size: 1.55em;
+  line-height: 1;
+  vertical-align: -0.1em;
+  font-weight: inherit;
+  margin-left: 0.02em;
+  letter-spacing: normal;
+}
+
 .story-english-text.scroll-reveal.is-visible {
   transition-delay: 0.08s;
 }
