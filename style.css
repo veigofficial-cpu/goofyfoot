@@ -520,6 +520,11 @@ button,
   opacity: 1;
 }
 
+#accordion-safety-care.is-open .accordion-body {
+  max-height: 1200px;
+  opacity: 1;
+}
+
 .accordion-content-inner {
   padding: 0 20px;
   box-sizing: border-box;
@@ -535,6 +540,23 @@ button,
 
 #accordion-woody-notes .accordion-content-inner {
   padding: 20px 20px 28px 20px;
+}
+
+#accordion-safety-care .accordion-content-inner {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  padding: 24px 20px 32px 20px;
+  display: block;
+}
+
+#accordion-safety-care .product-specs-list {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .product-specs-list {
@@ -1152,6 +1174,10 @@ button,
     max-height: 500px !important;
   }
 
+  #accordion-safety-care.is-open .accordion-body {
+    max-height: 1200px !important;
+  }
+
   #accordion-description .accordion-content-inner {
     height: auto !important;
     min-height: auto !important;
@@ -1159,7 +1185,21 @@ button,
     display: block !important;
   }
 
+  #accordion-safety-care .accordion-content-inner {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 20px 20px 28px 20px !important;
+    display: block !important;
+  }
+
   #accordion-description .product-specs-list {
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  #accordion-safety-care .product-specs-list {
     height: auto !important;
     display: flex !important;
     flex-direction: column !important;
