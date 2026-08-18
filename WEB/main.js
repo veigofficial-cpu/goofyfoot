@@ -454,30 +454,48 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // -------------------------------------------------------
-  // Section 3 Description Smooth Wheel Scrolling Delegation
+  // Section 3 Description & Sticky Panel Unified Wheel Scrolling
   // -------------------------------------------------------
   const productDetails = document.querySelector('.product-explain-details');
   const descScroll = document.querySelector('#accordion-description .accordion-content-inner');
 
   if (productDetails && descScroll) {
     productDetails.addEventListener('wheel', (e) => {
-      // Only apply on desktop sticky panel layout
+      // Only apply on desktop sticky layout
       if (window.innerWidth <= 768) return;
 
       const descItem = document.getElementById('accordion-description');
       const isDescOpen = descItem && descItem.classList.contains('is-open');
-      if (!isDescOpen) return;
 
-      const isInsideDesc = descScroll.contains(e.target);
+      if (isDescOpen) {
+        const canScrollDown = descScroll.scrollTop + descScroll.clientHeight < descScroll.scrollHeight - 1.5;
+        const canScrollUp = descScroll.scrollTop > 1.5;
 
-      if (!isInsideDesc) {
-        const canScrollDown = descScroll.scrollTop + descScroll.clientHeight < descScroll.scrollHeight - 1;
-        const canScrollUp = descScroll.scrollTop > 1;
-
-        if ((e.deltaY > 0 && canScrollDown) || (e.deltaY < 0 && canScrollUp)) {
-          e.preventDefault();
-          descScroll.scrollTop += e.deltaY;
+        if (e.deltaY > 0) {
+          // Scrolling DOWN
+          if (canScrollDown) {
+            e.preventDefault();
+            descScroll.scrollTop += e.deltaY;
+          } else {
+            // Reached bottom of Description -> Seamlessly scroll window down!
+            e.preventDefault();
+            window.scrollBy(0, e.deltaY);
+          }
+        } else if (e.deltaY < 0) {
+          // Scrolling UP
+          if (canScrollUp) {
+            e.preventDefault();
+            descScroll.scrollTop += e.deltaY;
+          } else {
+            // Reached top of Description -> Seamlessly scroll window up!
+            e.preventDefault();
+            window.scrollBy(0, e.deltaY);
+          }
         }
+      } else {
+        // When Description is closed, scrolling anywhere on right sticky panel scrolls window
+        e.preventDefault();
+        window.scrollBy(0, e.deltaY);
       }
     }, { passive: false });
   }
