@@ -248,13 +248,19 @@ button,
 }
 
 .story-brand-reg {
-  display: inline-block;
-  font-size: 1.55em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: -0.06em;
+  margin: 0 0.05em 0 0.02em;
   line-height: 1;
-  vertical-align: -0.1em;
-  font-weight: inherit;
-  margin-left: 0.02em;
-  letter-spacing: normal;
+}
+
+.story-brand-reg .reg-svg {
+  width: 0.82em;
+  height: 0.82em;
+  display: inline-block;
+  overflow: visible;
 }
 
 .story-english-text.scroll-reveal.is-visible {
