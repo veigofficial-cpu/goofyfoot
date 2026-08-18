@@ -1183,6 +1183,11 @@ button,
     padding: 0 20px !important;
   }
 
+  .accordion-icon,
+  .accordion-store-icon {
+    margin-right: 0 !important;
+  }
+
   .accordion-content-inner {
     padding: 0 20px;
   }
