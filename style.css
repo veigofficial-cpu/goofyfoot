@@ -347,14 +347,12 @@ button,
   min-width: 50%;
   position: sticky !important;
   top: 0 !important;
-  height: 100vh;
-  max-height: 100vh;
+  align-self: flex-start;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   background: #FFFFFF;
   box-sizing: border-box;
-  overflow: hidden;
   z-index: 10;
 }
 
@@ -523,14 +521,12 @@ button,
 }
 
 #accordion-description.is-open .accordion-body {
-  max-height: calc(100vh - 224px);
-  height: calc(100vh - 224px);
+  max-height: 2000px;
   opacity: 1;
-  overflow: hidden;
 }
 
 #accordion-woody-notes.is-open .accordion-body {
-  max-height: 350px;
+  max-height: 500px;
   opacity: 1;
 }
 
@@ -541,28 +537,10 @@ button,
 
 #accordion-description .accordion-content-inner {
   width: 100%;
-  height: 100%;
-  max-height: 100%;
+  height: auto;
   box-sizing: border-box;
-  padding: 24px 20px 48px 20px;
+  padding: 24px 20px 32px 20px;
   display: block;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: auto;
-}
-
-#accordion-description .accordion-content-inner::-webkit-scrollbar {
-  width: 4px;
-}
-
-#accordion-description .accordion-content-inner::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.15);
-  border-radius: 2px;
-}
-
-#accordion-description .accordion-content-inner::-webkit-scrollbar-track {
-  background: transparent;
 }
 
 #accordion-woody-notes .accordion-content-inner {
