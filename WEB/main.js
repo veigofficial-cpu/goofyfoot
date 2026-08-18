@@ -453,6 +453,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // -------------------------------------------------------
+  // Section 3 Description Smooth Wheel Scrolling Delegation
+  // -------------------------------------------------------
+  const productDetails = document.querySelector('.product-explain-details');
+  const descScroll = document.querySelector('#accordion-description .accordion-content-inner');
+
+  if (productDetails && descScroll) {
+    productDetails.addEventListener('wheel', (e) => {
+      // Only apply on desktop sticky panel layout
+      if (window.innerWidth <= 768) return;
+
+      const descItem = document.getElementById('accordion-description');
+      const isDescOpen = descItem && descItem.classList.contains('is-open');
+      if (!isDescOpen) return;
+
+      const isInsideDesc = descScroll.contains(e.target);
+
+      if (!isInsideDesc) {
+        const canScrollDown = descScroll.scrollTop + descScroll.clientHeight < descScroll.scrollHeight - 1;
+        const canScrollUp = descScroll.scrollTop > 1;
+
+        if ((e.deltaY > 0 && canScrollDown) || (e.deltaY < 0 && canScrollUp)) {
+          e.preventDefault();
+          descScroll.scrollTop += e.deltaY;
+        }
+      }
+    }, { passive: false });
+  }
+
 
 
   // -------------------------------------------------------

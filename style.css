@@ -533,7 +533,20 @@ button,
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+  overscroll-behavior: auto;
+}
+
+#accordion-description .accordion-content-inner::-webkit-scrollbar {
+  width: 4px;
+}
+
+#accordion-description .accordion-content-inner::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+
+#accordion-description .accordion-content-inner::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 #accordion-woody-notes .accordion-content-inner {
