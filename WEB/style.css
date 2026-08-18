@@ -508,7 +508,9 @@ button,
 
 #accordion-description.is-open .accordion-body {
   max-height: calc(100vh - 224px);
+  height: calc(100vh - 224px);
   opacity: 1;
+  overflow: hidden;
 }
 
 #accordion-woody-notes.is-open .accordion-body {
@@ -522,13 +524,16 @@ button,
 }
 
 #accordion-description .accordion-content-inner {
-  height: calc(100vh - 224px);
-  max-height: calc(100vh - 224px);
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
   box-sizing: border-box;
-  padding: 24px 20px 0 20px;
-  display: flex;
-  flex-direction: column;
+  padding: 24px 20px 48px 20px;
+  display: block;
   overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 #accordion-woody-notes .accordion-content-inner {
@@ -542,21 +547,19 @@ button,
 }
 
 #accordion-description .product-specs-list {
-  flex: 1;
-  height: 100%;
+  width: 100%;
+  height: auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
 }
 
 #accordion-description .product-specs-list::after {
   content: '';
   display: block;
-  height: 36px;
-  min-height: 36px;
-  flex: 0 0 36px;
+  height: 24px;
+  min-height: 24px;
   flex-shrink: 0;
 }
 
@@ -616,17 +619,16 @@ button,
 
 @media (max-height: 850px) and (min-width: 769px) {
   #accordion-description .accordion-content-inner {
-    padding: 16px 20px 0 20px;
+    padding: 16px 20px 36px 20px;
   }
 
   #accordion-description .product-specs-list {
-    gap: 8px;
+    gap: 12px;
   }
 
   #accordion-description .product-specs-list::after {
-    height: 28px;
-    min-height: 28px;
-    flex: 0 0 28px;
+    height: 20px;
+    min-height: 20px;
   }
 
   .spec-label-kr,
