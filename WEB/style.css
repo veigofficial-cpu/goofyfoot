@@ -477,20 +477,25 @@ button,
 }
 
 .accordion-store-icon {
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
-  margin-right: 10px;
   line-height: 0;
+  flex-shrink: 0;
 }
 
 .accordion-icon {
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #000000;
-  margin-right: 10px;
+  line-height: 0;
+  flex-shrink: 0;
   transition: transform 0.45s cubic-bezier(0.2, 0, 0.05, 1);
 }
 
