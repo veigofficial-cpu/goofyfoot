@@ -248,19 +248,9 @@ button,
 }
 
 .story-brand-reg {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  vertical-align: -0.06em;
-  margin: 0 0.05em 0 0.02em;
-  line-height: 1;
-}
-
-.story-brand-reg .reg-svg {
-  width: 0.82em;
-  height: 0.82em;
-  display: inline-block;
-  overflow: visible;
+  font-family: Arial, -apple-system, sans-serif !important;
+  font-weight: 400;
+  display: inline;
 }
 
 .story-english-text.scroll-reveal.is-visible {
