@@ -417,28 +417,50 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------
-  // Product Explain Accordion Interactive Toggles (Single Open Exclusive)
+  // Product Explain Accordion Interactive Toggles (Smooth scrollHeight Animation)
   // -------------------------------------------------------
   const accordionItems = document.querySelectorAll('.product-accordion-group .accordion-item');
   const accordionHeaders = document.querySelectorAll('.product-accordion-group .accordion-header');
 
+  // Initialize initial open accordion item
+  const initialOpenItem = document.querySelector('.product-accordion-group .accordion-item.is-open');
+  if (initialOpenItem) {
+    const initialBody = initialOpenItem.querySelector('.accordion-body');
+    if (initialBody) {
+      initialBody.style.maxHeight = initialBody.scrollHeight + 'px';
+    }
+  }
+
   accordionHeaders.forEach((header) => {
     header.addEventListener('click', () => {
       const item = header.closest('.accordion-item');
-      if (!item || item.classList.contains('is-disabled')) return;
+      if (!item || item.classList.contains('is-disabled') || item.classList.contains('accordion-item-store')) return;
       const isOpen = item.classList.contains('is-open');
 
       // 하나의 카테고리만 열리도록 다른 모든 카테고리 닫기
       accordionItems.forEach((otherItem) => {
-        otherItem.classList.remove('is-open');
-        const otherHeader = otherItem.querySelector('.accordion-header');
-        if (otherHeader) otherHeader.setAttribute('aria-expanded', 'false');
+        if (otherItem !== item && otherItem.classList.contains('is-open')) {
+          otherItem.classList.remove('is-open');
+          const otherHeader = otherItem.querySelector('.accordion-header');
+          if (otherHeader) otherHeader.setAttribute('aria-expanded', 'false');
+          const otherBody = otherItem.querySelector('.accordion-body');
+          if (otherBody) otherBody.style.maxHeight = '0px';
+        }
       });
 
-      // 클릭한 카테고리가 닫혀있던 상태였다면 열기
-      if (!isOpen) {
+      // 클릭한 카테고리 토글
+      if (isOpen) {
+        item.classList.remove('is-open');
+        header.setAttribute('aria-expanded', 'false');
+        const body = item.querySelector('.accordion-body');
+        if (body) body.style.maxHeight = '0px';
+      } else {
         item.classList.add('is-open');
         header.setAttribute('aria-expanded', 'true');
+        const body = item.querySelector('.accordion-body');
+        if (body) {
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
 
         if (window.innerWidth <= 768) {
           setTimeout(() => {
@@ -451,6 +473,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
+  });
+
+  // Keep open item's height accurate on window resize
+  window.addEventListener('resize', () => {
+    const activeItem = document.querySelector('.product-accordion-group .accordion-item.is-open');
+    if (activeItem) {
+      const activeBody = activeItem.querySelector('.accordion-body');
+      if (activeBody) {
+        activeBody.style.maxHeight = activeBody.scrollHeight + 'px';
+      }
+    }
   });
 
 
