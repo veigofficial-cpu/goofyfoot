@@ -288,10 +288,10 @@ button,
 }
 
 .product-explain-visual {
-  flex: 0 0 50%;
-  width: 50%;
-  max-width: 50%;
-  min-width: 50%;
+  flex: 0 0 70%;
+  width: 70%;
+  max-width: 70%;
+  min-width: 70%;
   border-right: 1px solid #000000;
   background: #FFFFFF;
   position: relative;
@@ -331,10 +331,10 @@ button,
 }
 
 .product-explain-details {
-  flex: 0 0 50%;
-  width: 50%;
-  max-width: 50%;
-  min-width: 50%;
+  flex: 0 0 30%;
+  width: 30%;
+  max-width: 30%;
+  min-width: 30%;
   position: sticky !important;
   top: 0 !important;
   align-self: flex-start;
