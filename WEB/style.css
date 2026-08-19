@@ -496,7 +496,7 @@ button,
   margin-right: 15px;
   line-height: 0;
   flex-shrink: 0;
-  transition: transform 0.45s cubic-bezier(0.2, 0, 0.05, 1);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .accordion-item.is-open .accordion-icon {
@@ -507,21 +507,21 @@ button,
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.45s cubic-bezier(0.2, 0, 0.05, 1), opacity 0.35s ease;
+  transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
 }
 
 #accordion-description.is-open .accordion-body {
-  max-height: 2000px;
+  max-height: 520px;
   opacity: 1;
 }
 
 #accordion-woody-notes.is-open .accordion-body {
-  max-height: 500px;
+  max-height: 320px;
   opacity: 1;
 }
 
 #accordion-safety-care.is-open .accordion-body {
-  max-height: 1200px;
+  max-height: 600px;
   opacity: 1;
 }
 
@@ -1167,15 +1167,15 @@ button,
   }
 
   #accordion-description.is-open .accordion-body {
-    max-height: 1200px !important;
+    max-height: 600px !important;
   }
 
   #accordion-woody-notes.is-open .accordion-body {
-    max-height: 500px !important;
+    max-height: 350px !important;
   }
 
   #accordion-safety-care.is-open .accordion-body {
-    max-height: 1200px !important;
+    max-height: 700px !important;
   }
 
   #accordion-description .accordion-content-inner {

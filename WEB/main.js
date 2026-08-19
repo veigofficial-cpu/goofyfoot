@@ -51,9 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         sprayAudio.volume = 0.1; // 10% volume
         sprayAudio.currentTime = 0;
-        sprayAudio.play().catch(() => {});
+        sprayAudio.play().catch(() => { });
         return;
-      } catch (e) {}
+      } catch (e) { }
     }
   }
 
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Scroll Reveal Observer (Triggers every time on scroll)
   // -------------------------------------------------------
   const revealElements = document.querySelectorAll('.scroll-reveal');
-  
+
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -548,15 +548,15 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         hoverSfx.currentTime = 0;
         hoverSfx.loop = true;
-        hoverSfx.play().catch(() => {});
-      } catch (err) {}
+        hoverSfx.play().catch(() => { });
+      } catch (err) { }
     };
 
     const stopHoverSfx = () => {
       try {
         hoverSfx.pause();
         hoverSfx.currentTime = 0;
-      } catch (err) {}
+      } catch (err) { }
     };
 
     cicadaFab.addEventListener('mouseenter', startHoverSfx);
