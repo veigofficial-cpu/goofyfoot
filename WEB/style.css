@@ -323,6 +323,7 @@ button,
 .vertical-stack-img {
   width: 100%;
   max-width: 100%;
+  aspect-ratio: 960 / 1080;
   height: auto;
   display: block;
   object-fit: cover;
