@@ -2,12 +2,7 @@
   <defs>
     <style>
       .favicon-cicada {
-        fill: #111111;
-      }
-      @media (prefers-color-scheme: dark) {
-        .favicon-cicada {
-          fill: #FFFFFF;
-        }
+        fill: #FFFFFF;
       }
     </style>
   </defs>
