@@ -528,60 +528,30 @@ button,
 }
 
 .accordion-content-inner {
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
-#accordion-description .accordion-content-inner {
   width: 100%;
   height: auto;
   box-sizing: border-box;
-  padding: 24px 20px 32px 20px;
+  padding: 24px 20px 48px 20px;
   display: block;
 }
 
-#accordion-woody-notes .accordion-content-inner {
-  padding: 20px 20px 28px 20px;
-}
-
+#accordion-description .accordion-content-inner,
+#accordion-woody-notes .accordion-content-inner,
 #accordion-safety-care .accordion-content-inner {
   width: 100%;
   height: auto;
   box-sizing: border-box;
-  padding: 24px 20px 32px 20px;
+  padding: 24px 20px 48px 20px;
   display: block;
-}
-
-#accordion-safety-care .product-specs-list {
-  width: 100%;
-  height: auto;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
 }
 
 .product-specs-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-#accordion-description .product-specs-list {
   width: 100%;
   height: auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-#accordion-description .product-specs-list::after {
-  content: '';
-  display: block;
-  height: 24px;
-  min-height: 24px;
-  flex-shrink: 0;
 }
 
 .spec-row {
@@ -1180,36 +1150,13 @@ button,
     max-height: 700px !important;
   }
 
-  #accordion-description .accordion-content-inner {
-    height: auto !important;
-    min-height: auto !important;
-    padding: 20px 20px 28px 20px !important;
-    display: block !important;
-  }
-
+  #accordion-description .accordion-content-inner,
+  #accordion-woody-notes .accordion-content-inner,
   #accordion-safety-care .accordion-content-inner {
     height: auto !important;
     min-height: auto !important;
-    padding: 20px 20px 28px 20px !important;
+    padding: 20px 20px 36px 20px !important;
     display: block !important;
-  }
-
-  #accordion-description .product-specs-list {
-    height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-  }
-
-  #accordion-safety-care .product-specs-list {
-    height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-  }
-
-  #accordion-description .product-specs-list::after {
-    display: none !important;
   }
 
   .accordion-header {
