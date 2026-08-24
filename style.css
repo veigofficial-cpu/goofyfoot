@@ -426,6 +426,20 @@ button,
   background-color: transparent;
 }
 
+.accordion-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.accordion-title-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
 .accordion-title {
   font-family: var(--font-en);
   font-size: 13px;
