@@ -675,13 +675,13 @@ button,
 }
 
 /* ========================================
-   SECTION 4: PRODUCTS FULLSCREEN VIDEO (1920×1080)
+   SECTION 4: PRODUCTS MOTION VIDEO (1920×880)
    ======================================== */
 .section-products {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  min-height: 720px;
+  height: auto;
+  aspect-ratio: 1920 / 880;
   background: #000000;
   overflow: hidden;
   display: flex;
@@ -690,16 +690,17 @@ button,
 }
 
 .product-video-container {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
   height: 100%;
+  aspect-ratio: 1920 / 880;
   overflow: hidden;
 }
 
 .product-fullscreen-video {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1920 / 880;
   object-fit: cover;
   display: block;
 }
@@ -1219,7 +1220,7 @@ button,
     height: auto !important;
     min-height: auto !important;
     width: 100vw !important;
-    aspect-ratio: 16 / 9 !important;
+    aspect-ratio: 1920 / 880 !important;
     padding: 0 !important;
     display: flex !important;
     align-items: center !important;
@@ -1232,7 +1233,7 @@ button,
     position: relative !important;
     width: 100% !important;
     height: 100% !important;
-    aspect-ratio: 16 / 9 !important;
+    aspect-ratio: 1920 / 880 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -1241,7 +1242,7 @@ button,
   .product-fullscreen-video {
     width: 100% !important;
     height: 100% !important;
-    aspect-ratio: 16 / 9 !important;
+    aspect-ratio: 1920 / 880 !important;
     object-fit: contain !important;
   }
 
