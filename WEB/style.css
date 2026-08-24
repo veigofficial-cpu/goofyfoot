@@ -515,18 +515,6 @@ button,
   opacity: 1;
 }
 
-#accordion-description.is-open .accordion-body {
-  max-height: 600px;
-}
-
-#accordion-woody-notes.is-open .accordion-body {
-  max-height: 400px;
-}
-
-#accordion-safety-care.is-open .accordion-body {
-  max-height: 900px;
-}
-
 .accordion-content-inner {
   width: 100%;
   height: auto;
@@ -1137,18 +1125,6 @@ button,
   .product-explain-title .title-en {
     font-size: 13px !important;
     font-weight: 400 !important;
-  }
-
-  #accordion-description.is-open .accordion-body {
-    max-height: 600px !important;
-  }
-
-  #accordion-woody-notes.is-open .accordion-body {
-    max-height: 350px !important;
-  }
-
-  #accordion-safety-care.is-open .accordion-body {
-    max-height: 700px !important;
   }
 
   #accordion-description .accordion-content-inner,
