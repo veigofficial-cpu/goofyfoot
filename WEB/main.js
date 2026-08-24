@@ -445,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (otherHeader) otherHeader.setAttribute('aria-expanded', 'false');
           const otherBody = otherItem.querySelector('.accordion-body');
           if (otherBody) {
-            otherBody.style.transition = 'max-height 0.32s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.26s ease';
+            otherBody.style.transition = 'max-height 0.55s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.45s ease';
             otherBody.style.maxHeight = '0px';
           }
         }
@@ -457,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
         header.setAttribute('aria-expanded', 'false');
         const body = item.querySelector('.accordion-body');
         if (body) {
-          body.style.transition = 'max-height 0.32s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.26s ease';
+          body.style.transition = 'max-height 0.55s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.45s ease';
           body.style.maxHeight = '0px';
         }
       } else {
@@ -466,8 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const body = item.querySelector('.accordion-body');
         if (body) {
           const targetHeight = body.scrollHeight;
-          const openDuration = Math.min(0.38, Math.max(0.28, (targetHeight * 0.0002) + 0.26)).toFixed(2);
-          body.style.transition = `max-height ${openDuration}s cubic-bezier(0.25, 1, 0.5, 1), opacity ${openDuration * 0.85}s ease`;
+          body.style.transition = 'max-height 0.55s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.45s ease';
           body.style.maxHeight = '0px';
           requestAnimationFrame(() => {
             requestAnimationFrame(() => {
