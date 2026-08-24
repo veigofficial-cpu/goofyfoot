@@ -459,7 +459,12 @@ document.addEventListener('DOMContentLoaded', () => {
         header.setAttribute('aria-expanded', 'true');
         const body = item.querySelector('.accordion-body');
         if (body) {
-          body.style.maxHeight = body.scrollHeight + 'px';
+          body.style.maxHeight = '0px';
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              body.style.maxHeight = body.scrollHeight + 'px';
+            });
+          });
         }
       }
     });
