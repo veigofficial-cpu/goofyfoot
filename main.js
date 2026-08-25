@@ -466,13 +466,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const body = item.querySelector('.accordion-body');
         if (body) {
           const targetHeight = body.scrollHeight;
-          let openDuration = 0.55; // Woody Notes baseline (0.55s)
+          let openDuration = 0.55; // Woody Notes baseline (0.55s for ~160px)
           if (item.id === 'accordion-description') {
-            openDuration = 0.68; // Description (~340px)
+            openDuration = 1.10; // Description (~340px, matched to Woody Notes 290px/s velocity)
           } else if (item.id === 'accordion-safety-care') {
-            openDuration = 0.82; // Safety & Care (~580px)
+            openDuration = 1.65; // Safety & Care (~580px, matched to Woody Notes 290px/s velocity)
           }
-          body.style.transition = `max-height ${openDuration}s cubic-bezier(0.16, 1, 0.3, 1), opacity ${openDuration * 0.8}s ease`;
+          body.style.transition = `max-height ${openDuration}s cubic-bezier(0.16, 1, 0.3, 1), opacity ${openDuration * 0.7}s ease`;
           body.style.maxHeight = '0px';
           requestAnimationFrame(() => {
             requestAnimationFrame(() => {
