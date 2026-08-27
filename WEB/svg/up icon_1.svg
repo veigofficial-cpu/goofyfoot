@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 36 36">
+  <!-- Generator: Adobe Illustrator 30.7.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 114)  -->
   <defs>
     <style>
-      .cls-1, .cls-2 {
+      .st0, .st1 {
         fill: none;
       }
 
-      .cls-2 {
+      .st1 {
         stroke: #000;
         stroke-miterlimit: 10;
         stroke-width: 2px;
       }
     </style>
   </defs>
-  <g id="_레이어_1" data-name="레이어 1">
+  <g id="_레이어_1">
     <g>
-      <polyline class="cls-2" points="29.03 23.51 18 12.49 6.97 23.51"/>
-      <rect class="cls-1" width="36" height="36"/>
+      <polyline class="st1" points="29 23.5 18 12.5 7 23.5"/>
+      <rect class="st0" width="36" height="36"/>
     </g>
   </g>
 </svg>

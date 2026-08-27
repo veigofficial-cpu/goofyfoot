@@ -451,8 +451,8 @@ button,
 
 /* Smart Store Accordion Button Item */
 .accordion-item-store {
-  background: #000000;
-  border-bottom: 1px solid #000000;
+  background: #FF0000;
+  border-bottom: 1px solid #FF0000;
   flex-shrink: 0;
   margin-top: 0;
   transition: background-color 0.25s ease;
@@ -467,7 +467,7 @@ button,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #000000;
+  background: #FF0000;
   color: #FFFFFF;
   text-decoration: none;
   cursor: pointer;
@@ -478,7 +478,7 @@ button,
 }
 
 .accordion-store-link:hover {
-  background-color: #1f1f1f;
+  background-color: #E60000;
 }
 
 .accordion-store-title {
