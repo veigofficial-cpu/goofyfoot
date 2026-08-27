@@ -466,7 +466,7 @@ button,
   padding: 0 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   background: #FF0000;
   color: #FFFFFF;
   text-decoration: none;
