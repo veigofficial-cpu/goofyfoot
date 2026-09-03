@@ -769,7 +769,7 @@ button,
 .footer-info-desktop p {
   margin: 0;
   font-family: var(--font-en);
-  font-size: clamp(10px, 1.458vw, 28px);
+  font-size: clamp(10px, 1.354vw, 26px);
   font-weight: 400;
   line-height: 1.6;
   color: #000000;
