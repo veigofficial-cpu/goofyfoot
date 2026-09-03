@@ -754,19 +754,19 @@ button,
   padding: 0 clamp(36px, 4.5vw, 80px);
   box-sizing: border-box;
   text-align: left;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .footer-info-single-line p {
   margin: 0;
   font-family: var(--font-en);
-  font-size: 11px;
+  font-size: clamp(7px, 0.82vw, 13px);
   font-weight: 400;
   line-height: 1.6;
-  color: #8D8D8D;
-  white-space: normal;
-  word-break: keep-all;
-  overflow-wrap: break-word;
+  color: #000000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   letter-spacing: 0.01em;
 }
 
@@ -1260,15 +1260,16 @@ button,
 
   .footer-info-single-line {
     padding: 0 1.5rem !important;
-    overflow-x: visible !important;
+    overflow: hidden !important;
     text-align: left !important;
   }
 
   .footer-info-single-line p {
-    font-size: 10px !important;
-    line-height: 16px !important;
-    white-space: normal !important;
-    word-break: keep-all !important;
-    overflow-wrap: break-word !important;
+    font-size: clamp(4.5px, 2.1vw, 10px) !important;
+    line-height: 1.6 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    color: #000000 !important;
   }
 }
