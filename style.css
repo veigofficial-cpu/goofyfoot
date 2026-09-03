@@ -759,15 +759,15 @@ button,
 
 .footer-info-single-line p {
   margin: 0;
-  font-family: var(--font-kr);
+  font-family: var(--font-en);
   font-size: 11px;
   font-weight: 400;
-  line-height: 19px;
+  line-height: 1.6;
   color: #8D8D8D;
   white-space: normal;
   word-break: keep-all;
   overflow-wrap: break-word;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
 }
 
 .footer-info-single-line a {
