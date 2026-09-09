@@ -607,4 +607,53 @@ document.addEventListener('DOMContentLoaded', () => {
     cicadaFab.addEventListener('touchend', stopHoverSfx, { passive: true });
     cicadaFab.addEventListener('touchcancel', stopHoverSfx, { passive: true });
   }
+
+  // -------------------------------------------------------
+  // Section 4: Products Motion Video Autoplay & iOS Safari Polyfill
+  // -------------------------------------------------------
+  const productVideo = document.querySelector('.product-fullscreen-video');
+  if (productVideo) {
+    // Force DOM properties for iOS Safari & WebKit
+    productVideo.muted = true;
+    productVideo.defaultMuted = true;
+    productVideo.playsInline = true;
+    productVideo.setAttribute('playsinline', '');
+    productVideo.setAttribute('webkit-playsinline', '');
+
+    const attemptPlay = () => {
+      if (productVideo.paused) {
+        const playPromise = productVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Autoplay might be temporarily blocked by Low Power Mode or gesture policy
+          });
+        }
+      }
+    };
+
+    // Attempt play immediately and on loaded metadata / canplay
+    attemptPlay();
+    productVideo.addEventListener('loadedmetadata', attemptPlay);
+    productVideo.addEventListener('canplay', attemptPlay);
+
+    // Fallback: Trigger play on any initial user touch/click/scroll if blocked earlier
+    const onUserInteractionVideo = () => {
+      attemptPlay();
+    };
+    window.addEventListener('touchstart', onUserInteractionVideo, { passive: true, once: true });
+    window.addEventListener('scroll', onUserInteractionVideo, { passive: true, once: true });
+    window.addEventListener('click', onUserInteractionVideo, { once: true });
+
+    // IntersectionObserver: Ensure it plays when scrolling into view
+    if ('IntersectionObserver' in window) {
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            attemptPlay();
+          }
+        });
+      }, { threshold: 0.1 });
+      videoObserver.observe(productVideo);
+    }
+  }
 });
