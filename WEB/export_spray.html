@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goofy Foot® — Spray Motion Studio (1920×1080)</title>
+  <link rel="stylesheet" href="https://use.typekit.net/mba8czj.css">
+  <link rel="stylesheet" href="pretendardvariable.css">
+  <style>
+    :root {
+      --bg: #0C0C0C;
+      --card-bg: #161616;
+      --text: #EEEEEE;
+      --subtext: #888888;
+      --accent: #FFFFFF;
+      --border: #2A2A2A;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 60px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: #222;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: #AAA;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .title {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: var(--subtext);
+      line-height: 1.5;
+    }
+    .main-container {
+      width: 100%;
+      max-width: 1140px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .screen-wrapper {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #FFFFFF;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .controls-panel {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 10px;
+      border-top: 1px solid #222;
+    }
+    .specs-group {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .spec-label {
+      font-size: 11px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .spec-val {
+      font-size: 13px;
+      font-weight: 500;
+      color: #DDD;
+    }
+    .action-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+    }
+    .btn-primary {
+      background: #FFFFFF;
+      color: #000000;
+    }
+    .btn-primary:hover {
+      background: #E5E5E5;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+    }
+    .btn-secondary {
+      background: #252525;
+      color: #FFFFFF;
+      border: 1px solid #333;
+    }
+    .btn-secondary:hover {
+      background: #333;
+    }
+    .btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      background: #222;
+      color: #FFF;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid #444;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      z-index: 100;
+    }
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="badge">Motion Graphic Asset</div>
+    <h1 class="title">Goofy Foot® Spray Motion Studio</h1>
+    <p class="subtitle">Section 1 에어로졸 스티플 미스트 분사 물리 알고리즘을 1920×1080 Full HD (60fps)로 렌더링한 모션 소스입니다.</p>
+  </div>
+
+  <div class="main-container">
+    <div class="screen-wrapper">
+      <video id="spray-video" src="images/spray_motion_1080p.mp4" autoplay loop muted playsinline></video>
+    </div>
+
+    <div class="controls-panel">
+      <div class="specs-group">
+        <div class="spec-item">
+          <span class="spec-label">Resolution</span>
+          <span class="spec-val">1920 × 1080 (16:9)</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Frame Rate</span>
+          <span class="spec-val">60 FPS Progressive</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Format / Codec</span>
+          <span class="spec-val">MP4 (H.264 / yuv420p)</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Duration</span>
+          <span class="spec-val">3.5s (Seamless Loop)</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Background</span>
+          <span class="spec-val">Pure White (#FFFFFF)</span>
+        </div>
+      </div>
+
+      <div class="action-group">
+        <button type="button" class="btn btn-secondary" id="toggle-play-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <span id="play-text">일시정지</span>
+        </button>
+
+        <a href="images/spray_motion_1080p.mp4" download="스프레이 분사 모션.mp4" class="btn btn-primary" id="download-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          스프레이 분사 모션.mp4 다운로드
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">다운로드가 시작되었습니다.</div>
+
+  <script>
+    const video = document.getElementById('spray-video');
+    const toggleBtn = document.getElementById('toggle-play-btn');
+    const playText = document.getElementById('play-text');
+    const downloadBtn = document.getElementById('download-btn');
+    const toast = document.getElementById('toast');
+
+    toggleBtn.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        playText.textContent = '일시정지';
+      } else {
+        video.pause();
+        playText.textContent = '재생';
+      }
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    });
+  </script>
+</body>
+</html>
